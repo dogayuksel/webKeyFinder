@@ -1,0 +1,25 @@
+{
+  "name": "web-key-finder",
+  "version": "0.1.0",
+  "description": "Musical Key Detection for the Web",
+  "author": "Doga Yuksel <hello@doga.dev>",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "rollup -c",
+    "serve": "serve ./dist -l 3000"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@rollup/plugin-typescript": "^6.1.0",
+    "@surma/rollup-plugin-off-main-thread": "^1.4.2",
+    "rollup": "^2.33.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "preact": "^10.5.7",
+    "serve": "^11.3.2",
+    "uuid": "^8.3.1"
+  }
+}
