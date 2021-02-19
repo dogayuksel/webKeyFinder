@@ -52,22 +52,49 @@ class RecorderWorkletProcessor extends AudioWorkletProcessor {
   }
 
   // inputs[n][m][i]
-  // will access n-th input, m-th channel of that input, and i-th sample of that channel.
+  // will access n-th input,
+  // m-th channel of that input,
+  // and i-th sample of that channel.
   process(inputs, _, parameters) {
-    const isRecordingValues = parameters.isRecording;
     const numberOfChannels = inputs[0].length;
-    for (let dataIndex = 0; dataIndex < isRecordingValues.length; dataIndex += 1) {
-      const shouldRecord = isRecordingValues[dataIndex] > 0.9;
+    const isRecordingValues = parameters.isRecording;
+
+    if (isRecordingValues.length === 1) {
+      // If there's no automation happening during the time
+      // represented by the current block, the array [of parameter values]
+      // may contain a single value that is constant for the entire block,
+      // https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor/process#parameters
+      const shouldRecord = isRecordingValues[0] > 0.9;
       if (!shouldRecord && !this._isBufferEmpty()) {
         this._flush();
         this._recordingStopped();
       }
       if (shouldRecord) {
-        let mono = 0.0;
-        for (let channel = 0; channel < numberOfChannels; channel += 1) {
-          mono += inputs[0][channel][dataIndex];
+        const numberOfSamples = inputs[0][0].length;
+        for (let dataIndex = 0; dataIndex < numberOfSamples; dataIndex += 1) {
+          let mono = 0.0;
+          for (let channel = 0; channel < numberOfChannels; channel += 1) {
+            mono += inputs[0][channel][dataIndex];
+          }
+          this._appendToBuffer(mono / numberOfChannels);
         }
-        this._appendToBuffer(mono / numberOfChannels);
+      }
+
+    } else { // parameter values array length should match number of samples
+      for (let dataIndex = 0; dataIndex < isRecordingValues.length; dataIndex += 1) {
+        const shouldRecord = isRecordingValues[dataIndex] > 0.9;
+
+        if (!shouldRecord && !this._isBufferEmpty()) {
+          this._flush();
+          this._recordingStopped();
+        }
+        if (shouldRecord) {
+          let mono = 0.0;
+          for (let channel = 0; channel < numberOfChannels; channel += 1) {
+            mono += inputs[0][channel][dataIndex];
+          }
+          this._appendToBuffer(mono / numberOfChannels);
+        }
       }
     }
     return true;
