@@ -45,7 +45,8 @@ libKeyFinder/build/libkeyfinder.a: libKeyFinder/CMakeLists.txt fftw/.libs/libfft
 				-D FFTW3_LIBRARY="../../fftw/.libs/libfftw3.a" \
 				-D FFTW3_INCLUDE_DIR="../../fftw/api" \
 				-D CMAKE_CXX_FLAGS_RELEASE="-O3 -flto" \
-				-D CMAKE_BUILD_TYPE="RELEASE"; \
+				-D CMAKE_BUILD_TYPE="RELEASE" \
+				-D BUILD_TESTING="false"; \
 			emmake make;
 
 
