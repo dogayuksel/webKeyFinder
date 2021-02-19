@@ -34,19 +34,16 @@ libKeyFinder/CMakeLists.txt:
 	@echo "fetching libKeyFinder"
 	rm -rf libKeyFinder
 	git clone ${LIBKEYFINDER_URL}
-	cd libKeyFinder; \
-		sed -i '/add_subdirectory(tests)/d' CMakeLists.txt
 
 # link libKeyFinder
 libKeyFinder/build/libkeyfinder.a: libKeyFinder/CMakeLists.txt fftw/.libs/libfftw3.a
 	@echo "building libKeyFinder"
 	cd libKeyFinder; \
-		rm -rf tests; \
 		rm -rf build; mkdir build; \
 		cd build; \
 			emcmake cmake ..\
-				-D FFTW_LIBRARY="../../fftw/.libs/libfftw3.a" \
-				-D FFTW_INCLUDE_DIR="../../fftw/api" \
+				-D FFTW3_LIBRARY="../../fftw/.libs/libfftw3.a" \
+				-D FFTW3_INCLUDE_DIR="../../fftw/api" \
 				-D CMAKE_CXX_FLAGS_RELEASE="-O3 -flto" \
 				-D CMAKE_BUILD_TYPE="RELEASE"; \
 			emmake make;
@@ -84,11 +81,7 @@ $(EMCC_GENERATED_JS): \
 			-s "DISABLE_EXCEPTION_CATCHING=1" \
 			-s "ALLOW_MEMORY_GROWTH=1" \
 			-o src/web/keyFinderProgressiveWorker.js;
-	sed -i '0,/_emscripten_worker_respond/s//_emscripten_w_r_bak/' \
-			src/web/keyFinderProgressiveWorker.js
-	sed -i '0,/_emscripten_worker_respond_provisionally/s//_emscripten_w_r_p_bak/' \
-			src/web/keyFinderProgressiveWorker.js
-
+	node scripts/rename-overridden-functions.js;
 
 dist/keyFinderProgressiveWorker.wasm: src/web/keyFinderProgressiveWorker.js
 	mkdir -p dist

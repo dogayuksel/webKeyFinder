@@ -1,7 +1,7 @@
 #include <emscripten/bind.h>
 #include <emscripten/emscripten.h>
 
-#include "../../libKeyFinder/keyfinder.h"
+#include "../../libKeyFinder/src/keyfinder.h"
 
 std::string getKey(KeyFinder::key_t key) {
   switch(key)
