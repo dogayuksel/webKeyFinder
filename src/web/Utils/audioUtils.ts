@@ -33,6 +33,19 @@ export function createRecordingDevice(audioContext: AudioContext): Promise<Audio
   });
 }
 
-export function connectSourceToRecorder(audioSource, audioRecorder) {
+export function createAnalyserDevice(audioContext: AudioContext): AudioAnalyzerNode {
+  const analyzer = audioContext.createAnalyser();
+  analyzer.fftSize = 2048;
+  return analyzer;
+}
+
+export function createDataArrayForAnalyzerDevice(analyzer: AudioAnalyzerNode): Uint8Array {
+  const bufferLength = analyzer.frequencyBinCount;
+  var dataArray = new Uint8Array(bufferLength);
+  analyzer.getByteTimeDomainData(dataArray);
+  return dataArray;
+}
+
+export function connectAudioNodes(audioSource: AudioNode, audioRecorder: AudioNode): void {
   audioSource.connect(audioRecorder);
 }

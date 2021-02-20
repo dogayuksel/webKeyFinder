@@ -1,11 +1,18 @@
-import { h, Fragment, Component } from 'preact';
+import { h, createRef, Fragment, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
+
+const WIDTH = 200;
+const HEIGHT = 100;
 
 class LiveDetection extends Component {
   audioContext: AudioContext | null = null;
   recorder: AudioWorkletNode | null = null;
-  analyzer: Worker | null = null;
+  levelAnalyzer: AudioAnalyzerNode | null = null;
+  keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
+  canvas = createRef(); 
+  canvasContext = null;
+  dataArray = null;
 
   state = {
     connected: false,
@@ -14,27 +21,61 @@ class LiveDetection extends Component {
     error: null,
   };
 
+  drawLevelAnalysis = () => {
+    requestAnimationFrame(this.drawLevelAnalysis);
+    this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
+    this.canvasContext.fillStyle = 'rgb(160, 160, 160)';
+    this.canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
+    this.canvasContext.lineWidth = 2;
+    this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
+    this.canvasContext.beginPath();
+    const bufferLength = this.levelAnalyzer.frequencyBinCount;
+
+    var sliceWidth = WIDTH * 1.0 / bufferLength;
+    let x = 0;
+    for(let i = 0; i < bufferLength; i++) {
+      let v = this.dataArray[i] / 128.0;
+      let y = v * HEIGHT/2;
+      if(i === 0) {
+        this.canvasContext.moveTo(x, y);
+      } else {
+        this.canvasContext.lineTo(x, y);
+      }
+      x += sliceWidth;
+    }
+    this.canvasContext.lineTo(WIDTH, HEIGHT/2);
+    this.canvasContext.stroke();
+  };
+
   routeSound = async () => {
     try {
       const stream = await audioUtils.requestUserMedia();
       this.audioContext = audioUtils.createAudioContext();
       const source = audioUtils.createAudioSource(this.audioContext, stream);
       this.sampleRate = audioUtils.getSourceMeta(source).sampleRate;
+
       this.recorder = await audioUtils.createRecordingDevice(this.audioContext);
-      audioUtils.connectSourceToRecorder(source, this.recorder);
+      this.levelAnalyzer = audioUtils.createAnalyserDevice(this.audioContext);
+      this.dataArray = audioUtils.createDataArrayForAnalyzerDevice(this.levelAnalyzer);
+      this.canvasContext = this.canvas.current.getContext("2d");
+
+      audioUtils.connectAudioNodes(source, this.recorder);
+      audioUtils.connectAudioNodes(source, this.levelAnalyzer);
+
+      this.drawLevelAnalysis();
 
       this.setState({ connected: true });
 
       this.recorder.port.onmessage = (e) => {
         if (e.data.eventType === 'data') {
           const audioData = e.data.audioBuffer;
-          this.analyzer && this.analyzer.postMessage({
+          this.keyAnalyzer && this.keyAnalyzer.postMessage({
             funcName: 'feedAudioData',
             data: [audioData],
           });
         }
         if (e.data.eventType === 'stop') {
-          this.analyzer && this.analyzer.postMessage({ funcName: 'finalDetection' });
+          this.keyAnalyzer && this.keyAnalyzer.postMessage({ funcName: 'finalDetection' });
         }
       }
     } catch(e) {
@@ -42,12 +83,12 @@ class LiveDetection extends Component {
     }
   }
 
-  connectAnalyzer = () => {
-    this.analyzer = keyFinderUtils.initializeKeyFinder({
+  connectKeyAnalyzer = () => {
+    this.keyAnalyzer = keyFinderUtils.initializeKeyFinder({
       sampleRate: this.sampleRate,
       numberOfChannels: 1
     });
-    this.analyzer.addEventListener('message', (event) => {
+    this.keyAnalyzer.addEventListener('message', (event) => {
       if (event.data.finalResponse) {
         const result = keyFinderUtils.extractResultFromByteArray(event.data.data)
         this.setState({ result });
@@ -65,7 +106,7 @@ class LiveDetection extends Component {
 
   startRecording = () => {
     if (!this.recorder || !this.audioContext) return;
-    this.connectAnalyzer();
+    this.connectKeyAnalyzer();
     const { contextTime } = this.audioContext.getOutputTimestamp();
     this.recorder.parameters.get('isRecording').setValueAtTime(1, contextTime + 0.1);
     this.setState({  result: "..." });
@@ -105,6 +146,9 @@ class LiveDetection extends Component {
           value="End Key Detection"
           disabled={!analyzing}
         />
+        <div>
+          <canvas ref={this.canvas} style={{ width: WIDTH, height: HEIGHT, margin: '1em' }} />
+        </div>
         <div>
           {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
         </div>
