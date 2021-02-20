@@ -1,0 +1,45 @@
+* Installation
+
+** Perquisites
+*** emscripten
+- [[https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended][installation instructions using emsdk]]
+- make sure emsdk is available on your path
+#+BEGIN_SRC sh
+source ./<emsdk-directory>/emsdk.env.sh
+#+END_SRC
+
+*** curl
+#+BEGIN_SRC sh
+sudo apt-get update
+sudo apt-get install curl
+#+END_SRC
+
+*** yarn
+- [[https://classic.yarnpkg.com/en/docs/install][yarn installation]]
+
+** Clone the repository
+#+BEGIN_SRC sh
+git clone git@github.com:dogayuksel/webKeyFinder.git
+cd webKeyFinder
+#+END_SRC
+
+** Install dependencies and build the project
+Following command will fetch [[https://github.com/FFTW/fftw3][FFTW3]] and [[https://github.com/mixxxdj/libKeyFinder][libKeyFinder]] and build them using emscripten. Afterwards, will build the project itself using the dependencies.
+#+BEGIN_SRC sh
+make
+#+END_SRC
+
+** Run the server
+#+BEGIN_SRC sh
+make serve
+#+END_SRC
+
+** Clean Dependencies
+If you want to install dependencies from scratch again, you can clean them with the following command.
+#+BEGIN_SRC sh
+make clean_deps
+#+END_SRC
+
+** Development
+*** Just kill the server and run `make` again. This should rebuild the changed parts. You can run `make serve` to see your changes.
+*** If you have troubles with make recognizing the changes, you can run `make clean` to delete built files and repeat the previous step.
