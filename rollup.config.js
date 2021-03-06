@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import OMT from "@surma/rollup-plugin-off-main-thread";
+import css from 'rollup-plugin-css-only';
 import { terser } from "rollup-plugin-terser";
 
 export default {
@@ -13,6 +14,7 @@ export default {
     OMT(),
     resolve({ browser: true }),
     typescript(),
-    terser()
+    terser(),
+    css({ output: 'index.css' }),
   ],
 };

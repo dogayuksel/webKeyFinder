@@ -90,7 +90,9 @@ dist/keyFinderProgressiveWorker.wasm: src/web/keyFinderProgressiveWorker.js
 
 JS_FILES := $(filter-out $(EMCC_GENERATED_JS), $(filter %.js %.ts %.tsx, $(shell find src/web -name '*')))
 
-dist/index.js: $(JS_FILES) rollup.config.js node_modules src/web/keyFinderProgressiveWorker.js
+CSS_FILES := $(filter %.css, $(shell find src/web -name '*'))
+
+dist/index.js: $(JS_FILES) $(CSS_FILES) rollup.config.js node_modules src/web/keyFinderProgressiveWorker.js
 	yarn build
 
 dist/index.html: src/web/index.html
