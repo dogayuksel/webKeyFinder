@@ -24,10 +24,10 @@ class LiveDetection extends Component {
   drawLevelAnalysis = () => {
     requestAnimationFrame(this.drawLevelAnalysis);
     this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
-    this.canvasContext.fillStyle = 'rgb(160, 160, 160)';
+    this.canvasContext.fillStyle = 'rgb(188, 198, 221)';
     this.canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     this.canvasContext.lineWidth = 2;
-    this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
+    this.canvasContext.strokeStyle = 'rgb(44, 73, 127)';
     this.canvasContext.beginPath();
     const bufferLength = this.levelAnalyzer.frequencyBinCount;
 
@@ -36,7 +36,7 @@ class LiveDetection extends Component {
     for(let i = 0; i < bufferLength; i++) {
       let v = this.dataArray[i] / 128.0;
       let y = v * HEIGHT/2;
-      if(i === 0) {
+      if (i === 0) {
         this.canvasContext.moveTo(x, y);
       } else {
         this.canvasContext.lineTo(x, y);
@@ -123,35 +123,44 @@ class LiveDetection extends Component {
     return (
       <>
         {error && <h1>{error}</h1>}
-        <h1>Live Key Detection</h1>
-        <input
-          type="button"
-          onClick={this.routeSound}
-          value={
-            connected
-              ? "Key detection engine running"
-              : "Route sound to key detection engine"
-          }
-          disabled={connected}
-        />
-        <input
-          type="button"
-          onClick={this.startRecording}
-          value="Start Key Detection"
-          disabled={!connected || analyzing}
-        />
-        <input
-          type="button"
-          onClick={this.stopRecording}
-          value="End Key Detection"
-          disabled={!analyzing}
-        />
-        <div>
-          <canvas ref={this.canvas} style={{ width: WIDTH, height: HEIGHT, margin: '1em' }} />
-        </div>
-        <div>
-          {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
-        </div>
+        <header>
+          <h1>Live Key Detection</h1>
+        </header>
+        <main>
+          <input
+            type="button"
+            onClick={this.routeSound}
+            value={
+              connected
+                ? "Key detection engine running"
+                : "Route sound to key detection engine"
+            }
+            disabled={connected}
+          />
+          <input
+            type="button"
+            onClick={this.startRecording}
+            value="Start Key Detection"
+            disabled={!connected || analyzing}
+          />
+          <input
+            type="button"
+            onClick={this.stopRecording}
+            value="End Key Detection"
+            disabled={!analyzing}
+          />
+          <div>
+            <canvas
+              width={WIDTH}
+              height={HEIGHT}
+              ref={this.canvas}
+              style={{ width: WIDTH, height: HEIGHT, margin: '1em' }}
+            />
+          </div>
+          <div>
+            {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
+          </div>
+        </main>
       </>
     );
   }

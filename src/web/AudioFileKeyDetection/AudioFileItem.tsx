@@ -129,15 +129,15 @@ class AudioFileKeyDetection extends Component<Props, State> {
 
   render ({ fileItem }, { currentSegment, maxSegments, analyzing, result, analysisDuration }) {
     return (
-      <div style={{ paddingTop: '1em', height: '2em', maxWidth: '750px' }}>
+      <div style={{ paddingTop: '1rem', height: '2rem', maxWidth: '36rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           {fileItem.file.name}
-          <div style={{ display: 'flex' }}>
-            <div style={{ paddingRight: '1em' }}>
+          <div style={{ paddingLeft: '1rem', display: 'flex', alignItems: 'center' }}>
+            <div style={{ paddingRight: '0.3rem' }}>
               {result && `${result}`}
             </div>
             <progress value={currentSegment} max={maxSegments}></progress>
-            <div style={{ fontSize: '0.85em', width: '45px', paddingLeft: '0.3em' }}>
+            <div style={{ fontSize: '0.85rem', width: '3rem', paddingLeft: '0.3rem' }}>
               {result && analysisDuration &&
                 `${(analysisDuration/1000).toFixed(1)} s`
               }

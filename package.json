@@ -6,7 +6,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "rollup -c",
-    "serve": "serve ./dist -l 3000"
+    "serve": "serve ./dist -l 3000 -s"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^10.0.0",
@@ -21,6 +21,7 @@
   "dependencies": {
     "normalize.css": "^8.0.1",
     "preact": "^10.5.7",
+    "preact-router": "^3.2.1",
     "serve": "^11.3.2",
     "uuid": "^8.3.1"
   }

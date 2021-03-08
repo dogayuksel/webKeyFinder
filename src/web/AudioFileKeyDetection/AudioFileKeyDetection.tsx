@@ -75,24 +75,30 @@ class AudioFileKeyDetection extends Component<{}, State> {
   render ({}, { files }) {
     return (
       <>
-        <h1>Audio File Key Detection</h1>
-        <label for="load-a-track">Load a track</label>
-        <input
-          ref={this.ref}
-          id="load-a-track"
-          type="file"
-          accept="audio/*"
-          multiple={true}
-          onInput={this.handleFileInput}
-        />
-        {files.map(fileItem => (
-          <AudioFileItem
-            key={fileItem.id}
-            fileItem={fileItem}
-            updateDigest={this.updateDigest}
-            updateResult={this.updateResult}
-          />
-        ))}
+        <header>
+          <h1>Audio File Key Detection</h1>
+        </header>
+        <main>
+          <div style={{ paddingBottom: '1.5rem' }}>
+            <label for="load-a-track" style={{ paddingRight: '1rem' }}>Load a track: </label>
+            <input
+              ref={this.ref}
+              id="load-a-track"
+              type="file"
+              accept="audio/*"
+              multiple={true}
+              onInput={this.handleFileInput}
+            />
+          </div>
+          {files.map(fileItem => (
+            <AudioFileItem
+              key={fileItem.id}
+              fileItem={fileItem}
+              updateDigest={this.updateDigest}
+              updateResult={this.updateResult}
+            />
+          ))}
+        </main>
       </>
     );
   }
