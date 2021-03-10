@@ -1,5 +1,6 @@
 import { h, createRef, Fragment, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
+import CircleOfFifths from './CircleOfFifths';
 
 const WIDTH = 200;
 const HEIGHT = 100;
@@ -126,39 +127,54 @@ class LiveDetection extends Component {
         <header>
           <h1>Live Key Detection</h1>
         </header>
-        <main>
-          <input
-            type="button"
-            onClick={this.routeSound}
-            value={
-              connected
-                ? "Key detection engine running"
-                : "Route sound to key detection engine"
-            }
-            disabled={connected}
-          />
-          <input
-            type="button"
-            onClick={this.startRecording}
-            value="Start Key Detection"
-            disabled={!connected || analyzing}
-          />
-          <input
-            type="button"
-            onClick={this.stopRecording}
-            value="End Key Detection"
-            disabled={!analyzing}
-          />
+        <main
+          style={{
+            paddingTop: '1em',
+            display: 'grid',
+            gridTemplateColumns: '1fr 2fr',
+          }}
+        >
           <div>
-            <canvas
-              width={WIDTH}
-              height={HEIGHT}
-              ref={this.canvas}
-              style={{ width: WIDTH, height: HEIGHT, margin: '1em' }}
-            />
+            <div style={{ paddingBottom: '2em' }}>
+              <input
+                type="button"
+                onClick={this.routeSound}
+                value={
+                  connected
+                    ? "Key detection engine running"
+                    : "Route sound to key detection engine"
+                }
+                disabled={connected}
+              />
+            </div>
+            <div style={{ paddingBottom: '2em' }}>
+              <input
+                type="button"
+                onClick={this.startRecording}
+                value="Start Key Detection"
+                disabled={!connected || analyzing}
+              />
+              <input
+                type="button"
+                onClick={this.stopRecording}
+                value="End Key Detection"
+                disabled={!analyzing}
+              />
+            </div>
+            <div>
+              <canvas
+                width={WIDTH}
+                height={HEIGHT}
+                ref={this.canvas}
+                style={{ width: WIDTH, height: HEIGHT, margin: '1em' }}
+              />
+            </div>
+            <div style={{ height: '2rem' }}>
+              {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
+            </div>
           </div>
           <div>
-            {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
+            <CircleOfFifths result={result} />
           </div>
         </main>
       </>

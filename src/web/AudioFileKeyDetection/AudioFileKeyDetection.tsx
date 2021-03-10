@@ -78,7 +78,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
         <header>
           <h1>Audio File Key Detection</h1>
         </header>
-        <main>
+        <main style={{ paddingTop: '1em' }}>
           <div style={{ paddingBottom: '1.5rem' }}>
             <label for="load-a-track" style={{ paddingRight: '1rem' }}>Load a track: </label>
             <input

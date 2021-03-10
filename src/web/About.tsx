@@ -27,7 +27,7 @@ class About extends Component {
         <header>
           <h1>About</h1>
         </header>
-        <main>
+        <main style={{ paddingTop: '1rem' }}>
           <p>More info about the project at <ProjectInfoLink />.</p>
           <p>Source code is available at <GithubLink />.</p>
           <p>If you do not have a github account, shoot me an email at <EmailAddress /> to request it.</p>
