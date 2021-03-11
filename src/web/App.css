@@ -4,6 +4,10 @@ html {
   color: #373F51;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 a:link,
 a:visited,
 a:hover,
