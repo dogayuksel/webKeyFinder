@@ -61,7 +61,7 @@ class Settings extends Component {
         </header>
         <main style={{ paddingTop: '1rem' }}>
           <p style={{ fontSize: '0.6rem' }}>
-            Custom settings are stored locally. Changed values as you desire and click on the save button at the end.
+            Custom settings are stored locally. Change values as you desire and click on the save button at the bottom.
           </p>
           <form onSubmit={this.handleSave}>
             <h2>General</h2>

@@ -14,7 +14,7 @@ class App extends Component {
       <>
         <div class="top-bar">
           <div class="app-logo">
-            <Link href="/">key-finder</Link>
+            <Link href="/">keyfinder</Link>
           </div>
           <Navigation />
         </div>
