@@ -23,21 +23,19 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.navigation-wrapper {
+.top-bar {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #ccc;
+  background-color: #eee;
 }
 
-.navigation-wrapper > a {
-  text-decoration: none;
-  text-align: center;
-  padding: 0.5em 2em 0.3em 2em;
-  font-size: 1.1em;
-}
-
-.navigation-wrapper > a:active {
+.app-logo {
+  font-family: Hoefler Text, Baskerville Old Face, Garamond, Times New Roman, serif;
   font-weight: bold;
+  padding: 0.6em 2em 0.4em 2em;
+  font-size: 1.1em;
 }
 
 .app-wrapper {

@@ -1,5 +1,6 @@
 import { h, Fragment, Component } from 'preact';
-import { Router, Link } from 'preact-router';
+import { Router, Link, getCurrentUrl } from 'preact-router';
+import Navigation from './Navigation';
 import LiveDetection from './LiveDetection';
 import AudioFileKeyDetection from './AudioFileKeyDetection';
 import About from './About';
@@ -10,11 +11,12 @@ class App extends Component {
   render() {
     return (
       <>
-        <nav class="navigation-wrapper">
-          <Link href="/live">LiveDetection</Link>
-          <Link href="/file">Audio File Analysis</Link>
-          <Link href="/about">About</Link>
-        </nav>
+        <div class="top-bar">
+          <div class="app-logo">
+            <Link href="/">key-finder</Link>
+          </div>
+          <Navigation />
+        </div>
         <div class="app-wrapper">
           <Router>
             <LiveDetection default />

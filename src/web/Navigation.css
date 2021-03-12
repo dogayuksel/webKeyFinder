@@ -1,0 +1,14 @@
+.navigation-wrapper {
+  display: flex;
+}
+
+.navigation-wrapper > a {
+  text-decoration: none;
+  text-align: center;
+  padding: 0.7em 2em 0.3em 2em;
+  font-size: 1.1em;
+}
+
+.navigation-wrapper > a.active {
+  border-bottom: 2px solid #008DD5;
+}
