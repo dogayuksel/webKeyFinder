@@ -1,6 +1,7 @@
 import { h, createRef, Fragment, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from './CircleOfFifths';
+import { keysNotation } from '../defaults';
 
 const WIDTH = 200;
 const HEIGHT = 100;
@@ -170,7 +171,7 @@ class LiveDetection extends Component {
               />
             </div>
             <div style={{ height: '2rem' }}>
-              {result && `${analyzing ? "Progressive" : "Final"} Result: ${result}`}
+              {result && `${analyzing ? "Progressive" : "Final"} Result: ${keysNotation[result] || result}`}
             </div>
           </div>
           <div>

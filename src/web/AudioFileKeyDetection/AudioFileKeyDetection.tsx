@@ -1,6 +1,8 @@
 import { createRef, h, Fragment, Component } from 'preact';
+import { Link } from 'preact-router';
 import AudioFileItem, { FileItem } from './AudioFileItem'
 import { v4 as uuidv4 } from 'uuid';
+import { numberOfThreads } from '../defaults';
 
 interface State {
   files: Array<FileItem>,
@@ -8,14 +10,9 @@ interface State {
 
 class AudioFileKeyDetection extends Component<{}, State> {
   ref = createRef();
-  numberOfThreads: number;
   state: State = {
     files: [],
   };
-
-  componentDidMount() {
-    this.numberOfThreads = navigator.hardwareConcurrency - 1;
-  }
 
   handleFileInput = ({ target }: Event): void => {
     const fileList = (target as HTMLInputElement).files;
@@ -24,7 +21,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
         if (cur.canProcess && !cur.result)
           return acc - 1;
         return acc;
-      }, this.numberOfThreads);
+      }, numberOfThreads);
       for (let fileIdx = 0; fileIdx < fileList.length; fileIdx += 1) {
         let canProcess = false;
         if (availableThreads > 0) {
@@ -79,6 +76,12 @@ class AudioFileKeyDetection extends Component<{}, State> {
           <h1>Audio File Key Detection</h1>
         </header>
         <main style={{ paddingTop: '1em' }}>
+          <p style={{ fontSize: '0.6rem' }}>
+            {numberOfThreads === 1
+             ? 'No parallel processes. '
+             : `Using ${numberOfThreads} parallel processes. `}
+            <Link href="/settings">[settings]</Link>
+          </p>
           <div style={{ paddingBottom: '1.5rem' }}>
             <label for="load-a-track" style={{ paddingRight: '1rem' }}>Load a track: </label>
             <input

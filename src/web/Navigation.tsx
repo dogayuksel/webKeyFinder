@@ -21,8 +21,14 @@ class App extends Component {
 
     return (
       <nav class="navigation-wrapper">
-        <Link href="/live" class={(url !== '/file' && url !== '/about') ? 'active' : ''}>Live Detection</Link>
+        <Link
+          href="/live"
+          class={!['/file', '/about', '/settings'].includes(url) ? 'active' : ''}
+        >
+          Live Detection
+        </Link>
         <Link href="/file" class={url === '/file' ? 'active' : ''} >File Analysis</Link>
+        <Link href="/settings" class={url === '/settings' ? 'active' : ''} >Settings</Link>
         <Link href="/about" class={url === '/about' ? 'active' : ''}>About</Link>
       </nav>
     );

@@ -1,5 +1,6 @@
 import { h, Fragment, Component } from 'preact';
 import { keyFinderUtils } from '../Utils';
+import { keysNotation } from '../defaults';
 
 import './AudioFileItem.css';
 
@@ -136,7 +137,7 @@ class AudioFileKeyDetection extends Component<Props, State> {
           {fileItem.file.name}
           <div style={{ paddingLeft: '1rem', display: 'flex', alignItems: 'center' }}>
             <div style={{ paddingRight: '0.3rem' }}>
-              {result && `${result}`}
+              {result && keysNotation[result] && `${keysNotation[result]}`}
             </div>
             <progress value={currentSegment} max={maxSegments}></progress>
             <div style={{ fontSize: '0.85rem', width: '3rem', paddingLeft: '0.3rem' }}>

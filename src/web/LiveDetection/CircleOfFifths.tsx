@@ -1,4 +1,10 @@
 import { h, createRef, Fragment, Component } from 'preact';
+import {
+  majorKeys,
+  minorKeys,
+  keysNotation,
+  keyAtTopPosition,
+} from '../defaults';
 
 const HORIZONTAL_OFFSET = 500;
 const BORDER_RADIUS = 270;
@@ -7,40 +13,11 @@ const BORDER_COLOR = '#C0C1C1';
 const OUTER_RADIUS = 240;
 const INNER_RING_OFFSET = 25;
 const INNER_RADIUS = 160;
-const NOTE_WIDTH = 55;
+const MAJOR_NOTE_WIDTH = 120;
+const MINOR_NOTE_WIDTH = 90;
 const INNERMOST_RADIUS = 115;
 const PRIMARY_COLOR = '#FF6801';
 const WHITE_COLOR = '#EBECEC';
-
-const majorKeys = [
-  {"C Major": "C" },
-  {"G Major": "G" },
-  {"D Major": "D" },
-  {"A Major": "A" },
-  {"E Major": "E" },
-  {"B Major": "B" },
-  {"Gb Major": "Gb" },
-  {"Db Major": "Db" },
-  {"Ab Major": "Ab" },
-  {"Eb Major": "Eb" },
-  {"Bb Major": "Bb" },
-  {"F Major": "F" },
-];
-
-const minorKeys = [
-  { "A Minor": "Am" },
-  { "E Minor": "Em" },
-  { "B Minor": "Bm" },
-  { "Gb Minor": "Gbm" },
-  { "Db Minor": "Dbm" },
-  { "Ab Minor": "Abm" },
-  { "Eb Minor": "Ebm" },
-  { "Bb Minor": "Bbm" },
-  { "F Minor": "Fm" },
-  { "C Minor": "Cm" },
-  { "G Minor": "Gm" },
-  { "D Minor": "Dm" },
-];
 
 const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div
@@ -79,21 +56,21 @@ const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   />
 )
 
-const SemiCircleHighlight = ({ result }) => {
-  const majorKeyIndex = majorKeys.findIndex(major => Object.keys(major).some(key => key === result));
-  const minorKeyIndex = minorKeys.findIndex(minor => Object.keys(minor).some(key => key === result));
+const SemiCircleHighlight = ({ result, offset }) => {
+  const majorKeyIndex = majorKeys.findIndex(key => key === result);
+  const minorKeyIndex = minorKeys.findIndex(key => key === result);
   if (majorKeyIndex >= 0) {
     return (
       <>
         <OuterSemiCircle
           opacity={0.6}
           backgroundColor={PRIMARY_COLOR}
-          angleOffset={majorKeyIndex * 30 - (90 - 15)}
+          angleOffset={(majorKeyIndex + offset) * 30 - (90 - 15)}
         />
         <OuterSemiCircle
           opacity={1}
           backgroundColor={WHITE_COLOR}
-          angleOffset={(majorKeyIndex - 1) * 30 - (90 - 15)}
+          angleOffset={(majorKeyIndex + offset - 1) * 30 - (90 - 15)}
         />
       </>
     );
@@ -103,12 +80,12 @@ const SemiCircleHighlight = ({ result }) => {
         <InnerSemiCircle
           opacity={0.6}
           backgroundColor={PRIMARY_COLOR}
-          angleOffset={minorKeyIndex * 30 - (90 - 15)}
+          angleOffset={(minorKeyIndex + offset) * 30 - (90 - 15)}
         />
         <InnerSemiCircle
           opacity={1}
           backgroundColor={WHITE_COLOR}
-          angleOffset={(minorKeyIndex - 1) * 30 - (90 - 15)}
+          angleOffset={(minorKeyIndex + offset - 1) * 30 - (90 - 15)}
         />
       </>
     );
@@ -118,6 +95,7 @@ const SemiCircleHighlight = ({ result }) => {
 
 class CircleOfFifths extends Component<({ result?: string })> {
   render() {
+    const offset = majorKeys.indexOf(keyAtTopPosition) * -1;
     return (
       <div
         style={{
@@ -125,6 +103,7 @@ class CircleOfFifths extends Component<({ result?: string })> {
         }}
       >
         <div style={{position: 'relative' }}>
+          {/* BACKGROUND */} 
           <div
             style={{
               position: 'absolute',
@@ -136,89 +115,22 @@ class CircleOfFifths extends Component<({ result?: string })> {
               backgroundColor: `${WHITE_COLOR}`
             }}
           />
-          <SemiCircleHighlight result={this.props.result} />
-          {majorKeys.map((major, index) =>
-            Object.entries(major).map(([key, value]) => (
-              <>
-                <div style={{
-                       top: `${BORDER_RADIUS - OUTER_RADIUS}px`,
-                       left: `${HORIZONTAL_OFFSET - NOTE_WIDTH / 2}px`,
-                       height: `${OUTER_RADIUS}px`,
-                       width: `${NOTE_WIDTH}px`,
-                       transform: `rotate(${index * 30}deg)`,
-                       transformOrigin: 'bottom center',
-                       position: 'absolute',
-                     }}>
-                  <div
-                    style={{
-                      textAlign: 'center',
-                      transform: `rotate(${-index * 30}deg)`,
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    {value}
-                  </div>
-                </div>
-                <div
-                  style={{
-                    left: `${HORIZONTAL_OFFSET - BORDER_THICKNESS / 2}px`,
-                    width: `${BORDER_THICKNESS}px`,
-                    height: `${BORDER_RADIUS}px`,
-                    backgroundColor: `${BORDER_COLOR}`,
-                    transform: `rotate(${index * 30 - 15}deg)`,
-                    transformOrigin: 'bottom center',
-                    position: 'absolute',
-                  }}
-                />
-              </>
-            ))
-          )}
-          {minorKeys.map((minor, index) =>
-            Object.entries(minor).map(([key, value]) => (
-              <div
-                style={{
-                  width: `${NOTE_WIDTH}px`,
-                  textAlign: 'center',
-                  top: `${(BORDER_RADIUS - INNER_RADIUS)}px`,
-                  left: `${HORIZONTAL_OFFSET - NOTE_WIDTH / 2}px`,
-                  height: `${INNER_RADIUS}px`,
-                  transform: `rotate(${index * 30}deg)`,
-                  transformOrigin: 'bottom center',
-                  position: 'absolute',
-                }}
-              >
-                <div
-                  style={{
-                    transform: `rotate(${-index * 30}deg)`,
-                    fontSize: "0.8rem"
-                  }}
-                >
-                  {value}
-                </div>
-              </div>
-            ))
-          )}
-          <div
-            style={{
-              position: 'absolute',
-              borderRadius: `${BORDER_RADIUS}px`,
-              border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
-              height: `${BORDER_RADIUS * 2}px`,
-              width: `${BORDER_RADIUS * 2}px`,
-              left: `${HORIZONTAL_OFFSET - BORDER_RADIUS}px`,
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute',
-              borderRadius: `${BORDER_RADIUS}px`,
-              border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
-              height: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
-              width: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
-              top: `${BORDER_RADIUS - (INNER_RADIUS + INNER_RING_OFFSET)}px`,
-              left: `${HORIZONTAL_OFFSET - (INNER_RADIUS + INNER_RING_OFFSET)}px`,
-            }}
-          />
+          <SemiCircleHighlight offset={offset} result={this.props.result} />
+          {/* SEGMENT DIVIDERS */} 
+          {majorKeys.map((major, index) => (
+            <div
+              style={{
+                left: `${HORIZONTAL_OFFSET - BORDER_THICKNESS / 2}px`,
+                width: `${BORDER_THICKNESS}px`,
+                height: `${BORDER_RADIUS}px`,
+                backgroundColor: `${BORDER_COLOR}`,
+                transform: `rotate(${(index + offset) * 30 - 15}deg)`,
+                transformOrigin: 'bottom center',
+                position: 'absolute',
+              }}
+            />
+          ))}
+          {/* INNERMOST CIRCLE */} 
           <div
             style={{
               position: 'absolute',
@@ -229,6 +141,76 @@ class CircleOfFifths extends Component<({ result?: string })> {
               top: `${BORDER_RADIUS - INNERMOST_RADIUS}px`,
               left: `${HORIZONTAL_OFFSET - INNERMOST_RADIUS}px`,
               backgroundColor: `${WHITE_COLOR}`,
+            }}
+          />
+          {majorKeys.map((major, index) => (
+            <div
+              style={{
+                top: `${BORDER_RADIUS - OUTER_RADIUS}px`,
+                left: `${HORIZONTAL_OFFSET - MAJOR_NOTE_WIDTH / 2}px`,
+                height: `${OUTER_RADIUS}px`,
+                width: `${MAJOR_NOTE_WIDTH}px`,
+                transform: `rotate(${(index + offset) * 30}deg)`,
+                transformOrigin: 'bottom center',
+                position: 'absolute',
+              }}
+            >
+              <div
+                style={{
+                  textAlign: 'center',
+                  transform: `rotate(${-(index + offset) * 30}deg)`,
+                  fontSize: keysNotation[major].length > 6 ? "0.6rem" : "1rem",
+                  fontWeight: 'bold'
+                }}
+              >
+                {keysNotation[major]}
+              </div>
+            </div>
+          ))}
+          {minorKeys.map((minor, index) => (
+            <div
+              style={{
+                width: `${MINOR_NOTE_WIDTH}px`,
+                top: `${(BORDER_RADIUS - INNER_RADIUS)}px`,
+                left: `${HORIZONTAL_OFFSET - MINOR_NOTE_WIDTH / 2}px`,
+                height: `${INNER_RADIUS}px`,
+                transform: `rotate(${(index + offset) * 30}deg)`,
+                transformOrigin: 'bottom center',
+                position: 'absolute',
+              }}
+            >
+              <div
+                style={{
+                  textAlign: 'center',
+                  transform: `rotate(${-(index + offset) * 30}deg)`,
+                  fontSize: keysNotation[minor].length > 6 ? "0.6rem" : "0.8rem",
+                }}
+              >
+                {keysNotation[minor]}
+              </div>
+            </div>
+          ))}
+          {/* OUTER BORDER */}  
+          <div
+            style={{
+              position: 'absolute',
+              borderRadius: `${BORDER_RADIUS}px`,
+              border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
+              height: `${BORDER_RADIUS * 2}px`,
+              width: `${BORDER_RADIUS * 2}px`,
+              left: `${HORIZONTAL_OFFSET - BORDER_RADIUS}px`,
+            }}
+          />
+          {/* INNER BORDER */} 
+          <div
+            style={{
+              position: 'absolute',
+              borderRadius: `${BORDER_RADIUS}px`,
+              border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
+              height: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
+              width: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
+              top: `${BORDER_RADIUS - (INNER_RADIUS + INNER_RING_OFFSET)}px`,
+              left: `${HORIZONTAL_OFFSET - (INNER_RADIUS + INNER_RING_OFFSET)}px`,
             }}
           />
         </div>
