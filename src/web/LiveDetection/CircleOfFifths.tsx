@@ -3,14 +3,14 @@ import { h, createRef, Fragment, Component } from 'preact';
 const HORIZONTAL_OFFSET = 500;
 const BORDER_RADIUS = 270;
 const BORDER_THICKNESS = 2;
-const BORDER_COLOR = '#aaa';
+const BORDER_COLOR = '#C0C1C1';
 const OUTER_RADIUS = 240;
 const INNER_RING_OFFSET = 25;
 const INNER_RADIUS = 160;
 const NOTE_WIDTH = 55;
 const INNERMOST_RADIUS = 115;
-const PRIMARY_COLOR = '#008DD5';
-const WHITE_COLOR = '#FFF';
+const PRIMARY_COLOR = '#FF6801';
+const WHITE_COLOR = '#EBECEC';
 
 const majorKeys = [
   {"C Major": "C" },
@@ -42,7 +42,7 @@ const minorKeys = [
   { "D Minor": "Dm" },
 ];
 
-const InnerSemiCircle = ({ backgroundColor, angleOffset }) => (
+const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div
     style={{
       position: 'absolute',
@@ -56,11 +56,12 @@ const InnerSemiCircle = ({ backgroundColor, angleOffset }) => (
       borderTopLeftRadius: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
       borderTopRightRadius: `${(INNER_RADIUS + INNER_RING_OFFSET) * 2}px`,
       borderBottom: 'none',
+      opacity: opacity,
     }}
   />
 )
 
-const OuterSemiCircle = ({ backgroundColor, angleOffset }) => (
+const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div
     style={{
       position: 'absolute',
@@ -73,6 +74,7 @@ const OuterSemiCircle = ({ backgroundColor, angleOffset }) => (
       borderTopLeftRadius: `${(BORDER_RADIUS) * 2}px`,
       borderTopRightRadius: `${(BORDER_RADIUS) * 2}px`,
       borderBottom: 'none',
+      opacity: opacity,
     }}
   />
 )
@@ -83,15 +85,31 @@ const SemiCircleHighlight = ({ result }) => {
   if (majorKeyIndex >= 0) {
     return (
       <>
-        <OuterSemiCircle backgroundColor={PRIMARY_COLOR} angleOffset={majorKeyIndex * 30 - (90 - 15)} />
-        <OuterSemiCircle backgroundColor={WHITE_COLOR} angleOffset={(majorKeyIndex - 1) * 30 - (90 - 15)} />
+        <OuterSemiCircle
+          opacity={0.6}
+          backgroundColor={PRIMARY_COLOR}
+          angleOffset={majorKeyIndex * 30 - (90 - 15)}
+        />
+        <OuterSemiCircle
+          opacity={1}
+          backgroundColor={WHITE_COLOR}
+          angleOffset={(majorKeyIndex - 1) * 30 - (90 - 15)}
+        />
       </>
     );
   } else if (minorKeyIndex >= 0) {
     return (
       <>
-        <InnerSemiCircle backgroundColor={PRIMARY_COLOR} angleOffset={minorKeyIndex * 30 - (90 - 15)} />
-        <InnerSemiCircle backgroundColor={WHITE_COLOR} angleOffset={(minorKeyIndex - 1) * 30 - (90 - 15)} />
+        <InnerSemiCircle
+          opacity={0.6}
+          backgroundColor={PRIMARY_COLOR}
+          angleOffset={minorKeyIndex * 30 - (90 - 15)}
+        />
+        <InnerSemiCircle
+          opacity={1}
+          backgroundColor={WHITE_COLOR}
+          angleOffset={(minorKeyIndex - 1) * 30 - (90 - 15)}
+        />
       </>
     );
   }
@@ -107,6 +125,17 @@ class CircleOfFifths extends Component<({ result?: string })> {
         }}
       >
         <div style={{position: 'relative' }}>
+          <div
+            style={{
+              position: 'absolute',
+              borderRadius: `${BORDER_RADIUS}px`,
+              border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
+              height: `${BORDER_RADIUS * 2}px`,
+              width: `${BORDER_RADIUS * 2}px`,
+              left: `${HORIZONTAL_OFFSET - BORDER_RADIUS}px`,
+              backgroundColor: `${WHITE_COLOR}`
+            }}
+          />
           <SemiCircleHighlight result={this.props.result} />
           {majorKeys.map((major, index) =>
             Object.entries(major).map(([key, value]) => (

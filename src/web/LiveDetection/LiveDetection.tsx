@@ -25,10 +25,10 @@ class LiveDetection extends Component {
   drawLevelAnalysis = () => {
     requestAnimationFrame(this.drawLevelAnalysis);
     this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
-    this.canvasContext.fillStyle = 'rgb(188, 198, 221)';
+    this.canvasContext.fillStyle = '#EBECEC';
     this.canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     this.canvasContext.lineWidth = 2;
-    this.canvasContext.strokeStyle = 'rgb(44, 73, 127)';
+    this.canvasContext.strokeStyle = '#FF6801';
     this.canvasContext.beginPath();
     const bufferLength = this.levelAnalyzer.frequencyBinCount;
 

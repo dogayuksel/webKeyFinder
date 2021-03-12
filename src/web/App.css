@@ -1,7 +1,10 @@
+/* color palette */
+/* #FF6801 #EBECEC #C0C1C1 #3A6FA6 #004F97 #0C2645 */ 
+
 html {
   box-sizing: border-box;
   font-size: calc(1em + 0.618vw);
-  color: #373F51;
+  color: #0C2645;
 }
 
 *, *:before, *:after {
@@ -12,7 +15,7 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #008DD5;
+  color: #004F97;
   text-decoration: none; 
 }
 
@@ -27,8 +30,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #ccc;
-  background-color: #eee;
+  border-bottom: 2px solid #C0C1C1;
 }
 
 .app-logo {
@@ -36,6 +38,14 @@ body {
   font-weight: bold;
   padding: 0.6em 2em 0.4em 2em;
   font-size: 1.1em;
+}
+
+.app-logo a:link,
+.app-logo a:visited,
+.app-logo a:hover,
+.app-logo a:active {
+  color: #3A6FA6;
+  text-decoration: none; 
 }
 
 .app-wrapper {

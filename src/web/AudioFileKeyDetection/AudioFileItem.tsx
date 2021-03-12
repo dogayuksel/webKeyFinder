@@ -1,6 +1,8 @@
 import { h, Fragment, Component } from 'preact';
 import { keyFinderUtils } from '../Utils';
 
+import './AudioFileItem.css';
+
 export interface FileItem {
   id: string,
   canProcess: boolean,
