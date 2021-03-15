@@ -1,10 +1,9 @@
 /* color palette */
-/* #FF6801 #EBECEC #C0C1C1 #3A6FA6 #004F97 #0C2645 */ 
-
 html {
   box-sizing: border-box;
   font-size: calc(1em + 0.618vw);
-  color: #0C2645;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 *, *:before, *:after {
@@ -15,8 +14,20 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #004F97;
+  color: var(--primary-darker-color);
   text-decoration: none; 
+}
+
+button, input {
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 0.2rem;
+  padding: 0.4rem 1rem;
+}
+
+button:disabled, input:disabled {
+  background-color: var(--gray-color);
 }
 
 body {
@@ -30,13 +41,14 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #C0C1C1;
+  border-bottom: 2px solid var(--gray-color);
+  background-color: var(--background-color);
 }
 
 .app-logo {
   font-family: Hoefler Text, Baskerville Old Face, Garamond, Times New Roman, serif;
   font-weight: bold;
-  padding: 0.6em 2em 0.4em 2em;
+  padding: 0.65em 2em 0.35em 2em;
   font-size: 1.1em;
 }
 
@@ -44,7 +56,7 @@ body {
 .app-logo a:visited,
 .app-logo a:hover,
 .app-logo a:active {
-  color: #3A6FA6;
+  color: var(--primary-color);
   text-decoration: none; 
 }
 

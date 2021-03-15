@@ -10,5 +10,5 @@
 }
 
 .navigation-wrapper > a.active {
-  border-bottom: 2px solid #004F97;
+  border-bottom: 2px solid var(--primary-darker-color);
 }

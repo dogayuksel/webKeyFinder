@@ -109,6 +109,16 @@ build: dist/keyFinderProgressiveWorker.wasm \
 			 dist/favicon.ico
 .PHONY: build
 
+# build for web, use existing keyFinderProgressiveWorker.[js|wasm]
+build-web: $(JS_FILES) $(CSS_FILES) rollup.config.js node_modules \
+           dist/index.html \
+           dist/favicon.ico
+	mkdir -p dist
+	cp src/web/keyFinderProgressiveWorker.wasm dist/keyFinderProgressiveWorker.wasm
+	cp src/web/keyFinderProgressiveWorker.js dist/keyFinderProgressiveWorker.js
+	yarn build
+.PHONY: build-web
+
 serve:
 	yarn serve
 .PHONY: serve

@@ -2,6 +2,7 @@ import { h, createRef, Fragment, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from './CircleOfFifths';
 import { keysNotation } from '../defaults';
+import theme from '../theme';
 
 const WIDTH = 200;
 const HEIGHT = 100;
@@ -26,10 +27,10 @@ class LiveDetection extends Component {
   drawLevelAnalysis = () => {
     requestAnimationFrame(this.drawLevelAnalysis);
     this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
-    this.canvasContext.fillStyle = '#EBECEC';
+    this.canvasContext.fillStyle = theme.colors['--gray-color'];
     this.canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     this.canvasContext.lineWidth = 2;
-    this.canvasContext.strokeStyle = '#FF6801';
+    this.canvasContext.strokeStyle = theme.colors['--secondary-color'];
     this.canvasContext.beginPath();
     const bufferLength = this.levelAnalyzer.frequencyBinCount;
 

@@ -5,19 +5,20 @@ import {
   keysNotation,
   keyAtTopPosition,
 } from '../defaults';
+import theme from '../theme';
 
 const HORIZONTAL_OFFSET = 500;
 const BORDER_RADIUS = 270;
 const BORDER_THICKNESS = 2;
-const BORDER_COLOR = '#C0C1C1';
+const BORDER_COLOR = theme.colors['--gray-color'];
 const OUTER_RADIUS = 240;
 const INNER_RING_OFFSET = 25;
 const INNER_RADIUS = 160;
 const MAJOR_NOTE_WIDTH = 120;
 const MINOR_NOTE_WIDTH = 90;
 const INNERMOST_RADIUS = 115;
-const PRIMARY_COLOR = '#FF6801';
-const WHITE_COLOR = '#EBECEC';
+const PRIMARY_COLOR = theme.colors['--secondary-color'];
+const WHITE_COLOR = theme.colors['--background-color'];
 
 const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div

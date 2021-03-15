@@ -3,16 +3,17 @@ import {
   majorKeys,
   minorKeys,
   keysNotation,
-  theme,
+  theme as themeValue,
   keyAtTopPosition,
   maxNumberOfThreads,
   numberOfThreads
 } from '../defaults';
+import theme from '../theme';
 
 class Settings extends Component {
   state = {
     keysNotation,
-    theme,
+    theme: themeValue,
     keyAtTopPosition,
     numberOfThreads,
   }
@@ -45,7 +46,8 @@ class Settings extends Component {
   }
 
   onChange = e => {
-    this.setState({ keyAtTopPosition: e.target.value });
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
   }
 
   handleReset = () => {
@@ -61,18 +63,24 @@ class Settings extends Component {
         </header>
         <main style={{ paddingTop: '1rem' }}>
           <p style={{ fontSize: '0.6rem' }}>
-            Custom settings are stored locally. Change values as you desire and click on the save button at the bottom.
+            {"Custom settings are stored locally. Change values as you desire and click on the save button at the bottom."}
           </p>
           <form onSubmit={this.handleSave}>
             <h2>General</h2>
             <h3>Alternative Notation</h3>
             <p style={{ fontSize: '0.6rem' }}>
-              Update default notation by modifying respective fields. Use following characters: a-z, A-Z, 0-9, ♭, ♯. No spaces in the beginning or the end.
+              {"Update default notation by modifying respective fields. Use following characters: a-z, A-Z, 0-9, ♭, ♯. No spaces in the beginning or the end."}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridGap: '1em' }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {majorKeys.map(major => (
-                  <div style={{ display: 'flex', paddingBottom: '0.2rem' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      paddingBottom: '0.2rem'
+                    }}
+                  >
                     <label style={{ width: '5em' }}>{major}</label>
                     <input
                       onInput={this.onInputNewNotation}
@@ -86,7 +94,13 @@ class Settings extends Component {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {minorKeys.map(minor => (
-                  <div style={{ display: 'flex', paddingBottom: '0.2rem' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      paddingBottom: '0.2rem',
+                      alignItems: 'baseline'
+                    }}
+                  >
                     <label style={{ width: '5em' }}>{minor}</label>
                     <input
                       onInput={this.onInputNewNotation}
@@ -100,7 +114,6 @@ class Settings extends Component {
               </div>
             </div>
             <h3>Theme</h3>
-            <p>Under construction</p>
             <div>
               <div style={{ display: 'inline-block', paddingRight: '1em' }}>
                 <input
@@ -108,24 +121,26 @@ class Settings extends Component {
                   id="light"
                   name="theme"
                   value="light"
+                  onChange={this.onChange}
                   checked={this.state.theme === 'light'}
                 />
                 <label for="light">light</label>
               </div>
-              <div style={{ display: 'inline-block', opacity: '0.5' }}>
+              <div style={{ display: 'inline-block' }}>
                 <input
                   type="radio"
                   id="dark"
                   name="theme"
                   value="dark" 
+                  onChange={this.onChange}
                   checked={this.state.theme === 'dark'}
-                  disabled />
+                />
                 <label for="dark">dark</label>
               </div>
             </div>
             <h2>Live Detection</h2>
             <p style={{ fontSize: '0.6rem' }}>
-              Some notations orient circle of fifths differently. Select the note in the 12 o'clock position to adjust how circle of fifths is visualized.
+              {"Some notations orient circle of fifths differently. Select the note in the 12 o'clock position to adjust how circle of fifths is visualized."}
             </p>
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <label
@@ -141,19 +156,19 @@ class Settings extends Component {
               >
                 <>
                   {majorKeys.map(key => (
-                    <option
-                      value={key}
-                      selected={this.state.keyAtTopPosition === key}
-                    >
-                      {key}
-                    </option>
+                      <option
+                        value={key}
+                        selected={this.state.keyAtTopPosition === key}
+                      >
+                        {key}
+                      </option>
                   ))}
                 </>
               </select>
             </div>
             <h2>File Analysis</h2>
             <p style={{ fontSize: '0.6rem' }}>
-              While analyzing files, the application spawns multiple workers. Set the maximum number of workers to be run at the same time.
+              {"While analyzing files, the application spawns multiple workers. Set the maximum number of workers to be run at the same time."}
             </p>
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <label
@@ -175,10 +190,10 @@ class Settings extends Component {
             <button type="submit">SAVE</button>
           </form>
           <div style={{ marginTop: '8em' }}>
-            <h3 style={{ color: 'red' }}>DANGER</h3>
+            <h3 style={{ color: theme.colors['--danger-color'] }}>DANGER</h3>
             <button onClick={this.handleReset}>delete custom settings</button>
           </div>
-        </main>
+      </main>
       </>
     );
   }

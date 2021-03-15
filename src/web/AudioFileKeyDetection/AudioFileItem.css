@@ -2,7 +2,7 @@ progress {
   border: 0;
   height: 1rem;
   border-radius: 0.2rem;
-  color: #004F97;
+  color: var(--primary-darker-color);
 }
 
 progress::-webkit-progress-bar {
@@ -15,12 +15,12 @@ progress::-webkit-progress-value {
   border: 0;
   height: 1rem;
   border-radius: 0.2rem;
-  background: #004F97;
+  background: var(--primary-darker-color);
 }
 
 progress::-moz-progress-bar {
   border: 0;
   height: 1rem;
   border-radius: 0.2rem;
-  background: #004F97;
+  background: var(--primary-darker-color);
 }
