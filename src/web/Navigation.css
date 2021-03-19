@@ -5,8 +5,8 @@
 .navigation-wrapper > a {
   text-decoration: none;
   text-align: center;
-  padding: 0.7em 2em 0.3em 2em;
-  font-size: 1.1em;
+  padding: 0.7rem 2rem 0.3rem 2rem;
+  font-size: 1.1rem;
 }
 
 .navigation-wrapper > a.active {

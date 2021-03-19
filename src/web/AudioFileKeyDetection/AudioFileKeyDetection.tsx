@@ -75,7 +75,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
         <header>
           <h1>Audio File Key Detection</h1>
         </header>
-        <main style={{ paddingTop: '1em' }}>
+        <main style={{ paddingTop: '1rem' }}>
           <p style={{ fontSize: '0.6rem' }}>
             {numberOfThreads === 1
              ? 'No parallel processes. '

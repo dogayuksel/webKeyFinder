@@ -71,7 +71,12 @@ class Settings extends Component {
             <p style={{ fontSize: '0.6rem' }}>
               {"Update default notation by modifying respective fields. Use following characters: a-z, A-Z, 0-9, ♭, ♯. No spaces in the beginning or the end."}
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridGap: '1em' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gridGap: '1rem'
+              }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {majorKeys.map(major => (
                   <div
@@ -81,10 +86,10 @@ class Settings extends Component {
                       paddingBottom: '0.2rem'
                     }}
                   >
-                    <label style={{ width: '5em' }}>{major}</label>
+                    <label style={{ width: '5rem' }}>{major}</label>
                     <input
                       onInput={this.onInputNewNotation}
-                      style={{ width: '10em' }}
+                      style={{ width: '10rem' }}
                       id={major}
                       value={this.state.keysNotation[major]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -101,10 +106,10 @@ class Settings extends Component {
                       alignItems: 'baseline'
                     }}
                   >
-                    <label style={{ width: '5em' }}>{minor}</label>
+                    <label style={{ width: '5rem' }}>{minor}</label>
                     <input
                       onInput={this.onInputNewNotation}
-                      style={{ width: '10em' }}
+                      style={{ width: '10rem' }}
                       id={minor}
                       value={this.state.keysNotation[minor]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -115,7 +120,7 @@ class Settings extends Component {
             </div>
             <h3>Theme</h3>
             <div>
-              <div style={{ display: 'inline-block', paddingRight: '1em' }}>
+              <div style={{ display: 'inline-block', paddingRight: '1rem' }}>
                 <input
                   type="radio"
                   id="light"
@@ -145,7 +150,7 @@ class Settings extends Component {
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <label
                 for="keyAtTopPosition"
-                style={{ paddingRight: '1em' }}
+                style={{ paddingRight: '1rem' }}
               >
                 <h3>Key at top position</h3>
               </label>
@@ -173,7 +178,7 @@ class Settings extends Component {
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <label
                 for="numberOfThreads"
-                style={{ paddingRight: '1em' }}
+                style={{ paddingRight: '1rem' }}
               >
                 <h3>Parallel Processes</h3>
               </label>
@@ -189,11 +194,11 @@ class Settings extends Component {
             </div>
             <button type="submit">SAVE</button>
           </form>
-          <div style={{ marginTop: '8em' }}>
+          <div style={{ marginTop: '8rem' }}>
             <h3 style={{ color: theme.colors['--danger-color'] }}>DANGER</h3>
             <button onClick={this.handleReset}>delete custom settings</button>
           </div>
-      </main>
+        </main>
       </>
     );
   }
