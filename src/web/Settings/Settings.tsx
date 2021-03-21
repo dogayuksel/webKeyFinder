@@ -161,12 +161,12 @@ class Settings extends Component {
               >
                 <>
                   {majorKeys.map(key => (
-                      <option
-                        value={key}
-                        selected={this.state.keyAtTopPosition === key}
-                      >
-                        {key}
-                      </option>
+                    <option
+                      value={key}
+                      selected={this.state.keyAtTopPosition === key}
+                    >
+                      {key}
+                    </option>
                   ))}
                 </>
               </select>
@@ -187,12 +187,25 @@ class Settings extends Component {
                 id="numberOfThreads"
                 name="numberOfThreads"
                 min="1"
-                max={maxNumberOfThreads}
                 onInput={this.onInput}
                 value={this.state.numberOfThreads}
               />
             </div>
-            <button type="submit">SAVE</button>
+            {this.state.numberOfThreads > maxNumberOfThreads &&
+             (<p
+                style={{
+                  fontSize: '0.6rem',
+                  color: theme.colors['--danger-color']
+                }}>
+                {`According to your browser, your machine has ${maxNumberOfThreads} processors available. Spawing more threads than that will slow down your computer.`}
+              </p>)
+            }
+            <button
+              style={{ marginTop: '2rem' }}
+              type="submit"
+            >
+              SAVE
+            </button>
           </form>
           <div style={{ marginTop: '8rem' }}>
             <h3 style={{ color: theme.colors['--danger-color'] }}>DANGER</h3>
