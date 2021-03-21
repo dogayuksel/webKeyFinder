@@ -29,6 +29,12 @@ Following command will fetch [[https://github.com/FFTW/fftw3][FFTW3]] and [[http
 make
 #+END_SRC
 
+** (ALTERNATIVE) Run using the pre-compiled wasm module
+You can run the project only by bundling the web part and using the existing pre-compiled wasm modules.
+#+BEGIN_SRC sh
+make build-web
+#+END_SRC
+
 ** Run the server
 #+BEGIN_SRC sh
 make serve
