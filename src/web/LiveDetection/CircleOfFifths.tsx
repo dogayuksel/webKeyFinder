@@ -14,10 +14,10 @@ const BORDER_COLOR = theme.colors['--gray-color'];
 const HIGHLIGHT_COLOR = theme.colors['--secondary-color'];
 const WHITE_COLOR = theme.colors['--background-color'];
 
-const INNERMOST_RATIO = 0.41;
-const MINOR_RATIO = 0.58;
-const INNER_RATIO = 0.7;
-const MAJOR_RATIO = 0.88;
+const INNERMOST_RATIO = 0.35;
+const MINOR_RATIO = 0.49;
+const INNER_RATIO = 0.67;
+const MAJOR_RATIO = 0.82;
 
 const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div
@@ -164,12 +164,17 @@ class CircleOfFifths extends Component<({ result?: string })> {
           >
             <div
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 position: 'relative',
-                left: `${-MAJOR_NOTE_WIDTH / 2}px`,
-                width: MAJOR_NOTE_WIDTH,
+                left: '-1.5rem',
+                top: '-1.5rem',
+                width: '3rem',
+                height: '3rem',
                 textAlign: 'center',
                 transform: `rotate(${-(index + offset) * 30}deg)`,
-                fontSize: keysNotation[major].length > 6 ? "0.6rem" : "1rem",
+                fontSize: `${1.1 - Math.sqrt(keysNotation[major].length) * 0.1}rem`,
                 fontWeight: 'bold'
               }}
             >
@@ -191,12 +196,17 @@ class CircleOfFifths extends Component<({ result?: string })> {
           >
             <div
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 position: 'relative',
-                left: `${-MINOR_NOTE_WIDTH / 2}px`,
-                width: MINOR_NOTE_WIDTH,
+                left: '-1rem',
+                top: '-1rem',
+                width: '2rem',
+                height: '2rem',
                 textAlign: 'center',
                 transform: `rotate(${-(index + offset) * 30}deg)`,
-                fontSize: keysNotation[minor].length > 6 ? "0.6rem" : "0.8rem",
+                fontSize: `${0.9 - Math.sqrt(keysNotation[minor].length) * 0.1}rem`,
               }}
             >
               {keysNotation[minor]}
