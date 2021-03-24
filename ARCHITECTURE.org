@@ -1,0 +1,51 @@
+* Overview
+Audio stream analysis and audio file analysis use the same module for key detection.  
+
+** Key Detection Module
+Key detection module consists of a wasm module controlled by the emscripten javascript runtime that is run in a webWorker. Wasm module includes the keyFinder library as well a simple webAssembly compatible interface. Emscripten runtime is modified during build to implement message passing protocol between the main thread and the worker.
+
+#+BEGIN_SRC artist
++---------------------------+
+| +----------------+        |  send dataArray   +-------------------+
+| | keyFinder wasm |        | <---------------- |                   |
+| +----------------+        |  analysis result  |    main thread    |
+|       modified emscripten | ----------------> |                   |
+|        javascript runtime |                   +-------------------+
++---------------------------+                 
+          keyFinder
+#+END_SRC                 
+
+** Audio Stream Analysis
+During audio stream analysis, in addition to the keyFinder running in a web worker, main thread initiates an AudioWorkletProcessor running in another worker. AudioWorkletProcessor is connected to the user's media stream, and converts to it a dataArray. Main thread relays the array to keyFinder for further processing.
+
+#+BEGIN_SRC artist
++-----------------------+      +---------------+      +-----------+
+|                       |      |               |      |           |
+| AudioWorkletProcessor |----> |  main thread  |----> | keyFinder |
+|     (recording)       |      |               |      |           |
+|                       |      +---------------+      +-----------+
++-----------------------+      pass along dataArray    
+#+END_SRC
+
+** Audio File Analysis
+Audio file analysis spawns keyFinder web workers for each file provided (as long as spare threads are available). Audio files are decoded on the main thread. Afterwards dataArray is feeded into the keyFinder module piece by piece.
+
+#+BEGIN_SRC artist
+ +---------------+      +-----------+
+ |               |  1   |           |
+ |               |----> | keyFinder |
+ |               |      |           |
+ |               |      +-----------+
+ |               |
+ |               |      +-----------+
+ |               |  2   |           |
+ |  main thread  |----> | keyFinder |
+ |               |      |           |
+ |               |  .   +-----------+
+ |               |  .
+ |               |  .   +-----------+
+ |               |  n   |           |
+ |               |----> | keyFinder |
+ |               |      |           |
+ +---------------+      +-----------+
+#+END_SRC

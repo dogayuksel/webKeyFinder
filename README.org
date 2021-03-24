@@ -1,6 +1,18 @@
+
+* Introduction
+webKeyFinder is a browser application for musical key detection. webKeyFinder works with an audio stream or audio files.
+ 
+** Audio Stream / Live Detection
+Using an AudioWorkletProcessor, incoming audio stream is recorded in pulse-code modulation format. Once roughly one second of audio is recorded, the chuck is sent to a web worker running the key finder WebAssembly module. Message passing and analysis repeats until key detection is ended.
+
+** Audio File / File Analysis
+To prepare for analysis, audio files are first decoded into pulse-code modulation format. Once decoding is done, one second chunks are sent to the web worker running the key finder WebAssembly module. Message passing and analysis repeats until whole audio file is exhausted.
+
+In contrast to live analysis, key detection workload for audio files can be processed in parallel. Once decoding is completed on the main thread, each audio file in the queue works with a dedicated web worker.
+
 * Installation
 
-** Perquisites
+** Prerequisites
 *** emscripten
 - [[https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended][installation instructions using emsdk]]
 - make sure emsdk is available on your path
@@ -30,7 +42,7 @@ make
 #+END_SRC
 
 ** (ALTERNATIVE) Run using the pre-compiled wasm module
-You can run the project only by bundling the web part and using the existing pre-compiled wasm modules.
+You can run the project only by bundling the web modules and using the existing pre-compiled wasm modules.
 #+BEGIN_SRC sh
 make build-web
 #+END_SRC
@@ -47,5 +59,8 @@ make clean_deps
 #+END_SRC
 
 ** Development
-*** Just kill the server and run `make` again. This should rebuild the changed parts. You can run `make serve` to see your changes.
-*** If you have troubles with make recognizing the changes, you can run `make clean` to delete built files and repeat the previous step.
+- Just kill the server and run `make` again. This should rebuild the changed parts. Then you can run `make serve` to see your changes.
+- If you have troubles with make recognizing the changes, you can run `make clean` to delete built files and repeat the previous step.
+
+* Acknowledgments 
+This project is possible thanks to the [[https://emscripten.org/][emscripten]] library which allowed me to compile, [[https://github.com/mixxxdj/libkeyfinder][libKeyFinder]]  (originally written by Ibrahim Sha'ath) and its dependency [[http://fftw.org/][FFTW]] for the browser.
