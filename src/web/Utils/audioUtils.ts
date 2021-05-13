@@ -5,7 +5,7 @@ export function requestUserMedia(): Promise<MediaStream> {
 }
 
 export function createAudioContext(): AudioContext {
-  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const AudioContext = window.AudioContext;
   return new AudioContext();
 }
 

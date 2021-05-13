@@ -28,6 +28,9 @@ interface State {
 };
 
 class AudioFileKeyDetection extends Component<Props, State> {
+  worker: Worker | null = null;
+  terminated: boolean = false;
+ 
   state: State = {
     analysisStart: null,
     analysisDuration: null,
@@ -54,6 +57,11 @@ class AudioFileKeyDetection extends Component<Props, State> {
     }
   }
 
+  componentWillUnmount() {
+    this.terminated = true;
+    this.worker && this.worker.terminate();
+  }
+
   advanceSegmentCount = () => {
     this.setState(({ currentSegment }) => ({ currentSegment: currentSegment + 1 }));
   }
@@ -66,6 +74,7 @@ class AudioFileKeyDetection extends Component<Props, State> {
   }
 
   handleAudioFile = (buffer: AudioBuffer) => {
+    if (this.terminated) return;
     const sampleRate = buffer.sampleRate;
     const numberOfChannels = buffer.numberOfChannels;
     const channelData = [];
@@ -78,14 +87,14 @@ class AudioFileKeyDetection extends Component<Props, State> {
       analysisStart: performance.now(),
       analysisDuration: null
     });
-    const worker = keyFinderUtils.initializeKeyFinder({
+    this.worker = keyFinderUtils.initializeKeyFinder({
       sampleRate,
       numberOfChannels
     });
     const segmentCounts = Math.floor(channelData[0].length / sampleRate);
     this.setState({ maxSegments: segmentCounts, currentSegment: 0 });
 
-    worker.addEventListener('message', (event) => {
+    this.worker.addEventListener('message', (event) => {
       if (event.data.finalResponse) {
         const result = keyFinderUtils.extractResultFromByteArray(event.data.data)
         this.setState((oldState) => ({
@@ -94,11 +103,12 @@ class AudioFileKeyDetection extends Component<Props, State> {
           analyzing: false
         }));
         this.props.updateResult(this.props.fileItem.id, result);
-
+        this.worker.terminate();
+        this.worker = null;
       } else { // Not final response
         if (event.data.data === 0) { // very first response
           this.postAudioSegmentAtOffset(
-            worker, channelData, sampleRate, numberOfChannels, 0
+            this.worker, channelData, sampleRate, numberOfChannels, 0
           );
           this.advanceSegmentCount();
 
@@ -109,12 +119,12 @@ class AudioFileKeyDetection extends Component<Props, State> {
           if (this.state.currentSegment < segmentCounts) {
             const offset = this.state.currentSegment * sampleRate;
             this.postAudioSegmentAtOffset(
-              worker, channelData, sampleRate, numberOfChannels, offset
+              this.worker, channelData, sampleRate, numberOfChannels, offset
             );
             this.advanceSegmentCount();
 
           } else { // no more segments
-            worker.postMessage({ funcName: 'finalDetection' });
+            this.worker.postMessage({ funcName: 'finalDetection' });
           }
         }
       }

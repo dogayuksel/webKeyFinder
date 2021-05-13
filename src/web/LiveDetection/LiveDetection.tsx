@@ -24,6 +24,10 @@ class LiveDetection extends Component {
     error: null,
   };
 
+  componentWillUnmount() {
+    this.keyAnalyzer && this.keyAnalyzer.terminate();
+  }
+
   drawLevelAnalysis = () => {
     requestAnimationFrame(this.drawLevelAnalysis);
     this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
@@ -95,6 +99,7 @@ class LiveDetection extends Component {
       if (event.data.finalResponse) {
         const result = keyFinderUtils.extractResultFromByteArray(event.data.data)
         this.setState({ result });
+        this.keyAnalyzer && this.keyAnalyzer.terminate();
       } else { // Not final response
         if (event.data.data === 0) { // very first response
           console.log("Analyzer is initialized");
