@@ -82,7 +82,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
              : `Using ${numberOfThreads} parallel processes. `}
             <Link href="/settings">[settings]</Link>
           </p>
-          <div style={{ paddingBottom: '1.5rem' }}>
+          <div style={{ marginBottom: '2rem' }}>
             <label for="load-a-track" style={{ paddingRight: '1rem' }}>Load a track: </label>
             <input
               ref={this.ref}

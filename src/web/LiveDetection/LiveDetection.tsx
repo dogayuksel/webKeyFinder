@@ -1,8 +1,10 @@
 import { h, createRef, Fragment, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
-import CircleOfFifths from './CircleOfFifths';
+import CircleOfFifths from '../CircleOfFifths';
 import { keysNotation } from '../defaults';
 import theme from '../theme';
+
+import './LiveDetection.css';
 
 const WIDTH = 200;
 const HEIGHT = 100;
@@ -131,13 +133,7 @@ class LiveDetection extends Component {
     return (
       <>
         {error && <h1>{error}</h1>}
-        <main
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 3fr',
-            gap: '2rem'
-          }}
-        >
+        <main class="live-detection__container">
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <header>
               <h1 style={{ marginTop: 0 }}>Live Key Detection</h1>

@@ -4,11 +4,9 @@ import {
   minorKeys,
   keysNotation,
   keyAtTopPosition,
-} from '../defaults';
-import theme from '../theme';
+} from './defaults';
+import theme from './theme';
 
-const MAJOR_NOTE_WIDTH = 105;
-const MINOR_NOTE_WIDTH = 90;
 const BORDER_THICKNESS = 2;
 const BORDER_COLOR = theme.colors['--gray-color'];
 const HIGHLIGHT_COLOR = theme.colors['--secondary-color'];
@@ -104,7 +102,14 @@ const SemiCircleHighlight = ({ result, offset }) => {
   return null;
 };
 
-class CircleOfFifths extends Component<({ result?: string })> {
+class CircleOfFifths extends Component<({
+  result?: string,
+  mini?: boolean,
+})> {
+  static defaultProps = {
+    mini: false
+  };
+
   render() {
     const offset = majorKeys.indexOf(keyAtTopPosition) * -1;
     return (
@@ -150,7 +155,7 @@ class CircleOfFifths extends Component<({ result?: string })> {
             backgroundColor: `${WHITE_COLOR}`,
           }}
         />
-        {majorKeys.map((major, index) => (
+        {!this.props.mini && majorKeys.map((major, index) => (
           <div
             style={{
               top: `${(1 - MAJOR_RATIO) * 50}%`,
@@ -182,7 +187,7 @@ class CircleOfFifths extends Component<({ result?: string })> {
             </div>
           </div>
         ))}
-        {minorKeys.map((minor, index) => (
+        {!this.props.mini && minorKeys.map((minor, index) => (
           <div
             style={{
               top: `${(1 - MINOR_RATIO) * 50}%`,

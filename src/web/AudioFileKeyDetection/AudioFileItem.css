@@ -1,26 +1,88 @@
+.file-item__container {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+  display: grid;
+  min-height: 5rem;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "name result" "progress result";
+  gap: 1rem;
+  width: 67vw;
+}
+
+@media (max-width: 720px) {
+  .file-item__container {
+    width: 100%;
+  }
+}
+
+.file-item__container:hover {
+  background-color: var(--gray-color);
+}
+
+.file-item__song-name {
+  grid-area: name;
+  font-size: 1.1rem;
+}
+
+.file-item__result-container {
+  grid-area: result;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.file-item__result-text {
+  font-size: 1.8rem;
+}
+
+@media (max-width: 720px) {
+  font-size: 1.4rem;
+}
+
+.file-item__circle {
+  width: 3rem;
+  opacity: 0.5;
+  margin-left: 1rem;
+  flex: none;
+}
+
+.file-item__progress-indicator {
+  grid-area: progress;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.file-item__progress-indicator progress {
+  margin-right: 0.4rem;
+}
+
 progress {
   border: 0;
-  height: 1rem;
+  height: 0.6rem;
   border-radius: 0.2rem;
   color: var(--primary-darker-color);
 }
 
 progress::-webkit-progress-bar {
   border: 0;
-  height: 1rem;
+  height: 0.6rem;
   border-radius: 0.2rem;
 }
 
 progress::-webkit-progress-value {
   border: 0;
-  height: 1rem;
+  height: 0.6rem;
   border-radius: 0.2rem;
   background: var(--primary-darker-color);
 }
 
 progress::-moz-progress-bar {
   border: 0;
-  height: 1rem;
+  height: 0.6rem;
   border-radius: 0.2rem;
   background: var(--primary-darker-color);
 }
+

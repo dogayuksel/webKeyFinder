@@ -1,6 +1,7 @@
 import { h, Fragment, Component } from 'preact';
 import { keyFinderUtils } from '../Utils';
 import { keysNotation } from '../defaults';
+import CircleOfFifths from '../CircleOfFifths';
 
 import './AudioFileItem.css';
 
@@ -142,20 +143,22 @@ class AudioFileKeyDetection extends Component<Props, State> {
 
   render ({ fileItem }, { currentSegment, maxSegments, analyzing, result, analysisDuration }) {
     return (
-      <div style={{ paddingTop: '1rem', height: '2rem', maxWidth: '36rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div class="file-item__container">
+        <div class="file-item__song-name">
           {fileItem.file.name}
-          <div style={{ paddingLeft: '1rem', display: 'flex', alignItems: 'center' }}>
-            <div style={{ paddingRight: '0.3rem' }}>
-              {result && keysNotation[result] && `${keysNotation[result]}`}
-            </div>
-            <progress value={currentSegment} max={maxSegments}></progress>
-            <div style={{ fontSize: '0.85rem', width: '3rem', paddingLeft: '0.3rem' }}>
-              {result && analysisDuration &&
-                `${(analysisDuration/1000).toFixed(1)} s`
-              }
-            </div>
+        </div>
+        <div class="file-item__result-container">
+          <div class="file-item__result-text">
+            {result && keysNotation[result] && `${keysNotation[result]}`}
           </div>
+          <div class="file-item__circle">
+            <CircleOfFifths  mini={true} result={result} />
+          </div>
+        </div>
+        <div class="file-item__progress-indicator">
+          <progress value={currentSegment} max={maxSegments}></progress>
+          {result && analysisDuration &&
+            `${(analysisDuration/1000).toFixed(1)} s`}
         </div>
       </div>
     );
