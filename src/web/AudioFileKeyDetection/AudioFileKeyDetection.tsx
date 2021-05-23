@@ -4,6 +4,8 @@ import AudioFileItem, { FileItem } from './AudioFileItem'
 import { v4 as uuidv4 } from 'uuid';
 import { numberOfThreads } from '../defaults';
 
+import './AudioFileKeyDetection.css';
+
 interface State {
   files: Array<FileItem>,
 };
@@ -71,11 +73,11 @@ class AudioFileKeyDetection extends Component<{}, State> {
 
   render ({}, { files }) {
     return (
-      <>
+      <main class="audio-file-key-detection-page">
         <header>
           <h1>Audio File Key Detection</h1>
         </header>
-        <main style={{ paddingTop: '1rem' }}>
+        <div style={{ paddingTop: '1rem' }}>
           <p style={{ fontSize: '0.6rem' }}>
             {numberOfThreads === 1
              ? 'No parallel processes. '
@@ -101,8 +103,8 @@ class AudioFileKeyDetection extends Component<{}, State> {
               updateResult={this.updateResult}
             />
           ))}
-        </main>
-      </>
+        </div>
+      </main>
     );
   }
 }

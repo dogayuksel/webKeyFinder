@@ -131,7 +131,7 @@ class LiveDetection extends Component {
 
   render ({}, { connected, analyzing, result, error }) {
     return (
-      <>
+      <div class="live-detection-page">
         {error && <h1>{error}</h1>}
         <main class="live-detection__container">
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -170,7 +170,7 @@ class LiveDetection extends Component {
                   width={WIDTH}
                   height={HEIGHT}
                   ref={this.canvas}
-                  style={{ width: WIDTH, height: HEIGHT, margin: '1rem' }}
+                  style={{ width: WIDTH, height: HEIGHT }}
                 />
               </div>
               <div style={{ height: '2rem' }}>
@@ -178,16 +178,11 @@ class LiveDetection extends Component {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              justifySelf: 'center',
-              width: 'min(100%, calc(100vh - 10rem))'
-            }}
-          >
+          <div class="live-detection__circle-of-fifths">
             <CircleOfFifths result={result} />
           </div>
         </main>
-      </>
+      </div>
     );
   }
 }

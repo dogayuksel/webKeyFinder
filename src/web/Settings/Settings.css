@@ -1,0 +1,81 @@
+.settings-page {
+  max-width: 960px;
+  margin: auto;
+}
+
+.settings-container p {
+  font-size: 0.6rem;
+}
+
+.settings-container select,  
+.settings-container input {
+  height: 1.4rem;
+}
+
+.settings-container__notation-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+@media (max-width: 440px) {
+  .settings-container__notation-fields {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.settings-container__notation-fields-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-container__notation-field {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 0.2rem;
+}
+
+.settings-container__theme-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  max-width: 400px;
+}
+
+.settings-container__theme-fields > div {
+  padding-right: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.settings-container__key-at-top-field {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+  align-items: center;
+  max-width: 400px;
+}
+
+.settings-container__processes-field {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+  align-items: center;
+  max-width: 400px;
+}
+
+.settings-container--danger {
+  color: var(--danger-color);
+}
+
+.settings-container__save-button {
+  margin-top: 2rem;
+}
+
+.settings-container__reset-section {
+  margin-top: 8rem;
+}

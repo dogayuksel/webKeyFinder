@@ -1,9 +1,17 @@
 /* color palette */
+:root {
+  --breakpoint-mobile: 440px;
+  --breakpoint-tablet: 800px;
+}
+
 html {
   box-sizing: border-box;
   font-size: calc(1em + 0.618vw);
   color: var(--foreground-color);
   background-color: var(--background-color);
+
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {
@@ -24,6 +32,7 @@ button, input {
   border: 1px solid var(--primary-color);
   border-radius: 0.2rem;
   padding: 0.4rem 1rem;
+  min-width: 0;
 }
 
 button:disabled, input:disabled {

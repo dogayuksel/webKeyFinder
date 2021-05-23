@@ -1,0 +1,8 @@
+.about-page {
+  max-width: 960px;
+  margin: auto;
+}
+
+.about-page__links {
+  padding-top: 1rem;
+}

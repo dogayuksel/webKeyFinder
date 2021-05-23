@@ -1,0 +1,10 @@
+.audio-file-key-detection-page {
+  max-width: 960px;
+  margin: auto;
+}
+
+.audio-file-key-detection-page input {
+  white-space: pre-line;
+  max-width: calc(100vw - 6rem);
+}
+

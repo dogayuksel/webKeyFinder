@@ -1,11 +1,32 @@
+.live-detection-page {
+  max-width: 960px;
+  margin: auto;
+}
+
 .live-detection__container {
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 2rem;
 }
 
-@media (max-width: 720px) {
+.live-detection__container input {
+  white-space: pre-line;
+  text-align: left;
+  max-width: calc(100vw - 6rem);
+}
+
+.live-detection__circle-of-fifths {
+  justify-self: center;
+  max-width: 480px;
+  width: 100%;
+}
+
+@media (max-width: 440px) {
   .live-detection__container {
     grid-template-columns: 1fr;
+  }
+
+  .live-detection__circle-of-fifths {
+    width: calc(100vw - 6rem);
   }
 }

@@ -3,7 +3,12 @@ import { Link, subscribers, getCurrentUrl } from 'preact-router';
 
 import './Navigation.css';
 
-class App extends Component {
+interface State {
+  updatedUrl: string,
+  navOpen: boolean,
+}
+
+class App extends Component<{}, State> {
 	update = (url : string) => {
 		this.setState({ updatedUrl: url });
 	};
@@ -16,20 +21,51 @@ class App extends Component {
 		subscribers.splice(subscribers.indexOf(this.update), 1);
 	}
 
-  render(_, { updatedUrl }) {
+  closeNav = () => {
+    const { navOpen } = this.state;
+    if (navOpen === true) {
+      this.setState({ navOpen: false });
+    }
+  }
+
+  render(_, { updatedUrl, navOpen }) {
 		let url = updatedUrl || getCurrentUrl();
 
     return (
-      <nav class="navigation-wrapper">
-        <Link
-          href="/live"
-          class={!['/file', '/about', '/settings'].includes(url) ? 'active' : ''}
+      <nav class={["navigation-wrapper", navOpen ? "navigation-open" : ""].join(" ")}>
+        <button onClick={() => this.setState({ navOpen: true })}>☰</button>
+        <div
+          class="links-container"
         >
-          Live Detection
-        </Link>
-        <Link href="/file" class={url === '/file' ? 'active' : ''} >File Analysis</Link>
-        <Link href="/settings" class={url === '/settings' ? 'active' : ''} >Settings</Link>
-        <Link href="/about" class={url === '/about' ? 'active' : ''}>About</Link>
+          <Link
+            href="/live"
+            class={!['/file', '/about', '/settings'].includes(url) ? 'active' : ''}
+            onClick={this.closeNav}
+          >
+            Live Detection
+          </Link>
+          <Link
+            href="/file"
+            class={url === '/file' ? 'active' : ''}
+            onClick={this.closeNav}
+          >
+            File Analysis
+          </Link>
+          <Link
+            href="/settings"
+            class={url === '/settings' ? 'active' : ''}
+            onClick={this.closeNav}
+          >
+            Settings
+          </Link>
+          <Link
+            href="/about"
+            class={url === '/about' ? 'active' : ''}
+            onClick={this.closeNav}
+          >
+            About
+          </Link>
+        </div>
       </nav>
     );
   }

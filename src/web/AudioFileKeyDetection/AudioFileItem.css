@@ -7,12 +7,13 @@
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "name result" "progress result";
   gap: 1rem;
-  width: 67vw;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 440px) {
   .file-item__container {
     width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "progress" "result";
   }
 }
 
@@ -33,12 +34,20 @@
   align-items: flex-end;
 }
 
+@media (max-width: 440px) {
+  .file-item__result-container {
+    flex-direction: row-reverse;
+  }
+}
+
 .file-item__result-text {
   font-size: 1.8rem;
 }
 
-@media (max-width: 720px) {
-  font-size: 1.4rem;
+@media (max-width: 440px) {
+  .file-item__result-text {
+    font-size: 1.4rem;
+  }
 }
 
 .file-item__circle {
@@ -46,6 +55,14 @@
   opacity: 0.5;
   margin-left: 1rem;
   flex: none;
+}
+
+@media (max-width: 440px) {
+  .file-item__circle {
+    width: 2rem;
+    margin-left: 0;
+    margin-right: 1rem;
+  }
 }
 
 .file-item__progress-indicator {
@@ -57,6 +74,12 @@
 
 .file-item__progress-indicator progress {
   margin-right: 0.4rem;
+}
+
+@media (max-width: 540px) {
+  .file-item__progress-indicator progress {
+    max-width: 80px;
+  }
 }
 
 progress {

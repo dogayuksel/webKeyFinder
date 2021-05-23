@@ -8,7 +8,8 @@ import {
   maxNumberOfThreads,
   numberOfThreads
 } from '../defaults';
-import theme from '../theme';
+
+import './Settings.css';
 
 class Settings extends Component {
   state = {
@@ -57,39 +58,29 @@ class Settings extends Component {
 
   render() {
     return (
-      <>
+      <main class="settings-page">
         <header>
           <h1>Settings</h1>
         </header>
-        <main style={{ paddingTop: '1rem' }}>
-          <p style={{ fontSize: '0.6rem' }}>
+        <div class="settings-container">
+          <p>
             {"Custom settings are stored locally. Change values as you desire and click on the save button at the bottom."}
           </p>
           <form onSubmit={this.handleSave}>
             <h2>General</h2>
             <h3>Alternative Notation</h3>
-            <p style={{ fontSize: '0.6rem' }}>
+            <p>
               {"Update default notation by modifying respective fields. Use following characters: a-z, A-Z, 0-9, ♭, ♯. No spaces in the beginning or the end."}
             </p>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gridGap: '1rem'
-              }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div class="settings-container__notation-fields">
+              <div class="settings-container__notation-fields-column">
                 {majorKeys.map(major => (
                   <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      paddingBottom: '0.2rem'
-                    }}
+                    class="settings-container__notation-field"
                   >
-                    <label style={{ width: '5rem' }}>{major}</label>
+                    <label>{major}</label>
                     <input
                       onInput={this.onInputNewNotation}
-                      style={{ width: '10rem' }}
                       id={major}
                       value={this.state.keysNotation[major]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -97,19 +88,12 @@ class Settings extends Component {
                   </div>
                 ))}
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div class="settings-container__notation-fields-column">
                 {minorKeys.map(minor => (
-                  <div
-                    style={{
-                      display: 'flex',
-                      paddingBottom: '0.2rem',
-                      alignItems: 'baseline'
-                    }}
-                  >
-                    <label style={{ width: '5rem' }}>{minor}</label>
+                  <div class="settings-container__notation-field">
+                    <label>{minor}</label>
                     <input
                       onInput={this.onInputNewNotation}
-                      style={{ width: '10rem' }}
                       id={minor}
                       value={this.state.keysNotation[minor]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -119,8 +103,8 @@ class Settings extends Component {
               </div>
             </div>
             <h3>Theme</h3>
-            <div>
-              <div style={{ display: 'inline-block', paddingRight: '1rem' }}>
+            <div class="settings-container__theme-fields">
+              <div>
                 <input
                   type="radio"
                   id="light"
@@ -131,7 +115,7 @@ class Settings extends Component {
                 />
                 <label for="light">light</label>
               </div>
-              <div style={{ display: 'inline-block' }}>
+              <div>
                 <input
                   type="radio"
                   id="dark"
@@ -144,14 +128,11 @@ class Settings extends Component {
               </div>
             </div>
             <h2>Live Detection</h2>
-            <p style={{ fontSize: '0.6rem' }}>
+            <p>
               {"Some notations orient circle of fifths differently. Select the note in the 12 o'clock position to adjust how circle of fifths is visualized."}
             </p>
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
-              <label
-                for="keyAtTopPosition"
-                style={{ paddingRight: '1rem' }}
-              >
+            <div class="settings-container__key-at-top-field">
+              <label for="keyAtTopPosition">
                 <h3>Key at top position</h3>
               </label>
               <select
@@ -172,13 +153,12 @@ class Settings extends Component {
               </select>
             </div>
             <h2>File Analysis</h2>
-            <p style={{ fontSize: '0.6rem' }}>
+            <p>
               {"While analyzing files, the application spawns multiple workers. Set the maximum number of workers to be run at the same time."}
             </p>
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+            <div class="settings-container__processes-field">
               <label
                 for="numberOfThreads"
-                style={{ paddingRight: '1rem' }}
               >
                 <h3>Parallel Processes</h3>
               </label>
@@ -192,27 +172,20 @@ class Settings extends Component {
               />
             </div>
             {this.state.numberOfThreads > maxNumberOfThreads &&
-             (<p
-                style={{
-                  fontSize: '0.6rem',
-                  color: theme.colors['--danger-color']
-                }}>
+             (<p class="settings-container--danger">
                 {`According to your browser, your machine has ${maxNumberOfThreads} processors available. Spawing more threads than that will slow down your computer.`}
               </p>)
             }
-            <button
-              style={{ marginTop: '2rem' }}
-              type="submit"
-            >
+            <button class="settings-container__save-button" type="submit">
               SAVE
             </button>
           </form>
-          <div style={{ marginTop: '8rem' }}>
-            <h3 style={{ color: theme.colors['--danger-color'] }}>DANGER</h3>
+          <div class="settings-container__reset-section">
+            <h3 class="settings-container--danger">DANGER</h3>
             <button onClick={this.handleReset}>delete custom settings</button>
           </div>
-        </main>
-      </>
+        </div>
+      </main>
     );
   }
 }
