@@ -26,6 +26,11 @@ class LiveDetection extends Component {
     error: null,
   };
 
+  componentDidMount() {
+    document.title = "keyfinder | Key Finder for Live Audio";
+    document.querySelector('meta[name="description"]').setAttribute("content", "A web application to find the musical key (root note) of a song from the live audio feed. Analyze audio from your microphone or audio stream routed from your sound card to find the root note right in your browser.");
+  }
+
   componentWillUnmount() {
     this.keyAnalyzer && this.keyAnalyzer.terminate();
   }
@@ -157,6 +162,7 @@ class LiveDetection extends Component {
                   onClick={this.startRecording}
                   value="Start Key Detection"
                   disabled={!connected || analyzing}
+                  style={{ marginBottom: '0.5rem' }}
                 />
                 <input
                   type="button"

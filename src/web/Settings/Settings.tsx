@@ -19,6 +19,11 @@ class Settings extends Component {
     numberOfThreads,
   }
 
+  componentDidMount() {
+    document.title = "keyfinder | Settings for Key Finder Application";
+    document.querySelector('meta[name="description"]').setAttribute("content", "Adjust the settings for the musical key finder application. You can modify the notation used to visualize the circle of fifths.");
+  }
+
   handleSave = e => {
     e.preventDefault();
     try {

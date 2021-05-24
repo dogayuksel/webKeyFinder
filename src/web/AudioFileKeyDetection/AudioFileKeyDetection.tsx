@@ -16,6 +16,11 @@ class AudioFileKeyDetection extends Component<{}, State> {
     files: [],
   };
 
+  componentDidMount() {
+    document.title = "keyfinder | Key Finder for Audio Files";
+    document.querySelector('meta[name="description"]').setAttribute("content", "A web application to find the musical key (root note) of an audio file. Song will be analyzed right in your browser. Select the audio file from your computer to find the root note.");
+  }
+
   handleFileInput = ({ target }: Event): void => {
     const fileList = (target as HTMLInputElement).files;
     this.setState(({ files }) => {
