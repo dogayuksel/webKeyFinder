@@ -1,0 +1,20 @@
+name: Build and publish Docker Images to GitHub Container registry
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build and Publish Docker image
+      uses: VaultVulp/gp-docker-action@1.2.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: webkeyfinder
