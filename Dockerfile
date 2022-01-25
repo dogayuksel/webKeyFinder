@@ -11,7 +11,7 @@ RUN make libKeyFinder/build/libkeyfinder.a
 RUN make dist/keyFinderProgressiveWorker.wasm
 
 
-FROM node:14-alpine3.13
+FROM node:lts-alpine
 
 WORKDIR /usr/app
 

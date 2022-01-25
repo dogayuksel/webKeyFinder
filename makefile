@@ -8,7 +8,7 @@ release: BUILD_CONFIG = -O3 -flto
 release: build
 .PHONY: release
 
-FFTW_URL = "http://www.fftw.org/fftw-3.3.8.tar.gz"
+FFTW_URL = "http://www.fftw.org/fftw-3.3.10.tar.gz"
 
 # source code for fftw
 fftw/configure:
