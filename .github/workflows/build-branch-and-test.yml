@@ -15,7 +15,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: webkeyfinder
-        image-tag: ${{ github.head_ref }}
+        image-tag: ${{ github.sha }}
 
 
   run-and-test:
@@ -24,7 +24,7 @@ jobs:
  
     steps:
       - uses: actions/checkout@v2
-      - run: docker pull ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.head_ref }}
-      - run: docker run -d -p 3000:3000 ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.head_ref }}
+      - run: docker pull ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.sha }}
+      - run: docker run -d -p 3000:3000 ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.sha }}
       - name: Cypress run
         uses: cypress-io/github-action@v2
