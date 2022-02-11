@@ -1,0 +1,31 @@
+name: Build branch and run tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and Publish Docker image
+      uses: VaultVulp/gp-docker-action@1.2.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: webkeyfinder
+        image-tag: ${{ github.head_ref }}
+
+
+  run-and-test:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker pull ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.head_ref }}
+      - run: docker run -d -p 3000:3000 ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.head_ref }}
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
