@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Link, subscribers, getCurrentUrl } from 'preact-router';
+import { Link } from 'preact-router/match';
 
 import './Navigation.css';
 
@@ -9,18 +9,6 @@ interface State {
 }
 
 class App extends Component<{}, State> {
-	update = (url : string) => {
-		this.setState({ updatedUrl: url });
-	};
-
-	componentDidMount() {
-		subscribers.push(this.update);
-	}
-
-	componentWillUnmount() {
-		subscribers.splice(subscribers.indexOf(this.update), 1);
-	}
-
   closeNav = () => {
     const { navOpen } = this.state;
     if (navOpen === true) {
@@ -28,8 +16,7 @@ class App extends Component<{}, State> {
     }
   }
 
-  render(_, { updatedUrl, navOpen }) {
-		let url = updatedUrl || getCurrentUrl();
+  render(_, { navOpen }) {
 
     return (
       <nav class={["navigation-wrapper", navOpen ? "navigation-open" : ""].join(" ")}>
@@ -39,28 +26,28 @@ class App extends Component<{}, State> {
         >
           <Link
             href="/live"
-            class={!['/file', '/about', '/settings'].includes(url) ? 'active' : ''}
+            activeClassName="active"
             onClick={this.closeNav}
           >
             Live Detection
           </Link>
           <Link
             href="/file"
-            class={url === '/file' ? 'active' : ''}
+            activeClassName="active"
             onClick={this.closeNav}
           >
             File Analysis
           </Link>
           <Link
             href="/settings"
-            class={url === '/settings' ? 'active' : ''}
+            activeClassName="active"
             onClick={this.closeNav}
           >
             Settings
           </Link>
           <Link
             href="/about"
-            class={url === '/about' ? 'active' : ''}
+            activeClassName="active"
             onClick={this.closeNav}
           >
             About
