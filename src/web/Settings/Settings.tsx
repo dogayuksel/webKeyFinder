@@ -83,7 +83,7 @@ class Settings extends Component {
                   <div
                     class="settings-container__notation-field"
                   >
-                    <label>{major}</label>
+                    <label for={major}>{major}</label>
                     <input
                       onInput={this.onInputNewNotation}
                       id={major}
@@ -96,7 +96,7 @@ class Settings extends Component {
               <div class="settings-container__notation-fields-column">
                 {minorKeys.map(minor => (
                   <div class="settings-container__notation-field">
-                    <label>{minor}</label>
+                    <label for={minor}>{minor}</label>
                     <input
                       onInput={this.onInputNewNotation}
                       id={minor}
