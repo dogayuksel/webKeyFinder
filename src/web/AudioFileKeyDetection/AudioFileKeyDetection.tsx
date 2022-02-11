@@ -97,7 +97,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
               type="file"
               accept="audio/*"
               multiple={true}
-              onInput={this.handleFileInput}
+              onChange={this.handleFileInput}
             />
           </div>
           {files.map(fileItem => (
