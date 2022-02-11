@@ -3,7 +3,6 @@ name: Build branch and run tests
 on:
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build-and-publish:
