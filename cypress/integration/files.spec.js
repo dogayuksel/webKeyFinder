@@ -6,6 +6,6 @@ describe('file key analysis', () => {
     cy.get('[id="load-a-track"]').attachFile('Mindseye - Interstellar.mp3');
 
     cy.get('[class=file-item__song-name]').contains('Mindseye - Interstellar.mp3');
-    cy.get('[class=file-item__result-text]').contains('Gm', { timeout: 10000 });
+    cy.get('[class=file-item__result-text]').contains('Gm', { timeout: 20000 });
   })
 })
