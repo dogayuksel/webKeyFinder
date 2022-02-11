@@ -1,4 +1,4 @@
-name: Build and publish docker image to github container registry
+name: Publish docker image to registry and test
 
 on:
   push:
@@ -19,3 +19,14 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: webkeyfinder
         image-tag: latest
+
+  run-and-test:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker pull ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:main
+      - run: docker run -d -p 3000:3000 ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:main
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
