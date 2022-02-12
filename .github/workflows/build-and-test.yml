@@ -1,0 +1,59 @@
+name: Build branch and run tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Configuration
+      - name: set image path
+        id: tag
+        run: |
+          if [ "main" == $GITHUB_BASE_REF ]
+          then
+            IMAGE_TAG=$GITHUB_SHA
+          else
+            IMAGE_TAG::latest
+          fi
+          IMAGE_NAME=$(echo ghcr.io/${GITHUB_REPOSITORY}/webkeyfinder | tr '[:upper:]' '[:lower:]')
+          echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
+          echo "image_path=${IMAGE_NAME}:${IMAGE_TAG}" >> $GITHUB_ENV
+      # Setup Docker
+      - name: set up docker buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+      - name: login container registry
+        run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+
+      - uses: actions/checkout@v2
+      - name: build docker image
+        run: >
+          docker build 
+          --load
+          --cache-from ${{ env.image_name }}:latest
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ${{ env.image_path }} .
+      - name: push docker image
+        if: github.ref_name == 'main'
+        run: docker push ${{ env.image_path }}
+      - name: run image
+        run: docker run -d -p 3000:3000 ${{ env.image_path }}
+      - name: run cypress
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chromium
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-output
+          path: |
+            cypress/screenshots
+            cypress/videos

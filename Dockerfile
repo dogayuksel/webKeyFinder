@@ -1,9 +1,16 @@
 # Build wasm module
+FROM emscripten/emsdk AS fftw-builder
+
+WORKDIR /usr/app/
+COPY makefile .
+RUN make fftw/.libs/libfftw3.a
+
+# Build wasm module
 FROM emscripten/emsdk AS wasm-builder
 
 WORKDIR /usr/app/
 COPY . .
-RUN make fftw/.libs/libfftw3.a
+COPY --from=fftw-builder /usr/app/fftw/ ./fftw/
 RUN make libKeyFinder/build/libkeyfinder.a
 RUN make dist/keyFinderProgressiveWorker.wasm
 
