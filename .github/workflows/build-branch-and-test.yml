@@ -28,3 +28,13 @@ jobs:
       - run: docker run -d -p 3000:3000 ghcr.io/dogayuksel/webkeyfinder/webkeyfinder:${{ github.sha }}
       - name: Cypress run
         uses: cypress-io/github-action@v2
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: videos
+          path: cypress/videos
