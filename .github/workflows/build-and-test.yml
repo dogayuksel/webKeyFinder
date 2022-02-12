@@ -37,6 +37,7 @@ jobs:
       - name: cache fftw-builder docker stage
         if: github.ref_name == 'main'
         run: >
+          DOCKER_BUILDKIT=1
           docker build 
           --push
           --target fftw-builder
@@ -45,6 +46,7 @@ jobs:
           --tag ${{ env.image_name }}:fftw-builder .
       - name: build docker image
         run: >
+          DOCKER_BUILDKIT=1
           docker build 
           --load
           --cache-from ${{ env.image_name }}:latest,${{ env.image_name }}:fftw-builder
