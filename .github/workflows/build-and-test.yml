@@ -34,11 +34,20 @@ jobs:
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
 
       - uses: actions/checkout@v2
+      - name: cache fftw-builder docker stage
+        if: github.ref_name == 'main'
+        run: >
+          docker build 
+          --push
+          --target fftw-builder
+          --cache-from ${{ env.image_name }}:fftw-builder
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ${{ env.image_name }}:fftw-builder .
       - name: build docker image
         run: >
           docker build 
           --load
-          --cache-from ${{ env.image_name }}:latest
+          --cache-from ${{ env.image_name }}:latest,${{ env.image_name }}:fftw-builder
           --build-arg BUILDKIT_INLINE_CACHE=1
           --tag ${{ env.image_path }} .
       - name: push docker image
