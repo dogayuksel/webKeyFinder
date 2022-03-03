@@ -33,7 +33,7 @@ jobs:
       - name: login container registry
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: cache fftw-builder docker stage
         if: github.ref_name == 'main'
         run: >
