@@ -61,7 +61,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chromium
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-output
