@@ -17,7 +17,7 @@
     "cypress": "9.5.2",
     "cypress-file-upload": "5.0.8",
     "normalize.css": "8.0.1",
-    "preact": "10.6.6",
+    "preact": "10.7.0",
     "preact-router": "4.0.1",
     "rollup": "2.70.1",
     "rollup-plugin-css-only": "3.1.0",
