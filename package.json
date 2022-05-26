@@ -14,7 +14,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.3.2",
     "@surma/rollup-plugin-off-main-thread": "2.2.3",
-    "cypress": "9.6.1",
+    "cypress": "9.7.0",
     "cypress-file-upload": "5.0.8",
     "normalize.css": "8.0.1",
     "preact": "10.7.2",
