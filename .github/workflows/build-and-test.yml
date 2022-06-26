@@ -58,7 +58,7 @@ jobs:
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
       - name: run cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           browser: chromium
       - uses: actions/upload-artifact@v3
