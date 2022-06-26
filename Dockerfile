@@ -37,11 +37,11 @@ RUN yarn install --production --frozen-lockfile
 
 FROM node:lts-alpine as runner
 
-RUN addgroup -g 1001 -S runners
-RUN adduser -S runner -u 1001
+RUN addgroup -S -g 1001 runners
+RUN adduser -S -u 1001 runner -G runners
 
 WORKDIR /usr/app
-COPY --from=prod-deps --link --chown=runner:runners /usr/app/node_modules/ ./node_modules/
+COPY --from=prod-deps --link --chown=1001:1001 /usr/app/node_modules/ ./node_modules/
 COPY --from=web-builder --link /usr/app/dist/ ./dist/
 
 USER runner
