@@ -32,25 +32,22 @@ jobs:
           install: true
       - name: login container registry
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-
       - uses: actions/checkout@v3
       - name: cache fftw-builder docker stage
         if: github.ref_name == 'main'
         run: >
-          DOCKER_BUILDKIT=1
           docker build 
           --push
           --target fftw-builder
           --cache-from ${{ env.image_name }}:fftw-builder
-          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-to type=inline
           --tag ${{ env.image_name }}:fftw-builder .
       - name: build docker image
         run: >
-          DOCKER_BUILDKIT=1
           docker build 
           --load
           --cache-from ${{ env.image_name }}:latest,${{ env.image_name }}:fftw-builder
-          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-to type=inline
           --tag ${{ env.image_path }} .
       - name: push docker image
         if: github.ref_name == 'main'
