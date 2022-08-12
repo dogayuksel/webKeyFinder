@@ -58,9 +58,12 @@ jobs:
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
       - name: run cypress
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v3.1.0
         with:
           browser: chromium
+          install-command: yarn install --immutable --immutable-cache
+          command-prefix: yarn dlx
+          config-file: cypress.config.mjs
       - uses: actions/upload-artifact@v3
         if: failure()
         with:

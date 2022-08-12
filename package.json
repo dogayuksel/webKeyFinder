@@ -5,10 +5,9 @@
   "author": "Doga Yuksel <hello@doga.dev>",
   "license": "GPL-3.0-only",
   "scripts": {
-    "build": "rollup -c",
-    "serve": "serve ./dist -l 3000 -s",
-    "docker:build": "docker build . -t webkeyfinder",
-    "docker:start": "docker run -d -p 3000:3000 webkeyfinder"
+    "docker:build": "docker buildx build . -t webkeyfinder",
+    "docker:start": "docker run -d -p 3000:3000 webkeyfinder",
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "cypress": "10.4.0",
@@ -16,5 +15,6 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "packageManager": "yarn@3.2.2"
 }

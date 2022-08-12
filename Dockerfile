@@ -1,35 +1,24 @@
-# Build wasm module
-FROM emscripten/emsdk AS fftw-builder
-
-WORKDIR /usr/app/
-COPY makefile .
-RUN make fftw/.libs/libfftw3.a
+# syntax=docker/dockerfile:1.4
 
 # Build wasm module
 FROM emscripten/emsdk AS wasm-builder
 
 WORKDIR /usr/app/
-COPY . .
-COPY --from=fftw-builder /usr/app/fftw/ ./fftw/
-RUN make libKeyFinder/build/libkeyfinder.a
-RUN make dist/keyFinderProgressiveWorker.wasm
-
-
-# Install production dependencies
-FROM node:lts-alpine AS web-builder
-
-WORKDIR /usr/app
-RUN apk add --no-cache bash make
-COPY --from=wasm-builder /usr/app .
+COPY packages/key-finder-wasm .
 RUN make release
 
 
-# Install production dependencies
-FROM node:lts-alpine AS prod-deps
+# Build web
+FROM node:lts-alpine AS web-builder
 
 WORKDIR /usr/app
-COPY package.json yarn.lock ./
-RUN yarn install --production --frozen-lockfile
+COPY .pnp.cjs .pnp.loader.mjs .yarnrc.yml package.json yarn.lock ./
+COPY .yarn ./.yarn
+COPY packages ./packages
+COPY --from=wasm-builder --link usr/app/dist packages/key-finder-wasm/dist
+
+RUN yarn install --immutable --immutable-cache
+RUN yarn workspace key-finder-web build:release
 
 
 FROM node:lts-alpine as runner
@@ -38,8 +27,8 @@ RUN addgroup -g 1001 -S runners
 RUN adduser -S runner -u 1001
 
 WORKDIR /usr/app
-COPY --from=prod-deps --chown=runner:runners /usr/app/node_modules/ ./node_modules/
-COPY --from=web-builder /usr/app/dist/ ./dist/
+COPY --from=web-builder --chown=1001:1001 --link /usr/app/packages/key-finder-web/dist/ ./dist/
+RUN yarn add serve
 
 USER runner
-CMD ["./node_modules/serve/bin/serve.js", "./dist", "-l", "3000", "-s"]
+CMD ["yarn", "serve", "./dist", "-l", "3000", "-s"]
