@@ -1,4 +1,4 @@
-import keyFinderWorkerURL from "omt:../keyFinderProgressiveWorker.js";
+import keyFinderWorkerURL from "omt:key-finder-wasm";
 
 export function initializeKeyFinder({ sampleRate, numberOfChannels }) {
   const worker = new Worker(keyFinderWorkerURL);
