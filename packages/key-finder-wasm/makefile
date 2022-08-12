@@ -68,7 +68,7 @@ $(EMCC_GENERATED_JS): \
 			src/keyFinderProgressiveWorker.post.js \
 			deps/libKeyFinder/build/libkeyfinder.a deps/fftw/.libs/libfftw3.a
 	@echo "building web worker module"
-	rm -f dist; mkdir dist
+	rm -rf dist; mkdir dist
 	emcc ${BUILD_CONFIG} \
 			--bind src/keyFinderProgressiveWorker.cpp \
 			deps/libKeyFinder/build/libkeyfinder.a deps/fftw/.libs/libfftw3.a \
