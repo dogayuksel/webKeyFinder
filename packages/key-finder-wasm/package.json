@@ -1,0 +1,9 @@
+{
+  "name": "key-finder-wasm",
+  "main": "dist/keyFinderProgressiveWorker.js",
+  "scripts": {
+    "build": "yarn exec make",
+    "build:release": "yarn exec make release"
+  },
+  "packageManager": "yarn@3.2.2"
+}

@@ -10,6 +10,9 @@
     "docker:build": "docker build . -t webkeyfinder",
     "docker:start": "docker run -d -p 3000:3000 webkeyfinder"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.3.4",

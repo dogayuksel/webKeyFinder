@@ -19,11 +19,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "web-key-finder",\
         "reference": "workspace:."\
+      },\
+      {\
+        "name": "key-finder-wasm",\
+        "reference": "workspace:packages/key-finder-wasm"\
+      },\
+      {\
+        "name": "key-finder-web",\
+        "reference": "workspace:packages/key-finder-web"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
+      ["key-finder-wasm", ["workspace:packages/key-finder-wasm"]],\
+      ["key-finder-web", ["workspace:packages/key-finder-web"]],\
       ["web-key-finder", ["workspace:."]]\
     ],\
     "fallbackPool": [\
@@ -2476,6 +2486,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["verror", "npm:1.10.0"]\
           ],\
           "linkType": "HARD"\
+        }]\
+      ]],\
+      ["key-finder-wasm", [\
+        ["workspace:packages/key-finder-wasm", {\
+          "packageLocation": "./packages/key-finder-wasm/",\
+          "packageDependencies": [\
+            ["key-finder-wasm", "workspace:packages/key-finder-wasm"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["key-finder-web", [\
+        ["workspace:packages/key-finder-web", {\
+          "packageLocation": "./packages/key-finder-web/",\
+          "packageDependencies": [\
+            ["key-finder-web", "workspace:packages/key-finder-web"]\
+          ],\
+          "linkType": "SOFT"\
         }]\
       ]],\
       ["lazy-ass", [\
