@@ -1,4 +1,29 @@
 {
   "name": "key-finder-web",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "rollup -c",
+    "copy:html": "cp src/index.html dist/index.html",
+    "copy:favicon": "cp src/favicon.ico dist/favicon.ico",
+    "build:release": "yarn clean && yarn build && yarn copy:html && yarn copy:favicon",
+    "serve": "serve ./dist -l 3000 -s"
+  },
+  "dependencies": {
+    "serve": "13.0.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-typescript": "8.3.4",
+    "@surma/rollup-plugin-off-main-thread": "2.2.3",
+    "key-finder-wasm": "workspace:*",
+    "normalize.css": "8.0.1",
+    "preact": "10.10.2",
+    "preact-router": "4.1.0",
+    "rollup": "2.77.3",
+    "rollup-plugin-css-only": "3.1.0",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4",
+    "uuid": "8.3.2"
+  },
   "packageManager": "yarn@3.2.2"
 }

@@ -10,26 +10,11 @@
     "docker:build": "docker build . -t webkeyfinder",
     "docker:start": "docker run -d -p 3000:3000 webkeyfinder"
   },
+  "dependencies": {
+    "cypress": "10.4.0",
+    "cypress-file-upload": "5.0.8"
+  },
   "workspaces": [
     "packages/*"
-  ],
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "13.3.0",
-    "@rollup/plugin-typescript": "8.3.4",
-    "@surma/rollup-plugin-off-main-thread": "2.2.3",
-    "cypress": "10.4.0",
-    "cypress-file-upload": "5.0.8",
-    "normalize.css": "8.0.1",
-    "preact": "10.10.2",
-    "preact-router": "4.1.0",
-    "rollup": "2.77.3",
-    "rollup-plugin-css-only": "3.1.0",
-    "rollup-plugin-terser": "7.0.2",
-    "tslib": "2.4.0",
-    "typescript": "4.7.4",
-    "uuid": "8.3.2"
-  },
-  "dependencies": {
-    "serve": "13.0.4"
-  }
+  ]
 }

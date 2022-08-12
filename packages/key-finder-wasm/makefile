@@ -76,12 +76,11 @@ $(EMCC_GENERATED_JS): \
 			-s "BUILD_AS_WORKER=1" \
 			-s "DISABLE_EXCEPTION_CATCHING=1" \
 			-s "ALLOW_MEMORY_GROWTH=1" \
+			-s "SINGLE_FILE=1" \
 			-o dist/keyFinderProgressiveWorker.js;
 	node src/rename-overridden-functions.mjs;
 
-dist/keyFinderProgressiveWorker.wasm: dist/keyFinderProgressiveWorker.js
-
-build: dist/keyFinderProgressiveWorker.wasm
+build: dist/keyFinderProgressiveWorker.js
 .PHONY: build
 
 clean:
