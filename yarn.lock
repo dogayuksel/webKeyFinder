@@ -2075,6 +2075,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"key-finder-wasm@workspace:packages/key-finder-wasm":
+  version: 0.0.0-use.local
+  resolution: "key-finder-wasm@workspace:packages/key-finder-wasm"
+  languageName: unknown
+  linkType: soft
+
+"key-finder-web@workspace:packages/key-finder-web":
+  version: 0.0.0-use.local
+  resolution: "key-finder-web@workspace:packages/key-finder-web"
+  languageName: unknown
+  linkType: soft
+
 "lazy-ass@npm:^1.6.0":
   version: 1.6.0
   resolution: "lazy-ass@npm:1.6.0"
