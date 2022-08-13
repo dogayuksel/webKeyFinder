@@ -13,9 +13,9 @@ jobs:
       - name: Delete old images
         uses: snok/container-retention-policy@v1
         with:
-          untagged-only: true
           image-names: webkeyfinder/webkeyfinder
           cut-off: Two weeks ago UTC
+          skip-tags: latest
           keep-at-least: 5
           account-type: personal
           token: ${{ secrets.PAT }}
