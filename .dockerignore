@@ -1,5 +1,2 @@
-libKeyFinder/
-fftw/
-
-src/web/keyfinderProgressiveWorker.js
-src/web/keyfinderProgressiveWorker.wasm
+.git
+.log
