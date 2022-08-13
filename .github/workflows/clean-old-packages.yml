@@ -1,0 +1,21 @@
+name: Delete old container images
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 9 * * 3"
+
+jobs:
+  clean-ghcr:
+    name: Delete old unused container images
+    environment: clean packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old images
+        uses: snok/container-retention-policy@v1
+        with:
+          untagged-only: true
+          image-names: webkeyfinder/webkeyfinder
+          cut-off: Two weeks ago UTC
+          keep-at-least: 5
+          account-type: personal
+          token: ${{ secrets.PAT }}
