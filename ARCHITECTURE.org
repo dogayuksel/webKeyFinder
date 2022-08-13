@@ -16,7 +16,7 @@ Key detection module consists of a wasm module controlled by the emscripten java
 #+END_SRC                 
 
 ** Audio Stream Analysis
-During audio stream analysis, in addition to the keyFinder running in a web worker, main thread initiates an AudioWorkletProcessor running in another worker. AudioWorkletProcessor is connected to the user's media stream, and converts to it a dataArray. Main thread relays the array to keyFinder for further processing.
+During audio stream analysis, in addition to the keyFinder running in a web worker, main thread initiates an AudioWorkletProcessor running in another worker. AudioWorkletProcessor is connected to the user's media stream, and converts it to a dataArray. Main thread relays the array to keyFinder for further processing.
 
 #+BEGIN_SRC artist
 +-----------------------+      +---------------+      +-----------+

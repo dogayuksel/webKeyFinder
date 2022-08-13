@@ -5,6 +5,11 @@
   "author": "Doga Yuksel <hello@doga.dev>",
   "license": "GPL-3.0-only",
   "scripts": {
+    "build:wasm": "yarn workspace key-finder-wasm build",
+    "build:wasm:release": "yarn workspace key-finder-wasm build:release",
+    "clean:wasm": "yarn workspace key-finder-wasm clean",
+    "build:web": "yarn workspace key-finder-web build:release",
+    "serve": "yarn workspace key-finder-web serve",
     "docker:build": "docker buildx build . -t webkeyfinder",
     "docker:start": "docker run -d -p 3000:3000 webkeyfinder",
     "test:e2e": "cypress run"

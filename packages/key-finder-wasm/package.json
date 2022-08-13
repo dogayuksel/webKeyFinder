@@ -3,7 +3,8 @@
   "main": "dist/keyFinderProgressiveWorker.js",
   "scripts": {
     "build": "yarn exec make",
-    "build:release": "yarn exec make release"
+    "build:release": "yarn exec make release",
+    "clean": "yarn exec make clean"
   },
   "packageManager": "yarn@3.2.2"
 }
