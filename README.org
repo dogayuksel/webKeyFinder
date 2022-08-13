@@ -10,57 +10,54 @@ To prepare for analysis, audio files are first decoded into pulse-code modulatio
 
 In contrast to live analysis, key detection workload for audio files can be processed in parallel. Once decoding is completed on the main thread, each audio file in the queue works with a dedicated web worker.
 
-* Installation
+Refer to [[./ARCHITECTURE.org][system overview]] for more details.
 
-** Prerequisites
-*** emscripten
+* Instructions
+webKeyFinder consists of two packages. key-finder-wasm provides the web worker for audio key analysis. key-finder-web consumes key-finder-wasm and provides the interfaces to run the key analysis on audio streams and audio files.
+
+key-finder-wasm already includes the built artifacts, key-finder-web can be run without compiling the wasm module.
+
+** key-finder-wasm
+*** Prerequisites
+**** emscripten
 - [[https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended][installation instructions using emsdk]]
 - make sure emsdk is available on your path
 #+BEGIN_SRC sh
 source ./<emsdk-directory>/emsdk.env.sh
 #+END_SRC
 
-*** curl
+**** curl
 #+BEGIN_SRC sh
 sudo apt-get update
 sudo apt-get install curl
 #+END_SRC
 
-*** yarn
+*** Installation
+Following command will fetch [[https://github.com/FFTW/fftw3][FFTW3]] and [[https://github.com/mixxxdj/libKeyFinder][libKeyFinder]] and compile it using emscripten.
+#+BEGIN_SRC sh
+yarn build:wasm
+#+END_SRC
+
+  
+** key-finder-web
+*** Prerequisites
+**** yarn
 - [[https://classic.yarnpkg.com/en/docs/install][yarn installation]]
 
-** Clone the repository
+*** Install dependencies
 #+BEGIN_SRC sh
-git clone git@github.com:dogayuksel/webKeyFinder.git
-cd webKeyFinder
+yarn install
 #+END_SRC
 
-** Install dependencies and build the project
-Following command will fetch [[https://github.com/FFTW/fftw3][FFTW3]] and [[https://github.com/mixxxdj/libKeyFinder][libKeyFinder]] and build them using emscripten. Afterwards, will build the project itself using the dependencies.
+*** Build
 #+BEGIN_SRC sh
-make
+yarn build:web
 #+END_SRC
 
-** (ALTERNATIVE) Run using the pre-compiled wasm module
-You can run the project only by bundling the web modules and using the existing pre-compiled wasm modules.
+*** Serve Locally
 #+BEGIN_SRC sh
-make build-web
+yarn serve
 #+END_SRC
-
-** Run the server
-#+BEGIN_SRC sh
-make serve
-#+END_SRC
-
-** Clean Dependencies
-If you want to install dependencies from scratch again, you can clean them with the following command.
-#+BEGIN_SRC sh
-make clean_deps
-#+END_SRC
-
-** Development
-- Just kill the server and run `make` again. This should rebuild the changed parts. Then you can run `make serve` to see your changes.
-- If you have troubles with make recognizing the changes, you can run `make clean` to delete built files and repeat the previous step.
 
 * Acknowledgments 
 This project is possible thanks to the [[https://emscripten.org/][emscripten]] library which allowed me to compile, [[https://github.com/mixxxdj/libkeyfinder][libKeyFinder]]  (originally written by Ibrahim Sha'ath) and its dependency [[http://fftw.org/][FFTW]] for the browser.
