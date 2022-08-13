@@ -16,11 +16,11 @@ jobs:
       - name: set image path
         id: tag
         run: |
-          if [ "main" == $GITHUB_BASE_REF ]
+          if [ "main" == $GITHUB_REF_NAME ]
           then
-            IMAGE_TAG=$GITHUB_SHA
-          else
             IMAGE_TAG=latest
+          else
+            IMAGE_TAG=$(echo ${GITHUB_REF_NAME} | md5sum | awk '{print $1}')
           fi
           IMAGE_NAME=$(echo ghcr.io/${GITHUB_REPOSITORY}/webkeyfinder | tr '[:upper:]' '[:lower:]')
           echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
@@ -32,28 +32,20 @@ jobs:
           install: true
       - name: login container registry
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-
       - uses: actions/checkout@v3
-      - name: cache fftw-builder docker stage
-        if: github.ref_name == 'main'
-        run: >
-          DOCKER_BUILDKIT=1
-          docker build 
-          --push
-          --target fftw-builder
-          --cache-from ${{ env.image_name }}:fftw-builder
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ${{ env.image_name }}:fftw-builder .
+      - name: pull docker image
+        run: |
+          docker pull ${{ env.image_name }}:latest
+          docker pull ${{ env.image_path }} || true
       - name: build docker image
         run: >
           DOCKER_BUILDKIT=1
           docker build 
           --load
-          --cache-from ${{ env.image_name }}:latest,${{ env.image_name }}:fftw-builder
+          --cache-from ${{ env.image_name }}:latest,${{ env.image_path }}
           --build-arg BUILDKIT_INLINE_CACHE=1
           --tag ${{ env.image_path }} .
       - name: push docker image
-        if: github.ref_name == 'main'
         run: docker push ${{ env.image_path }}
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
