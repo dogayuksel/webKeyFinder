@@ -1959,7 +1959,7 @@ __metadata:
     "@surma/rollup-plugin-off-main-thread": 2.2.3
     key-finder-wasm: "workspace:*"
     normalize.css: 8.0.1
-    preact: 10.10.2
+    preact: 10.10.3
     preact-router: 4.1.0
     rollup: 2.77.3
     rollup-plugin-css-only: 3.1.0
@@ -2498,10 +2498,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:10.10.2":
-  version: 10.10.2
-  resolution: "preact@npm:10.10.2"
-  checksum: 3e994205eb75ce7c79f45bfd86b297645937f926c06fa2a541bf87a5ae168dd6c9f0945af29986065877623d58d1977aff073e4378683994fabee0edbb165c24
+"preact@npm:10.10.3":
+  version: 10.10.3
+  resolution: "preact@npm:10.10.3"
+  checksum: f62762c45d577a0c269bfebf558d3b1940523630c64b0d3895090425a0fb4ed4c6f960fb57b789bda85a5bfc85c7d65d70b596b6579d09b7c2a436565b59e11e
   languageName: node
   linkType: hard
 
