@@ -2346,7 +2346,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
             ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
             ["normalize.css", "npm:8.0.1"],\
-            ["preact", "npm:10.10.2"],\
+            ["preact", "npm:10.10.3"],\
             ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.0"],\
             ["rollup", "npm:2.78.0"],\
             ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:3.1.0"],\
@@ -2948,10 +2948,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["preact", [\
-        ["npm:10.10.2", {\
-          "packageLocation": "./.yarn/cache/preact-npm-10.10.2-3095575411-3e994205eb.zip/node_modules/preact/",\
+        ["npm:10.10.3", {\
+          "packageLocation": "./.yarn/cache/preact-npm-10.10.3-e4aa11e764-f62762c45d.zip/node_modules/preact/",\
           "packageDependencies": [\
-            ["preact", "npm:10.10.2"]\
+            ["preact", "npm:10.10.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2969,7 +2969,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.0"],\
             ["@types/preact", null],\
-            ["preact", "npm:10.10.2"]\
+            ["preact", "npm:10.10.3"]\
           ],\
           "packagePeers": [\
             "@types/preact",\
