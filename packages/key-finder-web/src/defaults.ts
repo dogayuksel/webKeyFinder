@@ -70,7 +70,7 @@ const maxNumberOfThreads = navigator.hardwareConcurrency;
 const defaultNumberOfThreads = navigator.hardwareConcurrency - 1;
 const numberOfThreads = (customSettings && customSettings.numberOfThreads)
       ? customSettings.numberOfThreads
-      : defaultNumberOfThreads;
+      : defaultNumberOfThreads || 1;
 
 export {
   majorKeys,

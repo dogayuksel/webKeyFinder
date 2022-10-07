@@ -1,5 +1,5 @@
 import { h, Fragment, Component } from 'preact';
-import { keyFinderUtils } from '../Utils';
+import { keyFinderUtils, audioUtils } from '../Utils';
 import { keysNotation } from '../defaults';
 import CircleOfFifths from '../CircleOfFifths';
 
@@ -133,7 +133,7 @@ class AudioFileKeyDetection extends Component<Props, State> {
   }
 
   handleFileLoad = async (event: ProgressEvent<FileReader>): Promise<void> => {
-    var context = new AudioContext();
+    const context = audioUtils.createAudioContext();
     const digest = await crypto.subtle.digest('SHA-256', event.target.result as ArrayBuffer);
     const hashArray = Array.from(new Uint8Array(digest));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
