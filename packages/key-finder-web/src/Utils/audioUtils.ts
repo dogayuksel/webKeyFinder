@@ -4,8 +4,10 @@ export function requestUserMedia(): Promise<MediaStream> {
   return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
 }
 
+type WebkitWindow = Window & typeof globalThis & { webkitAudioContext: typeof AudioContext };
+
 export function createAudioContext(): AudioContext {
-  const AudioContext = window.AudioContext;
+  const AudioContext = window.AudioContext || (window as WebkitWindow).webkitAudioContext;
   return new AudioContext();
 }
 
