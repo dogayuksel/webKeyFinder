@@ -15,6 +15,12 @@
   max-width: calc(100vw - 6rem);
 }
 
+.live-detection__gain-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 10rem;
+}
+
 .live-detection__circle-of-fifths {
   justify-self: center;
   max-width: 480px;
