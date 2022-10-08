@@ -1,9 +1,11 @@
 class RecorderWorkletProcessor extends AudioWorkletProcessor {
   static get parameterDescriptors() {
-    return [{
-      name: 'isRecording',
-      defaultValue: 0
-    }];
+    return [
+      {
+        name: 'isRecording',
+        defaultValue: 0,
+      },
+    ];
   }
 
   constructor() {
@@ -40,14 +42,14 @@ class RecorderWorkletProcessor extends AudioWorkletProcessor {
     }
     this.port.postMessage({
       eventType: 'data',
-      audioBuffer: buffer
+      audioBuffer: buffer,
     });
     this._initBuffer();
   }
 
   _recordingStopped() {
     this.port.postMessage({
-      eventType: 'stop'
+      eventType: 'stop',
     });
   }
 
@@ -79,9 +81,13 @@ class RecorderWorkletProcessor extends AudioWorkletProcessor {
           this._appendToBuffer(mono / numberOfChannels);
         }
       }
-
-    } else { // parameter values array length should match number of samples
-      for (let dataIndex = 0; dataIndex < isRecordingValues.length; dataIndex += 1) {
+    } else {
+      // parameter values array length should match number of samples
+      for (
+        let dataIndex = 0;
+        dataIndex < isRecordingValues.length;
+        dataIndex += 1
+      ) {
         const shouldRecord = isRecordingValues[dataIndex] > 0.9;
 
         if (!shouldRecord && !this._isBufferEmpty()) {
