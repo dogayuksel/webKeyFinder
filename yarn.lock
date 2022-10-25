@@ -848,9 +848,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:10.9.0":
-  version: 10.9.0
-  resolution: "cypress@npm:10.9.0"
+"cypress@npm:10.11.0":
+  version: 10.11.0
+  resolution: "cypress@npm:10.11.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -896,7 +896,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 79e3dccbb82d0b0c92bb8888682766a9738374f473cf2e9a04825a6b3dbe4420c57948cabaf757af0929192a8e61b7f08b32d7f6ee0c3cddf2736cf4f408edc1
+  checksum: 938cc6a20f7eeace5c8e850d234904ee1651cbb36d94666fe600cf17ce964e73d4f7d8d944aab677491702a57364e6aceeb4fe8bcbd96147ff5e2b575a956fb2
   languageName: node
   linkType: hard
 
@@ -3321,7 +3321,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web-key-finder@workspace:."
   dependencies:
-    cypress: 10.9.0
+    cypress: 10.11.0
     cypress-file-upload: 5.0.8
   languageName: unknown
   linkType: soft
