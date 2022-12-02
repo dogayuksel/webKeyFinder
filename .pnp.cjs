@@ -173,7 +173,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/typescript", null],\
             ["resolve", "patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"],\
             ["rollup", "npm:2.79.1"],\
-            ["tslib", "npm:2.4.0"],\
+            ["tslib", "npm:2.4.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=f456af"]\
           ],\
           "packagePeers": [\
@@ -2343,7 +2343,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup", "npm:2.79.1"],\
             ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:3.1.0"],\
             ["serve", "npm:13.0.4"],\
-            ["tslib", "npm:2.4.0"],\
+            ["tslib", "npm:2.4.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=f456af"],\
             ["uuid", "npm:9.0.0"]\
           ],\
@@ -3663,6 +3663,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-2.4.0-9cb6dc5030-8c4aa6a3c5.zip/node_modules/tslib/",\
           "packageDependencies": [\
             ["tslib", "npm:2.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:2.4.1", {\
+          "packageLocation": "./.yarn/cache/tslib-npm-2.4.1-36f0ed04db-19480d6e03.zip/node_modules/tslib/",\
+          "packageDependencies": [\
+            ["tslib", "npm:2.4.1"]\
           ],\
           "linkType": "HARD"\
         }]\
