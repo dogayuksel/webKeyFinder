@@ -156,17 +156,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@rollup/plugin-typescript", [\
-        ["npm:9.0.2", {\
-          "packageLocation": "./.yarn/cache/@rollup-plugin-typescript-npm-9.0.2-603a009030-0b3a15e740.zip/node_modules/@rollup/plugin-typescript/",\
+        ["npm:11.0.0", {\
+          "packageLocation": "./.yarn/cache/@rollup-plugin-typescript-npm-11.0.0-867f35a277-b0d34ff0ad.zip/node_modules/@rollup/plugin-typescript/",\
           "packageDependencies": [\
-            ["@rollup/plugin-typescript", "npm:9.0.2"]\
+            ["@rollup/plugin-typescript", "npm:11.0.0"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:9.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@rollup-plugin-typescript-virtual-3c6971b582/0/cache/@rollup-plugin-typescript-npm-9.0.2-603a009030-0b3a15e740.zip/node_modules/@rollup/plugin-typescript/",\
+        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@rollup-plugin-typescript-virtual-432a8c6fa0/0/cache/@rollup-plugin-typescript-npm-11.0.0-867f35a277-b0d34ff0ad.zip/node_modules/@rollup/plugin-typescript/",\
           "packageDependencies": [\
-            ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:9.0.2"],\
+            ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.0.0"],\
             ["@rollup/pluginutils", "virtual:620b1de1e2ded3b3e857cf61ca7f8075b7403367095e8c746f76d4f5c03c8c79b49eb2b2580b287e05db48ccb1b7aa830ef28133656a249931b2aa28dd0fc2e8#npm:5.0.2"],\
             ["@types/rollup", null],\
             ["@types/tslib", null],\
@@ -2325,7 +2325,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["key-finder-web", "workspace:packages/key-finder-web"],\
             ["@rollup/plugin-node-resolve", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:15.0.1"],\
-            ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:9.0.2"],\
+            ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.0.0"],\
             ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
             ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
             ["normalize.css", "npm:8.0.1"],\
