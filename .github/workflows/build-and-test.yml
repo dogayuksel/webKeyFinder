@@ -50,7 +50,7 @@ jobs:
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
       - name: run cypress
-        uses: cypress-io/github-action@v3.1.0
+        uses: cypress-io/github-action@v3.2.0
         with:
           browser: chromium
           install-command: yarn install --immutable --immutable-cache
