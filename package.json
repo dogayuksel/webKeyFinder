@@ -5,6 +5,7 @@
   "author": "Doga Yuksel <hello@doga.dev>",
   "license": "GPL-3.0-only",
   "scripts": {
+    "postinstall": "husky install",
     "build:wasm": "yarn workspace key-finder-wasm build",
     "build:wasm:release": "yarn workspace key-finder-wasm build:release",
     "clean:wasm": "yarn workspace key-finder-wasm clean",
@@ -16,7 +17,10 @@
   },
   "dependencies": {
     "cypress": "12.8.1",
-    "cypress-file-upload": "5.0.8"
+    "cypress-file-upload": "5.0.8",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.0",
+    "prettier": "2.8.7"
   },
   "workspaces": [
     "packages/*"
