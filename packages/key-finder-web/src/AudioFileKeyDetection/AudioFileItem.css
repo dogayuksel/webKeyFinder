@@ -5,7 +5,7 @@
   display: grid;
   min-height: 5rem;
   grid-template-columns: 2fr 1fr;
-  grid-template-areas: "name result" "progress result";
+  grid-template-areas: 'name result' 'progress result';
   gap: 1rem;
 }
 
@@ -13,7 +13,7 @@
   .file-item__container {
     width: 100%;
     grid-template-columns: 1fr;
-    grid-template-areas: "name" "progress" "result";
+    grid-template-areas: 'name' 'progress' 'result';
   }
 }
 
@@ -108,4 +108,3 @@ progress::-moz-progress-bar {
   border-radius: 0.2rem;
   background: var(--primary-darker-color);
 }
-

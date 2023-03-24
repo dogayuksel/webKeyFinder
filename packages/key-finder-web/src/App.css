@@ -14,7 +14,9 @@ html {
   overflow-x: hidden;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -23,10 +25,11 @@ a:visited,
 a:hover,
 a:active {
   color: var(--primary-darker-color);
-  text-decoration: none; 
+  text-decoration: none;
 }
 
-button, input {
+button,
+input {
   color: var(--foreground-color);
   background-color: var(--background-color);
   border: 1px solid var(--primary-color);
@@ -35,7 +38,8 @@ button, input {
   min-width: 0;
 }
 
-button:disabled, input:disabled {
+button:disabled,
+input:disabled {
   background-color: var(--gray-color);
 }
 
@@ -43,7 +47,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 .top-bar {
@@ -55,7 +60,8 @@ body {
 }
 
 .app-logo {
-  font-family: Hoefler Text, Baskerville Old Face, Garamond, Times New Roman, serif;
+  font-family: Hoefler Text, Baskerville Old Face, Garamond, Times New Roman,
+    serif;
   font-weight: bold;
   padding: 0.65em 2em 0.35em 2em;
   font-size: 1.1em;
@@ -66,7 +72,7 @@ body {
 .app-logo a:hover,
 .app-logo a:active {
   color: var(--primary-color);
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .app-wrapper {

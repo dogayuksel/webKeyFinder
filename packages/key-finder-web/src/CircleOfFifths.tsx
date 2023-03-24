@@ -33,7 +33,7 @@ const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
       opacity: opacity,
     }}
   />
-)
+);
 
 const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   <div
@@ -50,11 +50,11 @@ const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
       opacity: opacity,
     }}
   />
-)
+);
 
 const SemiCircleHighlight = ({ result, offset }) => {
-  const majorKeyIndex = majorKeys.findIndex(key => key === result);
-  const minorKeyIndex = minorKeys.findIndex(key => key === result);
+  const majorKeyIndex = majorKeys.findIndex((key) => key === result);
+  const minorKeyIndex = minorKeys.findIndex((key) => key === result);
 
   if (majorKeyIndex >= 0) {
     return (
@@ -78,7 +78,7 @@ const SemiCircleHighlight = ({ result, offset }) => {
             top: `${(1 - INNER_RATIO) * 50}%`,
             left: `${(1 - INNER_RATIO) * 50}%`,
             borderRadius: '50%',
-            backgroundColor: `${WHITE_COLOR}`
+            backgroundColor: `${WHITE_COLOR}`,
           }}
         />
       </>
@@ -102,19 +102,19 @@ const SemiCircleHighlight = ({ result, offset }) => {
   return null;
 };
 
-class CircleOfFifths extends Component<({
-  result?: string,
-  mini?: boolean,
-})> {
+class CircleOfFifths extends Component<{
+  result?: string;
+  mini?: boolean;
+}> {
   static defaultProps = {
-    mini: false
+    mini: false,
   };
 
   render() {
     const offset = majorKeys.indexOf(keyAtTopPosition) * -1;
     return (
       <div style={{ position: 'relative', width: '100%', paddingTop: '100%' }}>
-        {/* BACKGROUND */} 
+        {/* BACKGROUND */}
         <div
           style={{
             position: 'absolute',
@@ -123,11 +123,11 @@ class CircleOfFifths extends Component<({
             border: `${BORDER_THICKNESS}px solid ${BORDER_COLOR}`,
             height: '100%',
             width: '100%',
-            backgroundColor: `${WHITE_COLOR}`
+            backgroundColor: `${WHITE_COLOR}`,
           }}
         />
         <SemiCircleHighlight offset={offset} result={this.props.result} />
-        {/* SEGMENT DIVIDERS */} 
+        {/* SEGMENT DIVIDERS */}
         {majorKeys.map((_, index) => (
           <div
             style={{
@@ -142,7 +142,7 @@ class CircleOfFifths extends Component<({
             }}
           />
         ))}
-        {/* INNERMOST CIRCLE */} 
+        {/* INNERMOST CIRCLE */}
         <div
           style={{
             position: 'absolute',
@@ -155,70 +155,76 @@ class CircleOfFifths extends Component<({
             backgroundColor: `${WHITE_COLOR}`,
           }}
         />
-        {!this.props.mini && majorKeys.map((major, index) => (
-          <div
-            style={{
-              top: `${(1 - MAJOR_RATIO) * 50}%`,
-              left: '50%',
-              height: `${MAJOR_RATIO * 50}%`,
-              width: '0',
-              transform: `rotate(${(index + offset) * 30}deg)`,
-              transformOrigin: 'bottom center',
-              position: 'absolute',
-            }}
-          >
+        {!this.props.mini &&
+          majorKeys.map((major, index) => (
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                left: '-1.5rem',
-                top: '-1.5rem',
-                width: '3rem',
-                height: '3rem',
-                textAlign: 'center',
-                transform: `rotate(${-(index + offset) * 30}deg)`,
-                fontSize: `${1.1 - Math.sqrt(keysNotation[major].length) * 0.1}rem`,
-                fontWeight: 'bold'
+                top: `${(1 - MAJOR_RATIO) * 50}%`,
+                left: '50%',
+                height: `${MAJOR_RATIO * 50}%`,
+                width: '0',
+                transform: `rotate(${(index + offset) * 30}deg)`,
+                transformOrigin: 'bottom center',
+                position: 'absolute',
               }}
             >
-              {keysNotation[major]}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative',
+                  left: '-1.5rem',
+                  top: '-1.5rem',
+                  width: '3rem',
+                  height: '3rem',
+                  textAlign: 'center',
+                  transform: `rotate(${-(index + offset) * 30}deg)`,
+                  fontSize: `${
+                    1.1 - Math.sqrt(keysNotation[major].length) * 0.1
+                  }rem`,
+                  fontWeight: 'bold',
+                }}
+              >
+                {keysNotation[major]}
+              </div>
             </div>
-          </div>
-        ))}
-        {!this.props.mini && minorKeys.map((minor, index) => (
-          <div
-            style={{
-              top: `${(1 - MINOR_RATIO) * 50}%`,
-              left: '50%',
-              height: `${MINOR_RATIO * 50}%`,
-              width: '0',
-              transform: `rotate(${(index + offset) * 30}deg)`,
-              transformOrigin: 'bottom center',
-              position: 'absolute',
-            }}
-          >
+          ))}
+        {!this.props.mini &&
+          minorKeys.map((minor, index) => (
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                left: '-1rem',
-                top: '-1rem',
-                width: '2rem',
-                height: '2rem',
-                textAlign: 'center',
-                transform: `rotate(${-(index + offset) * 30}deg)`,
-                fontSize: `${0.9 - Math.sqrt(keysNotation[minor].length) * 0.1}rem`,
+                top: `${(1 - MINOR_RATIO) * 50}%`,
+                left: '50%',
+                height: `${MINOR_RATIO * 50}%`,
+                width: '0',
+                transform: `rotate(${(index + offset) * 30}deg)`,
+                transformOrigin: 'bottom center',
+                position: 'absolute',
               }}
             >
-              {keysNotation[minor]}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative',
+                  left: '-1rem',
+                  top: '-1rem',
+                  width: '2rem',
+                  height: '2rem',
+                  textAlign: 'center',
+                  transform: `rotate(${-(index + offset) * 30}deg)`,
+                  fontSize: `${
+                    0.9 - Math.sqrt(keysNotation[minor].length) * 0.1
+                  }rem`,
+                }}
+              >
+                {keysNotation[minor]}
+              </div>
             </div>
-          </div>
-        ))}
-        {/* OUTER BORDER */}  
+          ))}
+        {/* OUTER BORDER */}
         <div
           style={{
             position: 'absolute',
@@ -229,7 +235,7 @@ class CircleOfFifths extends Component<({
             width: `100%`,
           }}
         />
-        {/* INNER BORDER */} 
+        {/* INNER BORDER */}
         <div
           style={{
             position: 'absolute',

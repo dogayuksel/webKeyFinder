@@ -1,6 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
-import OMT from "@surma/rollup-plugin-off-main-thread";
+import OMT from '@surma/rollup-plugin-off-main-thread';
 import css from 'rollup-plugin-css-only';
 
 export default {
