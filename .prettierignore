@@ -1,0 +1,7 @@
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/**
+
+packages/key-finder-wasm/deps/**
+
+keyFinderProgressiveWorker.js
