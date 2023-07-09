@@ -14,7 +14,7 @@
     "@surma/rollup-plugin-off-main-thread": "2.2.3",
     "key-finder-wasm": "workspace:*",
     "normalize.css": "8.0.1",
-    "preact": "10.13.1",
+    "preact": "10.16.0",
     "preact-router": "4.1.0",
     "rollup": "2.79.1",
     "rollup-plugin-css-only": "4.3.0",
