@@ -42,7 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cypress-file-upload", "virtual:c8b649c56c05e41f38670ddb4b2e6faa817c1e553b588ad91f9eac4acb50124573f56a1b3f6649c22b7e61bd7208540877d4e595dfbb15ee184b410820c51f7f#npm:5.0.8"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
-            ["prettier", "npm:2.8.7"]\
+            ["prettier", "npm:2.8.8"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3227,10 +3227,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["prettier", [\
-        ["npm:2.8.7", {\
-          "packageLocation": "./.yarn/cache/prettier-npm-2.8.7-1962ac9483-fdc8f2616f.zip/node_modules/prettier/",\
+        ["npm:2.8.8", {\
+          "packageLocation": "./.yarn/cache/prettier-npm-2.8.8-430828a36c-b49e409431.zip/node_modules/prettier/",\
           "packageDependencies": [\
-            ["prettier", "npm:2.8.7"]\
+            ["prettier", "npm:2.8.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4179,7 +4179,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cypress-file-upload", "virtual:c8b649c56c05e41f38670ddb4b2e6faa817c1e553b588ad91f9eac4acb50124573f56a1b3f6649c22b7e61bd7208540877d4e595dfbb15ee184b410820c51f7f#npm:5.0.8"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
-            ["prettier", "npm:2.8.7"]\
+            ["prettier", "npm:2.8.8"]\
           ],\
           "linkType": "SOFT"\
         }]\
