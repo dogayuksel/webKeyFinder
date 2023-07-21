@@ -2080,7 +2080,7 @@ __metadata:
     key-finder-wasm: "workspace:*"
     normalize.css: 8.0.1
     preact: 10.16.0
-    preact-router: 4.1.0
+    preact-router: 4.1.2
     rollup: 2.79.1
     rollup-plugin-css-only: 4.3.0
     serve: 13.0.4
@@ -2732,12 +2732,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact-router@npm:4.1.0":
-  version: 4.1.0
-  resolution: "preact-router@npm:4.1.0"
+"preact-router@npm:4.1.2":
+  version: 4.1.2
+  resolution: "preact-router@npm:4.1.2"
   peerDependencies:
     preact: ">=10"
-  checksum: 5cde4340dd92562bbc9b6370471846a4ba11bc3678238fc68abfdad10bb3bdaf7e6379c281dfabbf220a7213670d74a6fc167abecee80ec1771f566316df2c2c
+  checksum: d690ba373f11aef9582906c844e31a5366623ed6e0e69b01e55170c07fd5f4d91227c2d247276ef9245ef88e688b7f7427e715bbc9d0f613361ecd6dad11f659
   languageName: node
   linkType: hard
 

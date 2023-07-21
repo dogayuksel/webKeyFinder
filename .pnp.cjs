@@ -2463,7 +2463,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
             ["normalize.css", "npm:8.0.1"],\
             ["preact", "npm:10.16.0"],\
-            ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.0"],\
+            ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
             ["rollup", "npm:2.79.1"],\
             ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.3.0"],\
             ["serve", "npm:13.0.4"],\
@@ -3205,17 +3205,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["preact-router", [\
-        ["npm:4.1.0", {\
-          "packageLocation": "./.yarn/cache/preact-router-npm-4.1.0-248b43cda7-5cde4340dd.zip/node_modules/preact-router/",\
+        ["npm:4.1.2", {\
+          "packageLocation": "./.yarn/cache/preact-router-npm-4.1.2-2816497324-d690ba373f.zip/node_modules/preact-router/",\
           "packageDependencies": [\
-            ["preact-router", "npm:4.1.0"]\
+            ["preact-router", "npm:4.1.2"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.0", {\
-          "packageLocation": "./.yarn/__virtual__/preact-router-virtual-e013baeff0/0/cache/preact-router-npm-4.1.0-248b43cda7-5cde4340dd.zip/node_modules/preact-router/",\
+        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2", {\
+          "packageLocation": "./.yarn/__virtual__/preact-router-virtual-ae6da8613e/0/cache/preact-router-npm-4.1.2-2816497324-d690ba373f.zip/node_modules/preact-router/",\
           "packageDependencies": [\
-            ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.0"],\
+            ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
             ["@types/preact", null],\
             ["preact", "npm:10.16.0"]\
           ],\
