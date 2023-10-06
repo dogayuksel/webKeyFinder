@@ -49,9 +49,9 @@ jobs:
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
       - name: run cypress
-        uses: cypress-io/github-action@v5.8.3
+        uses: cypress-io/github-action@v6
         with:
-          browser: chromium
+          browser: firefox
           install-command: yarn install --immutable --immutable-cache
           command-prefix: yarn dlx
           config-file: cypress.config.mjs
