@@ -51,9 +51,9 @@ jobs:
       - name: run cypress
         uses: cypress-io/github-action@v6
         with:
-          browser: firefox
+          # browser: chrome // overridden by 'command'
           install-command: yarn install --immutable --immutable-cache
-          command-prefix: yarn dlx
+          command: yarn run --binaries-only cypress run --browser chrome
           config-file: cypress.config.mjs
       - uses: actions/upload-artifact@v3
         if: failure()
