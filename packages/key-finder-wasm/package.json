@@ -6,5 +6,5 @@
     "build:release": "yarn exec make release",
     "clean": "yarn exec make clean"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.6.4"
 }
