@@ -9,7 +9,7 @@
     "serve": "serve ./dist -l 3000 -s"
   },
   "dependencies": {
-    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "11.0.0",
     "@surma/rollup-plugin-off-main-thread": "2.2.3",
     "key-finder-wasm": "workspace:*",
