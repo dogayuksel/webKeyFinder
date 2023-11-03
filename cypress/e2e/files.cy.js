@@ -1,6 +1,6 @@
 describe('file key analysis', () => {
   it('should determine the key of an uploaded audio file', () => {
-    cy.visit('localhost:3000');
+    cy.visit('/');
     cy.get('nav a').contains('File Analysis').click();
     cy.get('header h1').should('have.text', 'Audio File Key Detection');
     cy.get('[id="load-a-track"]').selectFile(

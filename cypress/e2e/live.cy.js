@@ -1,19 +1,19 @@
 describe('live key analysis', () => {
   describe('routing', () => {
     it('should display the title on root path', () => {
-      cy.visit('localhost:3000');
+      cy.visit('/');
       cy.get('header h1').should('have.text', 'Live Key Detection');
     });
 
     it('should display the title on /live path', () => {
-      cy.visit('localhost:3000/live');
+      cy.visit('/live');
       cy.get('header h1').should('have.text', 'Live Key Detection');
     });
   });
 
   describe('key detection', () => {
     it('should perform key detection', () => {
-      cy.visit('localhost:3000');
+      cy.visit('/');
       cy.get('main input').first().click();
       cy.wait(5000);
       cy.get('input[value="Key detection engine running"]');
