@@ -15,6 +15,7 @@ describe('live key analysis', () => {
     it('should perform key detection', () => {
       cy.visit('localhost:3000');
       cy.get('main input').first().click();
+      cy.wait(5000);
       cy.get('input[value="Key detection engine running"]');
       cy.get('input[value="Start Key Detection"]').click();
       cy.get('div').contains('Progressive Result', { timeout: 20000 });
