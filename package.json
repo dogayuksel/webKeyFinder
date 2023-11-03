@@ -16,8 +16,7 @@
     "test:e2e": "cypress run"
   },
   "dependencies": {
-    "cypress": "12.17.1",
-    "cypress-file-upload": "5.0.8",
+    "cypress": "13.4.0",
     "husky": "8.0.3",
     "lint-staged": "15.0.2",
     "prettier": "2.8.8"
