@@ -211,7 +211,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],\
       ["@surma/rollup-plugin-off-main-thread", [\
         ["npm:2.2.3", {\
-          "packageLocation": "./.yarn/cache/@surma-rollup-plugin-off-main-thread-npm-2.2.3-1f57d3eded-2c02134944.zip/node_modules/@surma/rollup-plugin-off-main-thread/",\
+          "packageLocation": "./.yarn/unplugged/@surma-rollup-plugin-off-main-thread-npm-2.2.3-1f57d3eded/node_modules/@surma/rollup-plugin-off-main-thread/",\
           "packageDependencies": [\
             ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
             ["ejs", "npm:3.1.8"],\
@@ -2469,7 +2469,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["preact", "npm:10.18.2"],\
             ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
             ["rollup", "npm:2.79.1"],\
-            ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.3.0"],\
+            ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2"],\
             ["serve", "npm:13.0.4"],\
             ["tslib", "npm:2.6.2"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
@@ -3482,17 +3482,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["rollup-plugin-css-only", [\
-        ["npm:4.3.0", {\
-          "packageLocation": "./.yarn/cache/rollup-plugin-css-only-npm-4.3.0-79307f8c35-c56228cf91.zip/node_modules/rollup-plugin-css-only/",\
+        ["npm:4.5.2", {\
+          "packageLocation": "./.yarn/cache/rollup-plugin-css-only-npm-4.5.2-79083b45fa-d5ea59ad35.zip/node_modules/rollup-plugin-css-only/",\
           "packageDependencies": [\
-            ["rollup-plugin-css-only", "npm:4.3.0"]\
+            ["rollup-plugin-css-only", "npm:4.5.2"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.3.0", {\
-          "packageLocation": "./.yarn/__virtual__/rollup-plugin-css-only-virtual-8b98e375f4/0/cache/rollup-plugin-css-only-npm-4.3.0-79307f8c35-c56228cf91.zip/node_modules/rollup-plugin-css-only/",\
+        ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2", {\
+          "packageLocation": "./.yarn/__virtual__/rollup-plugin-css-only-virtual-9c6c5ce08f/0/cache/rollup-plugin-css-only-npm-4.5.2-79083b45fa-d5ea59ad35.zip/node_modules/rollup-plugin-css-only/",\
           "packageDependencies": [\
-            ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.3.0"],\
+            ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2"],\
             ["@rollup/pluginutils", "virtual:01689372bbdab732f010fc3ea212bd3635e743bd8bfa79cab57edb9d523c0296442f06960021b397afdd6a4d7f283df4ecf28d6b19ea43ed124992bf428febc7#npm:5.0.2"],\
             ["@types/rollup", null],\
             ["rollup", "npm:2.79.1"]\
