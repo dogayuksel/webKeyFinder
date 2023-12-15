@@ -2110,7 +2110,7 @@ __metadata:
     preact: 10.18.2
     preact-router: 4.1.2
     rollup: 2.79.1
-    rollup-plugin-css-only: 4.3.0
+    rollup-plugin-css-only: 4.5.2
     serve: 13.0.4
     tslib: 2.6.2
     typescript: 5.2.2
@@ -3001,14 +3001,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-css-only@npm:4.3.0":
-  version: 4.3.0
-  resolution: "rollup-plugin-css-only@npm:4.3.0"
+"rollup-plugin-css-only@npm:4.5.2":
+  version: 4.5.2
+  resolution: "rollup-plugin-css-only@npm:4.5.2"
   dependencies:
     "@rollup/pluginutils": 5
   peerDependencies:
-    rollup: <4
-  checksum: c56228cf9108e4df3bef6babbc5d18c285d7b3ad1e2b461362c0f6d6e73c1291cd2bea4c8ed9d3e157a577429e40726099b911e90d918e35df1c67c385a56fa0
+    rollup: <5
+  checksum: d5ea59ad35841149dfee80fc20fe05034c610a365a8cab69c6d5086232874d28abcc404dbf87a79a085faed2cd18e273394a2872e74d06f6a45ff34f7cbc4c6d
   languageName: node
   linkType: hard
 
