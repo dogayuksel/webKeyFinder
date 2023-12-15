@@ -41,7 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cypress", "npm:13.6.1"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:15.2.0"],\
-            ["prettier", "npm:2.8.8"]\
+            ["prettier", "npm:3.1.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3210,10 +3210,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["prettier", [\
-        ["npm:2.8.8", {\
-          "packageLocation": "./.yarn/cache/prettier-npm-2.8.8-430828a36c-b49e409431.zip/node_modules/prettier/",\
+        ["npm:3.1.1", {\
+          "packageLocation": "./.yarn/unplugged/prettier-npm-3.1.1-072c31ec21/node_modules/prettier/",\
           "packageDependencies": [\
-            ["prettier", "npm:2.8.8"]\
+            ["prettier", "npm:3.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4227,7 +4227,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cypress", "npm:13.6.1"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:15.2.0"],\
-            ["prettier", "npm:2.8.8"]\
+            ["prettier", "npm:3.1.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
