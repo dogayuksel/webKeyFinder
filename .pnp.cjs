@@ -40,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["cypress", "npm:13.6.1"],\
             ["husky", "npm:8.0.3"],\
-            ["lint-staged", "npm:15.2.0"],\
+            ["lint-staged", "npm:15.2.2"],\
             ["prettier", "npm:3.1.1"]\
           ],\
           "linkType": "SOFT"\
@@ -2528,16 +2528,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["lint-staged", [\
-        ["npm:15.2.0", {\
-          "packageLocation": "./.yarn/cache/lint-staged-npm-15.2.0-2aacd96825-4fb178b8d3.zip/node_modules/lint-staged/",\
+        ["npm:15.2.2", {\
+          "packageLocation": "./.yarn/cache/lint-staged-npm-15.2.2-da1e8ea74f-031718ad3f.zip/node_modules/lint-staged/",\
           "packageDependencies": [\
-            ["lint-staged", "npm:15.2.0"],\
+            ["lint-staged", "npm:15.2.2"],\
             ["chalk", "npm:5.3.0"],\
             ["commander", "npm:11.1.0"],\
             ["debug", "virtual:92a28e392bb7746809827b7e8ebf6aec49c5f04125481214ae6ea6f4de204344bcccbe5eb3a2f4388bb368cfa5d84f03ce0d8f32a9fcc3f5e92ea34723da1c56#npm:4.3.4"],\
             ["execa", "npm:8.0.1"],\
             ["lilconfig", "npm:3.0.0"],\
-            ["listr2", "npm:8.0.0"],\
+            ["listr2", "npm:8.0.1"],\
             ["micromatch", "npm:4.0.5"],\
             ["pidtree", "npm:0.6.0"],\
             ["string-argv", "npm:0.3.2"],\
@@ -2554,10 +2554,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["npm:8.0.0", {\
-          "packageLocation": "./.yarn/cache/listr2-npm-8.0.0-24640e7d69-5cb110a710.zip/node_modules/listr2/",\
+        ["npm:8.0.1", {\
+          "packageLocation": "./.yarn/cache/listr2-npm-8.0.1-634f89e3e8-4dfeabfa03.zip/node_modules/listr2/",\
           "packageDependencies": [\
-            ["listr2", "npm:8.0.0"],\
+            ["listr2", "npm:8.0.1"],\
             ["cli-truncate", "npm:4.0.0"],\
             ["colorette", "npm:2.0.20"],\
             ["eventemitter3", "npm:5.0.1"],\
@@ -4249,7 +4249,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["web-key-finder", "workspace:."],\
             ["cypress", "npm:13.6.1"],\
             ["husky", "npm:8.0.3"],\
-            ["lint-staged", "npm:15.2.0"],\
+            ["lint-staged", "npm:15.2.2"],\
             ["prettier", "npm:3.1.1"]\
           ],\
           "linkType": "SOFT"\
