@@ -38,7 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["cypress", "npm:13.6.1"],\
+            ["cypress", "npm:13.7.1"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:15.2.0"],\
             ["prettier", "npm:3.1.1"]\
@@ -264,14 +264,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/node", [\
-        ["npm:18.18.8", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.18.8-5aef4defda-d6a82bfc28.zip/node_modules/@types/node/",\
-          "packageDependencies": [\
-            ["@types/node", "npm:18.18.8"],\
-            ["undici-types", "npm:5.26.5"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:18.7.2", {\
           "packageLocation": "./.yarn/cache/@types-node-npm-18.7.2-8575dab8c2-422cf95dea.zip/node_modules/@types/node/",\
           "packageDependencies": [\
@@ -1084,13 +1076,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["cypress", [\
-        ["npm:13.6.1", {\
-          "packageLocation": "./.yarn/unplugged/cypress-npm-13.6.1-e174d3bcce/node_modules/cypress/",\
+        ["npm:13.7.1", {\
+          "packageLocation": "./.yarn/unplugged/cypress-npm-13.7.1-4d48d7cbc1/node_modules/cypress/",\
           "packageDependencies": [\
-            ["cypress", "npm:13.6.1"],\
+            ["cypress", "npm:13.7.1"],\
             ["@cypress/request", "npm:3.0.1"],\
             ["@cypress/xvfb", "npm:1.2.4"],\
-            ["@types/node", "npm:18.18.8"],\
             ["@types/sinonjs__fake-timers", "npm:8.1.1"],\
             ["@types/sizzle", "npm:2.3.3"],\
             ["arch", "npm:2.2.0"],\
@@ -1105,7 +1096,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["commander", "npm:6.2.1"],\
             ["common-tags", "npm:1.8.2"],\
             ["dayjs", "npm:1.11.4"],\
-            ["debug", "virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:4.3.4"],\
+            ["debug", "virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:4.3.4"],\
             ["enquirer", "npm:2.3.6"],\
             ["eventemitter2", "npm:6.4.7"],\
             ["execa", "npm:4.1.0"],\
@@ -1117,7 +1108,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-ci", "npm:3.0.1"],\
             ["is-installed-globally", "npm:0.4.0"],\
             ["lazy-ass", "npm:1.6.0"],\
-            ["listr2", "virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:3.14.0"],\
+            ["listr2", "virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:3.14.0"],\
             ["lodash", "npm:4.17.21"],\
             ["log-symbols", "npm:4.1.0"],\
             ["minimist", "npm:1.2.8"],\
@@ -1190,6 +1181,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
+        ["virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:4.3.4", {\
+          "packageLocation": "./.yarn/__virtual__/debug-virtual-b5bc0af4b7/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
+          "packageDependencies": [\
+            ["debug", "virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:4.3.4"],\
+            ["@types/supports-color", null],\
+            ["ms", "npm:2.1.2"],\
+            ["supports-color", "npm:8.1.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/supports-color",\
+            "supports-color"\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["virtual:92a28e392bb7746809827b7e8ebf6aec49c5f04125481214ae6ea6f4de204344bcccbe5eb3a2f4388bb368cfa5d84f03ce0d8f32a9fcc3f5e92ea34723da1c56#npm:4.3.4", {\
           "packageLocation": "./.yarn/__virtual__/debug-virtual-c292241d98/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
           "packageDependencies": [\
@@ -1211,20 +1216,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supports-color", null],\
             ["ms", "npm:2.0.0"],\
             ["supports-color", null]\
-          ],\
-          "packagePeers": [\
-            "@types/supports-color",\
-            "supports-color"\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:4.3.4", {\
-          "packageLocation": "./.yarn/__virtual__/debug-virtual-bc0ab7e080/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
-          "packageDependencies": [\
-            ["debug", "virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:4.3.4"],\
-            ["@types/supports-color", null],\
-            ["ms", "npm:2.1.2"],\
-            ["supports-color", "npm:8.1.1"]\
           ],\
           "packagePeers": [\
             "@types/supports-color",\
@@ -2567,10 +2558,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:3.14.0", {\
-          "packageLocation": "./.yarn/__virtual__/listr2-virtual-add4335735/0/cache/listr2-npm-3.14.0-446f504112-fdb8b2d6bd.zip/node_modules/listr2/",\
+        ["virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:3.14.0", {\
+          "packageLocation": "./.yarn/__virtual__/listr2-virtual-99b53011e2/0/cache/listr2-npm-3.14.0-446f504112-fdb8b2d6bd.zip/node_modules/listr2/",\
           "packageDependencies": [\
-            ["listr2", "virtual:e174d3bcce1a61a932f3ba376755ce1418a33081564c22c1caa13a1476168fb68573809c3075bc87290575a90de6a6d301309bb0279d7edad7738f22580fe52b#npm:3.14.0"],\
+            ["listr2", "virtual:4d48d7cbc12fcb872881ea5b7e15132f39af31ea88d51f5a7de0d61e304642639a68e472389cb37cd524f1b954f6050727e36061f824f8ac474769ae1ef4a013#npm:3.14.0"],\
             ["@types/enquirer", null],\
             ["cli-truncate", "npm:2.1.0"],\
             ["colorette", "npm:2.0.20"],\
@@ -4110,15 +4101,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["undici-types", [\
-        ["npm:5.26.5", {\
-          "packageLocation": "./.yarn/cache/undici-types-npm-5.26.5-de4f7c7bb9-3192ef6f3f.zip/node_modules/undici-types/",\
-          "packageDependencies": [\
-            ["undici-types", "npm:5.26.5"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["unique-filename", [\
         ["npm:1.1.1", {\
           "packageLocation": "./.yarn/cache/unique-filename-npm-1.1.1-c885c5095b-cf4998c922.zip/node_modules/unique-filename/",\
@@ -4247,7 +4229,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["web-key-finder", "workspace:."],\
-            ["cypress", "npm:13.6.1"],\
+            ["cypress", "npm:13.7.1"],\
             ["husky", "npm:8.0.3"],\
             ["lint-staged", "npm:15.2.0"],\
             ["prettier", "npm:3.1.1"]\
