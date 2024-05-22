@@ -16,7 +16,7 @@
     "normalize.css": "8.0.1",
     "preact": "10.19.6",
     "preact-router": "4.1.2",
-    "rollup": "2.79.1",
+    "rollup": "4.18.0",
     "rollup-plugin-css-only": "4.5.2",
     "serve": "13.0.4",
     "tslib": "2.6.2",
