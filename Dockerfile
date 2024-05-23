@@ -17,7 +17,7 @@ COPY --from=wasm-builder --link usr/app/dist packages/key-finder-wasm/dist
 COPY .pnp.cjs .pnp.loader.mjs .yarnrc.yml package.json yarn.lock ./
 COPY .yarn ./.yarn
 
-RUN yarn install --immutable --immutable-cache
+RUN yarn install --immutable --immutable-cache --check-cache
 RUN yarn workspace key-finder-web build:release
 
 
