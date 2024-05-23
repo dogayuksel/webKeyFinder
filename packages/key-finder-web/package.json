@@ -23,5 +23,5 @@
     "typescript": "5.4.2",
     "uuid": "9.0.1"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@4.2.2"
 }
