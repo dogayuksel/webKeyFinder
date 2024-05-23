@@ -145,7 +145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/wasm-node@npm:^4.18.0":
+"@rollup/wasm-node@npm:4.18.0":
   version: 4.18.0
   resolution: "@rollup/wasm-node@npm:4.18.0"
   dependencies:
@@ -2132,7 +2132,7 @@ __metadata:
   dependencies:
     "@rollup/plugin-node-resolve": "npm:15.2.3"
     "@rollup/plugin-typescript": "npm:11.1.6"
-    "@rollup/wasm-node": "npm:^4.18.0"
+    "@rollup/wasm-node": "npm:4.18.0"
     "@surma/rollup-plugin-off-main-thread": "npm:2.2.3"
     key-finder-wasm: "workspace:*"
     normalize.css: "npm:8.0.1"
