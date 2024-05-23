@@ -60,7 +60,11 @@ body {
 }
 
 .app-logo {
-  font-family: Hoefler Text, Baskerville Old Face, Garamond, Times New Roman,
+  font-family:
+    Hoefler Text,
+    Baskerville Old Face,
+    Garamond,
+    Times New Roman,
     serif;
   font-weight: bold;
   padding: 0.65em 2em 0.35em 2em;
