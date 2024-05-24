@@ -7,9 +7,9 @@
 html {
   box-sizing: border-box;
   font-size: calc(1em + 0.618vw);
+  line-height: 1.6;
   color: var(--foreground-color);
   background-color: var(--background-color);
-
   width: 100vw;
   overflow-x: hidden;
 }
@@ -26,6 +26,10 @@ a:hover,
 a:active {
   color: var(--primary-darker-color);
   text-decoration: none;
+}
+
+p {
+  max-width: 35em;
 }
 
 button,
