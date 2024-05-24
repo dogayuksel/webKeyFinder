@@ -1,40 +1,11 @@
-.live-detection-page {
-  max-width: 960px;
-  margin: auto;
-}
-
-.live-detection__container {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 2rem;
-}
-
-.live-detection__container input {
-  white-space: pre-line;
-  text-align: left;
-  max-width: calc(100vw - 6rem);
-}
-
-.live-detection__circle-of-fifths {
-  justify-self: center;
-  max-width: 480px;
-  width: 100%;
-}
-
-.live-detection__output-container {
-  display: flex;
-  align-items: center;
-  align-content: center;
-}
-
-.live-detection__gain-input {
+.gain-input {
   display: flex;
   flex-direction: column;
   max-width: 10rem;
   align-items: center;
 }
 
-.live-detection__gain-input label {
+.gain-input label {
   width: 100px;
   margin-bottom: 20px;
   text-align: center;
@@ -78,9 +49,11 @@
 .range-input::-webkit-slider-thumb:hover {
   box-shadow: 0 0 0 10px rgba(255, 85, 0, 0.1);
 }
+
 .range-input:active::-webkit-slider-thumb {
   box-shadow: 0 0 0 13px rgba(255, 85, 0, 0.2);
 }
+
 .range-input:focus::-webkit-slider-thumb {
   box-shadow: 0 0 0 13px rgba(255, 85, 0, 0.2);
 }
@@ -88,26 +61,18 @@
 .range-input::-moz-range-thumb:hover {
   box-shadow: 0 0 0 10px rgba(255, 85, 0, 0.1);
 }
+
 .range-input:active::-moz-range-thumb {
   box-shadow: 0 0 0 13px rgba(255, 85, 0, 0.2);
 }
+
 .range-input:focus::-moz-range-thumb {
   box-shadow: 0 0 0 13px rgba(255, 85, 0, 0.2);
 }
 
-.live-detection__gain-reset {
+.gain-reset {
   font-size: 12px;
   margin-top: 12px;
   padding: 5px;
   max-width: 50px;
-}
-
-@media (max-width: 440px) {
-  .live-detection__container {
-    grid-template-columns: 1fr;
-  }
-
-  .live-detection__circle-of-fifths {
-    width: calc(100vw - 6rem);
-  }
 }

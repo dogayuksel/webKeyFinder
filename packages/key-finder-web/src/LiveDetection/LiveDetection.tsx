@@ -1,9 +1,9 @@
-import { h, createRef, Fragment, Component } from 'preact';
+import { h, createRef, Fragment, Component, JSX } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from '../CircleOfFifths';
 import { keysNotation } from '../defaults';
 import theme from '../theme';
-
+import GainControl from './components/GainControl';
 import './LiveDetection.css';
 
 const WIDTH = 200;
@@ -13,7 +13,7 @@ class LiveDetection extends Component {
   audioContext: AudioContext | null = null;
   recorder: RecorderWorkletNode | null = null;
   levelAnalyzer: AudioAnalyzerNode | null = null;
-  gainNode: AudioNode | null = null;
+  gainNode: GainNode | null = null;
   keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
   canvas = createRef();
@@ -159,15 +159,23 @@ class LiveDetection extends Component {
       .setValueAtTime(0, contextTime + 0.1);
   };
 
-  updateGain = ({ target: { value } }) => {
+  updateGain = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {
     if (!this.gainNode) return;
-    const newGain = 10 ** value;
-    this.setState({ gain: value });
-    console.log(this.gainNode.gain);
-    this.gainNode.gain.value = newGain;
+    const newGain = Number(event.currentTarget.value);
+    this.setState({ gain: newGain });
+    const gainValue = 10 ** newGain;
+    this.gainNode.gain.value = gainValue;
   };
 
-  render({}, { connected, analyzing, result, error }) {
+  resetGain = () => {
+    this.setState({ gain: 0 });
+    this.gainNode.gain.value = 1;
+  };
+
+  render({}, { connected, analyzing, result, error, gain }) {
+    const formattedGain = gain === 0 ? 0 : (10 ** gain).toFixed(2);
+    const sign = gain >= 0 ? '+' : '-';
+
     return (
       <div class="live-detection-page">
         {error && <h1>{error}</h1>}
@@ -204,30 +212,23 @@ class LiveDetection extends Component {
                   disabled={!analyzing}
                 />
               </div>
-              {connected && (
-                <div className="live-detection__gain-input">
-                  <label for="gain">
-                    Gain: {(10 ** this.state.gain).toFixed(2)}
-                  </label>
-                  <input
-                    type="range"
-                    name="gain"
-                    id="gain"
-                    min="-1"
-                    max="1"
-                    step={0.02}
-                    value={this.state.gain}
-                    onChange={this.updateGain}
-                    disabled={!connected}
+              <div className="live-detection__output-container">
+                {connected && (
+                  <GainControl
+                    gain={gain}
+                    updateGain={this.updateGain}
+                    resetGain={this.resetGain}
                   />
-                </div>
-              )}
-              <div>
+                )}
                 <canvas
                   width={WIDTH}
                   height={HEIGHT}
                   ref={this.canvas}
-                  style={{ width: WIDTH, height: HEIGHT }}
+                  style={{
+                    width: WIDTH,
+                    height: HEIGHT,
+                    display: connected ? 'block' : 'none',
+                  }}
                 />
               </div>
               <div style={{ height: '2rem' }}>
