@@ -63,6 +63,12 @@ export function createDataArrayForAnalyzerDevice(
   return dataArray;
 }
 
+export function createGainNode(audioContext: AudioContext): AudioNode {
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = 1;
+  return gainNode;
+}
+
 export function connectAudioNodes(
   audioSource: AudioNode,
   audioRecorder: AudioNode

@@ -21,6 +21,12 @@
   width: 100%;
 }
 
+.live-detection__gain-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 10rem;
+}
+
 @media (max-width: 440px) {
   .live-detection__container {
     grid-template-columns: 1fr;

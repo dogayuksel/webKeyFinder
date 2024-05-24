@@ -13,6 +13,7 @@ class LiveDetection extends Component {
   audioContext: AudioContext | null = null;
   recorder: RecorderWorkletNode | null = null;
   levelAnalyzer: AudioAnalyzerNode | null = null;
+  gainNode: AudioNode | null = null;
   keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
   canvas = createRef();
@@ -24,6 +25,7 @@ class LiveDetection extends Component {
     analyzing: false,
     result: null,
     error: null,
+    gain: 0.0,
   };
 
   componentDidMount() {
@@ -75,13 +77,16 @@ class LiveDetection extends Component {
 
       this.recorder = await audioUtils.createRecordingDevice(this.audioContext);
       this.levelAnalyzer = audioUtils.createAnalyserDevice(this.audioContext);
+      this.gainNode = audioUtils.createGainNode(this.audioContext);
       this.dataArray = audioUtils.createDataArrayForAnalyzerDevice(
         this.levelAnalyzer
       );
       this.canvasContext = this.canvas.current.getContext('2d');
 
-      audioUtils.connectAudioNodes(source, this.recorder);
-      audioUtils.connectAudioNodes(source, this.levelAnalyzer);
+      audioUtils.connectAudioNodes(source, this.gainNode);
+      const postGainSource = this.gainNode;
+      audioUtils.connectAudioNodes(postGainSource, this.recorder);
+      audioUtils.connectAudioNodes(postGainSource, this.levelAnalyzer);
 
       this.drawLevelAnalysis();
 
@@ -154,6 +159,14 @@ class LiveDetection extends Component {
       .setValueAtTime(0, contextTime + 0.1);
   };
 
+  updateGain = ({ target: { value } }) => {
+    if (!this.gainNode) return;
+    const newGain = 10 ** value;
+    this.setState({ gain: value });
+    console.log(this.gainNode.gain);
+    this.gainNode.gain.value = newGain;
+  };
+
   render({}, { connected, analyzing, result, error }) {
     return (
       <div class="live-detection-page">
@@ -191,6 +204,24 @@ class LiveDetection extends Component {
                   disabled={!analyzing}
                 />
               </div>
+              {connected && (
+                <div className="live-detection__gain-input">
+                  <label for="gain">
+                    Gain: {(10 ** this.state.gain).toFixed(2)}
+                  </label>
+                  <input
+                    type="range"
+                    name="gain"
+                    id="gain"
+                    min="-1"
+                    max="1"
+                    step={0.02}
+                    value={this.state.gain}
+                    onChange={this.updateGain}
+                    disabled={!connected}
+                  />
+                </div>
+              )}
               <div>
                 <canvas
                   width={WIDTH}
