@@ -1,9 +1,9 @@
-import { h, createRef, Fragment, Component } from 'preact';
+import { h, createRef, Fragment, Component, JSX } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from '../CircleOfFifths';
 import { keysNotation } from '../defaults';
 import theme from '../theme';
-
+import GainControl from './components/GainControl';
 import './LiveDetection.css';
 
 const WIDTH = 200;
@@ -13,6 +13,7 @@ class LiveDetection extends Component {
   audioContext: AudioContext | null = null;
   recorder: RecorderWorkletNode | null = null;
   levelAnalyzer: AudioAnalyzerNode | null = null;
+  gainNode: GainNode | null = null;
   keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
   canvas = createRef();
@@ -24,6 +25,7 @@ class LiveDetection extends Component {
     analyzing: false,
     result: null,
     error: null,
+    gain: 0.0,
   };
 
   componentDidMount() {
@@ -75,13 +77,16 @@ class LiveDetection extends Component {
 
       this.recorder = await audioUtils.createRecordingDevice(this.audioContext);
       this.levelAnalyzer = audioUtils.createAnalyserDevice(this.audioContext);
+      this.gainNode = audioUtils.createGainNode(this.audioContext);
       this.dataArray = audioUtils.createDataArrayForAnalyzerDevice(
         this.levelAnalyzer
       );
       this.canvasContext = this.canvas.current.getContext('2d');
 
-      audioUtils.connectAudioNodes(source, this.recorder);
-      audioUtils.connectAudioNodes(source, this.levelAnalyzer);
+      audioUtils.connectAudioNodes(source, this.gainNode);
+      const postGainSource = this.gainNode;
+      audioUtils.connectAudioNodes(postGainSource, this.recorder);
+      audioUtils.connectAudioNodes(postGainSource, this.levelAnalyzer);
 
       this.drawLevelAnalysis();
 
@@ -154,7 +159,23 @@ class LiveDetection extends Component {
       .setValueAtTime(0, contextTime + 0.1);
   };
 
-  render({}, { connected, analyzing, result, error }) {
+  updateGain = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {
+    if (!this.gainNode) return;
+    const newGain = Number(event.currentTarget.value);
+    this.setState({ gain: newGain });
+    const gainValue = 10 ** newGain;
+    this.gainNode.gain.value = gainValue;
+  };
+
+  resetGain = () => {
+    this.setState({ gain: 0 });
+    this.gainNode.gain.value = 1;
+  };
+
+  render({}, { connected, analyzing, result, error, gain }) {
+    const formattedGain = gain === 0 ? 0 : (10 ** gain).toFixed(2);
+    const sign = gain >= 0 ? '+' : '-';
+
     return (
       <div class="live-detection-page">
         {error && <h1>{error}</h1>}
@@ -191,12 +212,23 @@ class LiveDetection extends Component {
                   disabled={!analyzing}
                 />
               </div>
-              <div>
+              <div className="live-detection__output-container">
+                {connected && (
+                  <GainControl
+                    gain={gain}
+                    updateGain={this.updateGain}
+                    resetGain={this.resetGain}
+                  />
+                )}
                 <canvas
                   width={WIDTH}
                   height={HEIGHT}
                   ref={this.canvas}
-                  style={{ width: WIDTH, height: HEIGHT }}
+                  style={{
+                    width: WIDTH,
+                    height: HEIGHT,
+                    display: connected ? 'block' : 'none',
+                  }}
                 />
               </div>
               <div style={{ height: '2rem' }}>

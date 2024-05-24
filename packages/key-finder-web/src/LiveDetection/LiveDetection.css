@@ -21,6 +21,12 @@
   width: 100%;
 }
 
+.live-detection__output-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
 @media (max-width: 440px) {
   .live-detection__container {
     grid-template-columns: 1fr;
