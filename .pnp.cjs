@@ -38,7 +38,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["cypress", "npm:13.10.0"],\
-          ["husky", "npm:8.0.3"],\
+          ["husky", "npm:9.0.11"],\
           ["lint-staged", "npm:15.2.4"],\
           ["prettier", "npm:3.2.5"]\
         ],\
@@ -2004,10 +2004,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["husky", [\
-      ["npm:8.0.3", {\
-        "packageLocation": "./.yarn/cache/husky-npm-8.0.3-b0b59c5127-b754cf70fd.zip/node_modules/husky/",\
+      ["npm:9.0.11", {\
+        "packageLocation": "./.yarn/cache/husky-npm-9.0.11-227bb1e4e4-8a9b7cb9dc.zip/node_modules/husky/",\
         "packageDependencies": [\
-          ["husky", "npm:8.0.3"]\
+          ["husky", "npm:9.0.11"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4251,7 +4251,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["web-key-finder", "workspace:."],\
           ["cypress", "npm:13.10.0"],\
-          ["husky", "npm:8.0.3"],\
+          ["husky", "npm:9.0.11"],\
           ["lint-staged", "npm:15.2.4"],\
           ["prettier", "npm:3.2.5"]\
         ],\
