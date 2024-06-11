@@ -40,7 +40,7 @@ const RAW_RUNTIME_STATE =
           ["cypress", "npm:13.10.0"],\
           ["husky", "npm:8.0.3"],\
           ["lint-staged", "npm:15.2.4"],\
-          ["prettier", "npm:3.2.5"]\
+          ["prettier", "npm:3.3.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -3248,10 +3248,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["prettier", [\
-      ["npm:3.2.5", {\
-        "packageLocation": "./.yarn/unplugged/prettier-npm-3.2.5-6859110d6a/node_modules/prettier/",\
+      ["npm:3.3.2", {\
+        "packageLocation": "./.yarn/unplugged/prettier-npm-3.3.2-efeafcaa4b/node_modules/prettier/",\
         "packageDependencies": [\
-          ["prettier", "npm:3.2.5"]\
+          ["prettier", "npm:3.3.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4253,7 +4253,7 @@ const RAW_RUNTIME_STATE =
           ["cypress", "npm:13.10.0"],\
           ["husky", "npm:8.0.3"],\
           ["lint-staged", "npm:15.2.4"],\
-          ["prettier", "npm:3.2.5"]\
+          ["prettier", "npm:3.3.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
