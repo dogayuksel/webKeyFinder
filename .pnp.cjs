@@ -39,7 +39,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["cypress", "npm:13.10.0"],\
           ["husky", "npm:8.0.3"],\
-          ["lint-staged", "npm:15.2.4"],\
+          ["lint-staged", "npm:15.2.7"],\
           ["prettier", "npm:3.2.5"]\
         ],\
         "linkType": "SOFT"\
@@ -1183,6 +1183,27 @@ const RAW_RUNTIME_STATE =
           ["debug", "npm:4.3.4"]\
         ],\
         "linkType": "SOFT"\
+      }],\
+      ["npm:4.3.5", {\
+        "packageLocation": "./.yarn/cache/debug-npm-4.3.5-b5001f59b7-cb6eab424c.zip/node_modules/debug/",\
+        "packageDependencies": [\
+          ["debug", "npm:4.3.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:2a9020303307277ea2efb643610811b096b41955eaf11bd6f4ce8abc69846f242e6a4fd607d644856ea55da38fe0dd83c4518b2c1d29229ba137bffab5c01a96#npm:4.3.5", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-aac287662b/0/cache/debug-npm-4.3.5-b5001f59b7-cb6eab424c.zip/node_modules/debug/",\
+        "packageDependencies": [\
+          ["debug", "virtual:2a9020303307277ea2efb643610811b096b41955eaf11bd6f4ce8abc69846f242e6a4fd607d644856ea55da38fe0dd83c4518b2c1d29229ba137bffab5c01a96#npm:4.3.5"],\
+          ["@types/supports-color", null],\
+          ["ms", "npm:2.1.2"],\
+          ["supports-color", null]\
+        ],\
+        "packagePeers": [\
+          "@types/supports-color",\
+          "supports-color"\
+        ],\
+        "linkType": "HARD"\
       }],\
       ["virtual:396a3691f7b25accf085fe2fff1f56eb7540eff3f2e928a7572ca1de9b831ff8f22136404f236aaed35d90369918dfc34392844d0f822a310563f34746dfb015#npm:3.2.7", {\
         "packageLocation": "./.yarn/__virtual__/debug-virtual-507f12afb6/0/cache/debug-npm-3.2.7-754e818c7a-d86fd7be2b.zip/node_modules/debug/",\
@@ -2527,29 +2548,29 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["lilconfig", [\
-      ["npm:3.1.1", {\
-        "packageLocation": "./.yarn/cache/lilconfig-npm-3.1.1-b8cdeef996-c80fbf98ae.zip/node_modules/lilconfig/",\
+      ["npm:3.1.2", {\
+        "packageLocation": "./.yarn/cache/lilconfig-npm-3.1.2-e5b7292949-8058403850.zip/node_modules/lilconfig/",\
         "packageDependencies": [\
-          ["lilconfig", "npm:3.1.1"]\
+          ["lilconfig", "npm:3.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["lint-staged", [\
-      ["npm:15.2.4", {\
-        "packageLocation": "./.yarn/cache/lint-staged-npm-15.2.4-22a32760f9-98df6520e7.zip/node_modules/lint-staged/",\
+      ["npm:15.2.7", {\
+        "packageLocation": "./.yarn/cache/lint-staged-npm-15.2.7-2a90203033-7557bcf4e8.zip/node_modules/lint-staged/",\
         "packageDependencies": [\
-          ["lint-staged", "npm:15.2.4"],\
+          ["lint-staged", "npm:15.2.7"],\
           ["chalk", "npm:5.3.0"],\
           ["commander", "npm:12.1.0"],\
-          ["debug", "virtual:92a28e392bb7746809827b7e8ebf6aec49c5f04125481214ae6ea6f4de204344bcccbe5eb3a2f4388bb368cfa5d84f03ce0d8f32a9fcc3f5e92ea34723da1c56#npm:4.3.4"],\
+          ["debug", "virtual:2a9020303307277ea2efb643610811b096b41955eaf11bd6f4ce8abc69846f242e6a4fd607d644856ea55da38fe0dd83c4518b2c1d29229ba137bffab5c01a96#npm:4.3.5"],\
           ["execa", "npm:8.0.1"],\
-          ["lilconfig", "npm:3.1.1"],\
+          ["lilconfig", "npm:3.1.2"],\
           ["listr2", "npm:8.2.1"],\
-          ["micromatch", "npm:4.0.6"],\
+          ["micromatch", "npm:4.0.7"],\
           ["pidtree", "npm:0.6.0"],\
           ["string-argv", "npm:0.3.2"],\
-          ["yaml", "npm:2.4.2"]\
+          ["yaml", "npm:2.4.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2713,12 +2734,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["micromatch", [\
-      ["npm:4.0.6", {\
-        "packageLocation": "./.yarn/cache/micromatch-npm-4.0.6-bb64570f0c-ed95dc8d00.zip/node_modules/micromatch/",\
+      ["npm:4.0.7", {\
+        "packageLocation": "./.yarn/cache/micromatch-npm-4.0.7-28fb7387ee-a11ed1cb67.zip/node_modules/micromatch/",\
         "packageDependencies": [\
-          ["micromatch", "npm:4.0.6"],\
+          ["micromatch", "npm:4.0.7"],\
           ["braces", "npm:3.0.3"],\
-          ["picomatch", "npm:4.0.2"]\
+          ["picomatch", "npm:2.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3187,13 +3208,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/picomatch-npm-2.3.1-c782cfd986-60c2595003.zip/node_modules/picomatch/",\
         "packageDependencies": [\
           ["picomatch", "npm:2.3.1"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:4.0.2", {\
-        "packageLocation": "./.yarn/cache/picomatch-npm-4.0.2-e93516ddf2-ce617b8da3.zip/node_modules/picomatch/",\
-        "packageDependencies": [\
-          ["picomatch", "npm:4.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4252,7 +4266,7 @@ const RAW_RUNTIME_STATE =
           ["web-key-finder", "workspace:."],\
           ["cypress", "npm:13.10.0"],\
           ["husky", "npm:8.0.3"],\
-          ["lint-staged", "npm:15.2.4"],\
+          ["lint-staged", "npm:15.2.7"],\
           ["prettier", "npm:3.2.5"]\
         ],\
         "linkType": "SOFT"\
@@ -4361,10 +4375,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["yaml", [\
-      ["npm:2.4.2", {\
-        "packageLocation": "./.yarn/cache/yaml-npm-2.4.2-5c2ee7f06c-6eafbcd68d.zip/node_modules/yaml/",\
+      ["npm:2.4.5", {\
+        "packageLocation": "./.yarn/cache/yaml-npm-2.4.5-4752f3d852-b09bf5a615.zip/node_modules/yaml/",\
         "packageDependencies": [\
-          ["yaml", "npm:2.4.2"]\
+          ["yaml", "npm:2.4.5"]\
         ],\
         "linkType": "HARD"\
       }]\
