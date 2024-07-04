@@ -21,6 +21,10 @@ const RAW_RUNTIME_STATE =
     {\
       "name": "key-finder-web",\
       "reference": "workspace:packages/key-finder-web"\
+    },\
+    {\
+      "name": "rotary-knob",\
+      "reference": "workspace:packages/rotary-knob"\
     }\
   ],\
   "enableTopLevelFallback": true,\
@@ -28,6 +32,7 @@ const RAW_RUNTIME_STATE =
   "fallbackExclusionList": [\
     ["key-finder-wasm", ["workspace:packages/key-finder-wasm"]],\
     ["key-finder-web", ["workspace:packages/key-finder-web"]],\
+    ["rotary-knob", ["workspace:packages/rotary-knob"]],\
     ["web-key-finder", ["workspace:."]]\
   ],\
   "fallbackPool": [\
@@ -159,11 +164,11 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.1.6", {\
-        "packageLocation": "./.yarn/__virtual__/@rollup-plugin-typescript-virtual-c54468edad/0/cache/@rollup-plugin-typescript-npm-11.1.6-aeaa3525fc-4ae4d6cfc9.zip/node_modules/@rollup/plugin-typescript/",\
+      ["virtual:c5c3233aef37c97668c9eaf0aa1db2b2d7e4a2f21d68afb244cb5624579de19aa71b80193fe1d63216cd750f256118d00104caf1691f7e5c9baff9db0e3fb661#npm:11.1.6", {\
+        "packageLocation": "./.yarn/__virtual__/@rollup-plugin-typescript-virtual-5870bba57f/0/cache/@rollup-plugin-typescript-npm-11.1.6-aeaa3525fc-4ae4d6cfc9.zip/node_modules/@rollup/plugin-typescript/",\
         "packageDependencies": [\
-          ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.1.6"],\
-          ["@rollup/pluginutils", "virtual:c54468edad8316006ecec2dcf44b93ead2017b03183c6aeac147bcad9f659cb748456adac5a54c282b051461f5135a9267fa4f63069ba77bc171a76533303208#npm:5.1.0"],\
+          ["@rollup/plugin-typescript", "virtual:c5c3233aef37c97668c9eaf0aa1db2b2d7e4a2f21d68afb244cb5624579de19aa71b80193fe1d63216cd750f256118d00104caf1691f7e5c9baff9db0e3fb661#npm:11.1.6"],\
+          ["@rollup/pluginutils", "virtual:5870bba57febdd47082504459c3ea856b8cbfeaf0f13ef1f1b590c418f60f7457e229298ecce975fcd1415ef9a1d8352466a5e519800da5b5e1d7ed413485a28#npm:5.1.0"],\
           ["@types/rollup", null],\
           ["@types/tslib", null],\
           ["@types/typescript", null],\
@@ -214,10 +219,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:c54468edad8316006ecec2dcf44b93ead2017b03183c6aeac147bcad9f659cb748456adac5a54c282b051461f5135a9267fa4f63069ba77bc171a76533303208#npm:5.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/@rollup-pluginutils-virtual-231841fc6c/0/cache/@rollup-pluginutils-npm-5.1.0-6939820ef8-abb15eaec5.zip/node_modules/@rollup/pluginutils/",\
+      ["virtual:5870bba57febdd47082504459c3ea856b8cbfeaf0f13ef1f1b590c418f60f7457e229298ecce975fcd1415ef9a1d8352466a5e519800da5b5e1d7ed413485a28#npm:5.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/@rollup-pluginutils-virtual-2fd1b9a320/0/cache/@rollup-pluginutils-npm-5.1.0-6939820ef8-abb15eaec5.zip/node_modules/@rollup/pluginutils/",\
         "packageDependencies": [\
-          ["@rollup/pluginutils", "virtual:c54468edad8316006ecec2dcf44b93ead2017b03183c6aeac147bcad9f659cb748456adac5a54c282b051461f5135a9267fa4f63069ba77bc171a76533303208#npm:5.1.0"],\
+          ["@rollup/pluginutils", "virtual:5870bba57febdd47082504459c3ea856b8cbfeaf0f13ef1f1b590c418f60f7457e229298ecce975fcd1415ef9a1d8352466a5e519800da5b5e1d7ed413485a28#npm:5.1.0"],\
           ["@types/estree", "npm:1.0.0"],\
           ["@types/rollup", null],\
           ["estree-walker", "npm:2.0.2"],\
@@ -2501,7 +2506,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["key-finder-web", "workspace:packages/key-finder-web"],\
           ["@rollup/plugin-node-resolve", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:15.2.3"],\
-          ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.1.6"],\
+          ["@rollup/plugin-typescript", "virtual:c5c3233aef37c97668c9eaf0aa1db2b2d7e4a2f21d68afb244cb5624579de19aa71b80193fe1d63216cd750f256118d00104caf1691f7e5c9baff9db0e3fb661#npm:11.1.6"],\
           ["@rollup/wasm-node", "npm:4.18.0"],\
           ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
           ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
@@ -2509,6 +2514,7 @@ const RAW_RUNTIME_STATE =
           ["preact", "npm:10.22.0"],\
           ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
           ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2"],\
+          ["rotary-knob", "workspace:packages/rotary-knob"],\
           ["serve", "npm:13.0.4"],\
           ["tslib", "npm:2.6.2"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
@@ -3545,6 +3551,20 @@ const RAW_RUNTIME_STATE =
           "rollup"\
         ],\
         "linkType": "HARD"\
+      }]\
+    ]],\
+    ["rotary-knob", [\
+      ["workspace:packages/rotary-knob", {\
+        "packageLocation": "./packages/rotary-knob/",\
+        "packageDependencies": [\
+          ["rotary-knob", "workspace:packages/rotary-knob"],\
+          ["@rollup/plugin-typescript", "virtual:c5c3233aef37c97668c9eaf0aa1db2b2d7e4a2f21d68afb244cb5624579de19aa71b80193fe1d63216cd750f256118d00104caf1691f7e5c9baff9db0e3fb661#npm:11.1.6"],\
+          ["@rollup/wasm-node", "npm:4.18.0"],\
+          ["preact", "npm:10.22.0"],\
+          ["tslib", "npm:2.6.2"],\
+          ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
+        ],\
+        "linkType": "SOFT"\
       }]\
     ]],\
     ["rxjs", [\

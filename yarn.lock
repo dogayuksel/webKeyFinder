@@ -2139,6 +2139,7 @@ __metadata:
     preact: "npm:10.22.0"
     preact-router: "npm:4.1.2"
     rollup-plugin-css-only: "npm:4.5.2"
+    rotary-knob: "workspace:*"
     serve: "npm:13.0.4"
     tslib: "npm:2.6.2"
     typescript: "npm:5.4.5"
@@ -3053,6 +3054,18 @@ __metadata:
   checksum: 10/66aae3acb9c89ee96e5642b2d27901cc99f5183dbf3776dcf96863940fb8d81f92ece3656738166c769d7036ea8c039b6fce92e13745418b98588d0224efc842
   languageName: node
   linkType: hard
+
+"rotary-knob@workspace:*, rotary-knob@workspace:packages/rotary-knob":
+  version: 0.0.0-use.local
+  resolution: "rotary-knob@workspace:packages/rotary-knob"
+  dependencies:
+    "@rollup/plugin-typescript": "npm:11.1.6"
+    "@rollup/wasm-node": "npm:4.18.0"
+    preact: "npm:10.22.0"
+    tslib: "npm:2.6.2"
+    typescript: "npm:5.4.5"
+  languageName: unknown
+  linkType: soft
 
 "rxjs@npm:^7.5.1":
   version: 7.5.6

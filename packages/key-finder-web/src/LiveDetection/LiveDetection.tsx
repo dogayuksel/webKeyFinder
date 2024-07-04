@@ -1,9 +1,9 @@
 import { h, createRef, Fragment, Component, JSX } from 'preact';
+import RotaryKnob from 'rotary-knob';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from '../CircleOfFifths';
 import { keysNotation } from '../defaults';
 import theme from '../theme';
-import GainControl from './components/GainControl';
 import './LiveDetection.css';
 
 const WIDTH = 200;
@@ -159,12 +159,9 @@ class LiveDetection extends Component {
       .setValueAtTime(0, contextTime + 0.1);
   };
 
-  updateGain = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {
+  updateGain = (value) => {
     if (!this.gainNode) return;
-    const newGain = Number(event.currentTarget.value);
-    this.setState({ gain: newGain });
-    const gainValue = 10 ** newGain;
-    this.gainNode.gain.value = gainValue;
+    this.gainNode.gain.value = value;
   };
 
   resetGain = () => {
@@ -214,11 +211,18 @@ class LiveDetection extends Component {
               </div>
               <div className="live-detection__output-container">
                 {connected && (
-                  <GainControl
-                    gain={gain}
-                    updateGain={this.updateGain}
-                    resetGain={this.resetGain}
-                  />
+                  <>
+                    <RotaryKnob
+                      config={{
+                        size: 100,
+                        minValue: 0.1,
+                        maxValue: 10,
+                        scale: 'Linear',
+                      }}
+                      initialParamValue={1}
+                      setParamValue={this.updateGain}
+                    />
+                  </>
                 )}
                 <canvas
                   width={WIDTH}
