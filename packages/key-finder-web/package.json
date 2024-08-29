@@ -6,7 +6,8 @@
     "copy:html": "cp src/index.html dist/index.html",
     "copy:favicon": "cp src/favicon.ico dist/favicon.ico",
     "build:release": "yarn clean && yarn build && yarn copy:html && yarn copy:favicon",
-    "serve": "serve ./dist -l 3000 -s"
+    "serve": "serve ./dist -l 3000 -s",
+    "dev": "rollup -c --watch & serve ./dist -l 3000 -s"
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "15.2.3",
