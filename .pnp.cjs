@@ -2536,7 +2536,7 @@ const RAW_RUNTIME_STATE =
           ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
           ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
           ["normalize.css", "npm:8.0.1"],\
-          ["preact", "npm:10.22.0"],\
+          ["preact", "npm:10.24.3"],\
           ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
           ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2"],\
           ["serve", "npm:13.0.4"],\
@@ -3257,10 +3257,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["preact", [\
-      ["npm:10.22.0", {\
-        "packageLocation": "./.yarn/cache/preact-npm-10.22.0-5d8eaaf0bc-0f3092916a.zip/node_modules/preact/",\
+      ["npm:10.24.3", {\
+        "packageLocation": "./.yarn/cache/preact-npm-10.24.3-1e33d81667-e9c4c901a4.zip/node_modules/preact/",\
         "packageDependencies": [\
-          ["preact", "npm:10.22.0"]\
+          ["preact", "npm:10.24.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3278,7 +3278,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
           ["@types/preact", null],\
-          ["preact", "npm:10.22.0"]\
+          ["preact", "npm:10.24.3"]\
         ],\
         "packagePeers": [\
           "@types/preact",\
