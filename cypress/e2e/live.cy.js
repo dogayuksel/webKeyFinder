@@ -14,10 +14,7 @@ describe('live key analysis', () => {
   describe('key detection', () => {
     it('should perform key detection', () => {
       cy.visit('/');
-      // addModule(recorderWorkletURL) silently fails on first try, hence double click
-      cy.get('input[value="Route sound to key detection engine"]')
-        .click()
-        .click();
+      cy.get('input[value="Route sound to key detection engine"]').click();
       cy.get('input[value="Key detection engine running"]', { timeout: 10000 });
       cy.get('input[value="Start Key Detection"]').click();
       cy.get('div').contains('Progressive Result', { timeout: 20000 });
