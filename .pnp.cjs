@@ -232,11 +232,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@rollup/wasm-node", [\
-      ["npm:4.18.0", {\
-        "packageLocation": "./.yarn/cache/@rollup-wasm-node-npm-4.18.0-70d80f3b5d-a38f6f4ad4.zip/node_modules/@rollup/wasm-node/",\
+      ["npm:4.24.4", {\
+        "packageLocation": "./.yarn/cache/@rollup-wasm-node-npm-4.24.4-2da15b8c77-ac511590e5.zip/node_modules/@rollup/wasm-node/",\
         "packageDependencies": [\
-          ["@rollup/wasm-node", "npm:4.18.0"],\
-          ["@types/estree", "npm:1.0.5"],\
+          ["@rollup/wasm-node", "npm:4.24.4"],\
+          ["@types/estree", "npm:1.0.6"],\
           ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"]\
         ],\
         "linkType": "HARD"\
@@ -272,10 +272,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:1.0.5", {\
-        "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.5-5b7faed3b4-7de6d928dd.zip/node_modules/@types/estree/",\
+      ["npm:1.0.6", {\
+        "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.6-b5e23f2ea2-9d35d47509.zip/node_modules/@types/estree/",\
         "packageDependencies": [\
-          ["@types/estree", "npm:1.0.5"]\
+          ["@types/estree", "npm:1.0.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2532,7 +2532,7 @@ const RAW_RUNTIME_STATE =
           ["key-finder-web", "workspace:packages/key-finder-web"],\
           ["@rollup/plugin-node-resolve", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:15.2.3"],\
           ["@rollup/plugin-typescript", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:11.1.6"],\
-          ["@rollup/wasm-node", "npm:4.18.0"],\
+          ["@rollup/wasm-node", "npm:4.24.4"],\
           ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
           ["key-finder-wasm", "workspace:packages/key-finder-wasm"],\
           ["normalize.css", "npm:8.0.1"],\
