@@ -21,7 +21,7 @@ RUN yarn install --immutable --immutable-cache --check-cache
 RUN yarn workspace key-finder-web build:release
 
 
-FROM node:lts-alpine as runner
+FROM node:lts-alpine AS runner
 
 RUN addgroup -g 1001 -S runners
 RUN adduser -S runner -u 1001
