@@ -2612,7 +2612,7 @@ const RAW_RUNTIME_STATE =
           ["serve", "npm:13.0.4"],\
           ["tslib", "npm:2.7.0"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
-          ["uuid", "npm:10.0.0"]\
+          ["uuid", "npm:11.0.3"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -4331,10 +4331,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["uuid", [\
-      ["npm:10.0.0", {\
-        "packageLocation": "./.yarn/cache/uuid-npm-10.0.0-4872b46ff8-35aa606148.zip/node_modules/uuid/",\
+      ["npm:11.0.3", {\
+        "packageLocation": "./.yarn/cache/uuid-npm-11.0.3-abcb5b16c0-2513855631.zip/node_modules/uuid/",\
         "packageDependencies": [\
-          ["uuid", "npm:10.0.0"]\
+          ["uuid", "npm:11.0.3"]\
         ],\
         "linkType": "HARD"\
       }],\
