@@ -168,7 +168,7 @@ const RAW_RUNTIME_STATE =
           ["@types/typescript", null],\
           ["resolve", "patch:resolve@npm%3A1.22.1#optional!builtin<compat/resolve>::version=1.22.1&hash=c3c19d"],\
           ["rollup", null],\
-          ["tslib", "npm:2.7.0"],\
+          ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"]\
         ],\
         "packagePeers": [\
@@ -2610,7 +2610,7 @@ const RAW_RUNTIME_STATE =
           ["preact-router", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.1.2"],\
           ["rollup-plugin-css-only", "virtual:d09ba9f4e10e707aa764178377ff30e72e2bfef19eb6cae5b73839ac8ff2bfd47e7cfd9bdfc60b01c3fb638478566df25956890012ca861f5416f3d7820ff8df#npm:4.5.2"],\
           ["serve", "npm:13.0.4"],\
-          ["tslib", "npm:2.7.0"],\
+          ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
           ["uuid", "npm:10.0.0"]\
         ],\
@@ -4197,10 +4197,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:2.7.0", {\
-        "packageLocation": "./.yarn/cache/tslib-npm-2.7.0-21668f5c21-9a5b47ddac.zip/node_modules/tslib/",\
+      ["npm:2.8.1", {\
+        "packageLocation": "./.yarn/cache/tslib-npm-2.8.1-66590b21b8-3e2e043d5c.zip/node_modules/tslib/",\
         "packageDependencies": [\
-          ["tslib", "npm:2.7.0"]\
+          ["tslib", "npm:2.8.1"]\
         ],\
         "linkType": "HARD"\
       }]\
