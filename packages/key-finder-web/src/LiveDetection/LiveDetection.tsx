@@ -13,6 +13,7 @@ class LiveDetection extends Component {
   audioContext: AudioContext | null = null;
   recorder: RecorderWorkletNode | null = null;
   levelAnalyzer: AudioAnalyzerNode | null = null;
+  gainNode: AudioNode | null = null;
   keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
   canvas = createRef();
@@ -24,6 +25,7 @@ class LiveDetection extends Component {
     analyzing: false,
     result: null,
     error: null,
+    gain: 0.0,
   };
 
   componentDidMount() {
@@ -75,13 +77,15 @@ class LiveDetection extends Component {
 
       this.recorder = await audioUtils.createRecordingDevice(this.audioContext);
       this.levelAnalyzer = audioUtils.createAnalyserDevice(this.audioContext);
+      this.gainNode = audioUtils.createGainNode(this.audioContext);
       this.dataArray = audioUtils.createDataArrayForAnalyzerDevice(
         this.levelAnalyzer
       );
       this.canvasContext = this.canvas.current.getContext('2d');
 
-      audioUtils.connectAudioNodes(source, this.recorder);
-      audioUtils.connectAudioNodes(source, this.levelAnalyzer);
+      audioUtils.connectAudioNodes(source, this.gainNode);
+      audioUtils.connectAudioNodes(this.gainNode, this.recorder);
+      audioUtils.connectAudioNodes(this.gainNode, this.levelAnalyzer);
 
       this.drawLevelAnalysis();
 
@@ -90,6 +94,14 @@ class LiveDetection extends Component {
       this.recorder.port.onmessage = (e) => {
         if (e.data.eventType === 'data') {
           const audioData = e.data.audioBuffer;
+          console.log(audioData.length);
+          console.log(
+            Math.sqrt(
+              audioData
+                .map((value) => value ** 2)
+                .reduce((acc, cur) => (acc + cur) / 2)
+            )
+          );
           this.keyAnalyzer &&
             this.keyAnalyzer.postMessage({
               funcName: 'feedAudioData',
@@ -98,7 +110,9 @@ class LiveDetection extends Component {
         }
         if (e.data.eventType === 'stop') {
           this.keyAnalyzer &&
-            this.keyAnalyzer.postMessage({ funcName: 'finalDetection' });
+            this.keyAnalyzer.postMessage({
+              funcName: 'finalDetection',
+            });
         }
       };
     } catch (e) {
@@ -154,6 +168,13 @@ class LiveDetection extends Component {
       .setValueAtTime(0, contextTime + 0.1);
   };
 
+  updateGain = ({ target: { value } }) => {
+    if (!this.gainNode) return;
+    const newGain = 10 ** value;
+    this.setState({ gain: value });
+    this.gainNode.gain.value = newGain;
+  };
+
   render({}, { connected, analyzing, result, error }) {
     return (
       <div class="live-detection-page">
@@ -164,18 +185,6 @@ class LiveDetection extends Component {
               <h1 style={{ marginTop: 0 }}>Live Key Detection</h1>
             </header>
             <div>
-              <div style={{ paddingBottom: '2rem' }}>
-                <input
-                  type="button"
-                  onClick={this.routeSound}
-                  value={
-                    connected
-                      ? 'Key detection engine running'
-                      : 'Route sound to key detection engine'
-                  }
-                  disabled={connected}
-                />
-              </div>
               <div style={{ paddingBottom: '2rem' }}>
                 <input
                   type="button"
@@ -190,6 +199,37 @@ class LiveDetection extends Component {
                   value="End Key Detection"
                   disabled={!analyzing}
                 />
+              </div>
+              <div style={{ paddingBottom: '2rem' }}>
+                {!connected ? (
+                  <input
+                    type="button"
+                    onClick={this.routeSound}
+                    value={
+                      connected
+                        ? 'Key detection engine running'
+                        : 'Route sound to key detection engine'
+                    }
+                    disabled={connected}
+                  />
+                ) : (
+                  <div className="live-detection__gain-input">
+                    <label for="gain">
+                      Gain: {(10 ** this.state.gain).toFixed(2)}
+                    </label>
+                    <input
+                      type="range"
+                      name="gain"
+                      id="gain"
+                      min="-1"
+                      max="1"
+                      step={0.02}
+                      value={this.state.gain}
+                      onChange={this.updateGain}
+                      disabled={!connected}
+                    />
+                  </div>
+                )}
               </div>
               <div>
                 <canvas

@@ -32,13 +32,13 @@ export function getSourceMeta(audioSource: MediaStreamAudioSourceNode): {
 
 export function createRecordingDevice(
   audioContext: AudioContext
-): Promise<RecorderWorkletNode> {
+): Promise<AudioWorkletNode> {
   return new Promise((resolve, reject) => {
     audioContext.audioWorklet
       .addModule(recorderWorkletURL)
       .then(() => {
         const recorder = new AudioWorkletNode(audioContext, 'recorder-worklet');
-        resolve(recorder as RecorderWorkletNode);
+        resolve(recorder);
       })
       .catch((e) => {
         reject(e);
@@ -63,9 +63,15 @@ export function createDataArrayForAnalyzerDevice(
   return dataArray;
 }
 
+export function createGainNode(audioContext: AudioContext): AudioNode {
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = 1;
+  return gainNode;
+}
+
 export function connectAudioNodes(
-  audioSource: AudioNode,
-  audioRecorder: AudioNode
+  source: AudioNode,
+  destination: AudioNode
 ): void {
-  audioSource.connect(audioRecorder);
+  source.connect(destination);
 }
