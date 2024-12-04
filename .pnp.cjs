@@ -37,7 +37,7 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
-          ["cypress", "npm:13.15.2"],\
+          ["cypress", "npm:13.16.1"],\
           ["husky", "npm:9.1.6"],\
           ["lint-staged", "npm:15.2.10"],\
           ["prettier", "npm:3.3.3"]\
@@ -1095,10 +1095,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cypress", [\
-      ["npm:13.15.2", {\
-        "packageLocation": "./.yarn/unplugged/cypress-npm-13.15.2-b5ff42d501/node_modules/cypress/",\
+      ["npm:13.16.1", {\
+        "packageLocation": "./.yarn/unplugged/cypress-npm-13.16.1-d1d0494492/node_modules/cypress/",\
         "packageDependencies": [\
-          ["cypress", "npm:13.15.2"],\
+          ["cypress", "npm:13.16.1"],\
           ["@cypress/request", "npm:3.0.6"],\
           ["@cypress/xvfb", "npm:1.2.4"],\
           ["@types/sinonjs__fake-timers", "npm:8.1.1"],\
@@ -1116,7 +1116,7 @@ const RAW_RUNTIME_STATE =
           ["commander", "npm:6.2.1"],\
           ["common-tags", "npm:1.8.2"],\
           ["dayjs", "npm:1.11.4"],\
-          ["debug", "virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:4.3.4"],\
+          ["debug", "virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:4.3.4"],\
           ["enquirer", "npm:2.3.6"],\
           ["eventemitter2", "npm:6.4.7"],\
           ["execa", "npm:4.1.0"],\
@@ -1127,7 +1127,7 @@ const RAW_RUNTIME_STATE =
           ["getos", "npm:3.2.1"],\
           ["is-installed-globally", "npm:0.4.0"],\
           ["lazy-ass", "npm:1.6.0"],\
-          ["listr2", "virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:3.14.0"],\
+          ["listr2", "virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:3.14.0"],\
           ["lodash", "npm:4.17.21"],\
           ["log-symbols", "npm:4.1.0"],\
           ["minimist", "npm:1.2.8"],\
@@ -1250,10 +1250,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:4.3.4", {\
-        "packageLocation": "./.yarn/__virtual__/debug-virtual-53af82117b/0/cache/debug-npm-4.3.4-4513954577-0073c3bcbd.zip/node_modules/debug/",\
+      ["virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:4.3.4", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-4e99365fcc/0/cache/debug-npm-4.3.4-4513954577-0073c3bcbd.zip/node_modules/debug/",\
         "packageDependencies": [\
-          ["debug", "virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:4.3.4"],\
+          ["debug", "virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:4.3.4"],\
           ["@types/supports-color", null],\
           ["ms", "npm:2.1.2"],\
           ["supports-color", "npm:8.1.1"]\
@@ -2675,10 +2675,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:3.14.0", {\
-        "packageLocation": "./.yarn/__virtual__/listr2-virtual-f5f7bb210d/0/cache/listr2-npm-3.14.0-446f504112-cebbd69233.zip/node_modules/listr2/",\
+      ["virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:3.14.0", {\
+        "packageLocation": "./.yarn/__virtual__/listr2-virtual-ce27b6418e/0/cache/listr2-npm-3.14.0-446f504112-cebbd69233.zip/node_modules/listr2/",\
         "packageDependencies": [\
-          ["listr2", "virtual:b5ff42d5015b52f3d8ffb8be844556f45cf18ee3b5921a866ddb493eedfb095697c2916dd70bdfc6c672e4592bcaeee0fde6d569958eccf1049c54f343c8bde5#npm:3.14.0"],\
+          ["listr2", "virtual:d1d04944923e938cc4e19b5e664944082041490ade7824e6af11c73940f63e622b7cae8b89e5919e8718f845645e66e30d36ea8d4007f0e53acf0198e094eb70#npm:3.14.0"],\
           ["@types/enquirer", null],\
           ["cli-truncate", "npm:2.1.0"],\
           ["colorette", "npm:2.0.20"],\
@@ -4372,7 +4372,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["web-key-finder", "workspace:."],\
-          ["cypress", "npm:13.15.2"],\
+          ["cypress", "npm:13.16.1"],\
           ["husky", "npm:9.1.6"],\
           ["lint-staged", "npm:15.2.10"],\
           ["prettier", "npm:3.3.3"]\

@@ -911,9 +911,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:13.15.2":
-  version: 13.15.2
-  resolution: "cypress@npm:13.15.2"
+"cypress@npm:13.16.1":
+  version: 13.16.1
+  resolution: "cypress@npm:13.16.1"
   dependencies:
     "@cypress/request": "npm:^3.0.6"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -960,7 +960,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: 10/cf5746744adf2cca916dc1c99bf7d9794599bb0ee42d78d5f656f05140f73962788104d5df88314cc0bee2540795186256c75f2d4fc3652a17d5fba1495e1b06
+  checksum: 10/b79835cf5c6bf22a67b4469dc08c805ab3a469d3ea25ff19f700b344b2e790a44462dc2ccdd2c0679f902a44fcbb1efec0b1e9b5ce44be7e99548ce3b9af5cf8
   languageName: node
   linkType: hard
 
@@ -3827,7 +3827,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web-key-finder@workspace:."
   dependencies:
-    cypress: "npm:13.15.2"
+    cypress: "npm:13.16.1"
     husky: "npm:9.1.6"
     lint-staged: "npm:15.2.10"
     prettier: "npm:3.3.3"
