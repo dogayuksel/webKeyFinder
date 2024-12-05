@@ -20,6 +20,7 @@
               pkgs.gnumake
               pkgs.cmake
               pkgs.emscripten
+              # export EM_CACHE="~/em-cache"
 
               pkgs.nodePackages.nodejs
               pkgs.nodePackages.yarn
