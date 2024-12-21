@@ -144,9 +144,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/wasm-node@npm:4.24.4":
-  version: 4.24.4
-  resolution: "@rollup/wasm-node@npm:4.24.4"
+"@rollup/wasm-node@npm:4.29.1":
+  version: 4.29.1
+  resolution: "@rollup/wasm-node@npm:4.29.1"
   dependencies:
     "@types/estree": "npm:1.0.6"
     fsevents: "npm:~2.3.2"
@@ -155,7 +155,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 10/ac511590e5bf13c76b87d792aa6be903d23b7a126aad9ff5522931fa969783309463811622c48433f8cfedd66eea861c61f3d3a1e1de3e8ec93a4a616c2804ca
+  checksum: 10/4c0e2b57f217248751675a503a025e6c9aa6381d2f9ecf47fadc4304df41c70a2300ed3c803f23c747a442c35d9b68ca94370cc21398b4e27fa021c25b983af2
   languageName: node
   linkType: hard
 
@@ -2218,7 +2218,7 @@ __metadata:
   dependencies:
     "@rollup/plugin-node-resolve": "npm:15.3.0"
     "@rollup/plugin-typescript": "npm:11.1.6"
-    "@rollup/wasm-node": "npm:4.24.4"
+    "@rollup/wasm-node": "npm:4.29.1"
     "@surma/rollup-plugin-off-main-thread": "npm:2.2.3"
     key-finder-wasm: "workspace:*"
     normalize.css: "npm:8.0.1"
