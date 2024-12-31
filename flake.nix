@@ -286,6 +286,11 @@
               pkgs.nodePackages.nodejs
               pkgs.nodePackages.yarn
             ];
+
+            shellHook = ''
+              mkdir -p .emscriptencache
+              export EM_CACHE=$(pwd)/.emscriptencache
+            '';
           };
       }
     ));
