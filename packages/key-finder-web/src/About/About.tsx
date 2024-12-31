@@ -39,7 +39,7 @@ class About extends Component {
     return (
       <main class="about-page">
         <header>
-          <h1>About</h1>
+          <h1>About web-key-finder</h1>
         </header>
         <div class="about-page__links">
           <p>
