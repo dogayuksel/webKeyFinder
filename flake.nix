@@ -31,7 +31,7 @@
               --replace-fail "CFLAGS=\"\$CFLAGS -mtune=native\"" "CFLAGS=\"\$CFLAGS\""
           '';
 
-          buildInputs = [ emscripten ];
+          nativeBuildInputs = [ emscripten ];
 
           configureFlags = [
             "--disable-doc"
@@ -92,7 +92,7 @@
             name = "libkeyfinder";
           };
 
-          buildInputs = [
+          nativeBuildInputs = [
             emscripten
             cmake
             emscripten-fftw
@@ -155,7 +155,7 @@
               "#include \"keyfinder.h\""
           '';
 
-          buildInputs = [
+          nativeBuildInputs = [
             emscripten
             nodejs
           ];
@@ -187,7 +187,8 @@
 
       key-finder-web-pkg =
         { stdenvNoCC
-        , yarn-berry
+        , nodejs
+        , pnpm
         , key-finder-wasm
         , curl
         , xorg
@@ -209,20 +210,21 @@
               "'omt:../keyFinderProgressiveWorker.js'"
           '';
 
-          buildInputs = [
-            yarn-berry
-          ];
+          pnpmWorkspaces = [ "key-finder-web" ];
+          pnpmDeps = pnpm.fetchDeps {
+            inherit (finalAttrs) pname version src pnpmWorkspaces;
+            hash = "sha256-wKJYycdJQbypeWBqzlY/Jjhsld8x92BPpbstJjsLhbM=";
+          };
 
-          dontConfigure = true;
+          nativeBuildInputs = [
+            nodejs
+            pnpm.configHook
+          ];
 
           buildPhase = ''
             cp ${key-finder-wasm}/bin/keyFinderProgressiveWorker.js \
               ./packages/key-finder-web/src/
-            HOME=$TMPDIR
-            export YARN_ENABLE_TELEMETRY=false
-            export CYPRESS_INSTALL_BINARY=0
-            yarn install --immutable --immutable-cache
-            yarn build:web
+            pnpm build:web
           '';
 
           installPhase = ''
@@ -240,13 +242,13 @@
           ];
           checkPhase = ''
             export CYPRESS_RUN_BINARY="${cypress}/bin/Cypress"
-            yarn serve > /dev/null 2>&1 & serverPID=$!
+            pnpm serve > /dev/null 2>&1 & serverPID=$!
 
             until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do
               printf '.'
               sleep 1
             done
-            yarn cypress run --browser chromium
+            pnpm cypress run --browser chromium
             kill $serverPID
           '';
         }));
