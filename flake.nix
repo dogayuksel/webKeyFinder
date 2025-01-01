@@ -213,7 +213,7 @@
           pnpmWorkspaces = [ "key-finder-web" ];
           pnpmDeps = pnpm.fetchDeps {
             inherit (finalAttrs) pname version src pnpmWorkspaces;
-            hash = "sha256-wKJYycdJQbypeWBqzlY/Jjhsld8x92BPpbstJjsLhbM=";
+            hash = "sha256-XJpEpa1Fxhnn1dI02LAhPzFq2AMug6UeWJwyAcaqQcc=";
           };
 
           nativeBuildInputs = [
