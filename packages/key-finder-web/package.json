@@ -5,7 +5,7 @@
     "build": "rollup -c",
     "copy:html": "cp src/index.html dist/index.html",
     "copy:favicon": "cp src/favicon.ico dist/favicon.ico",
-    "build:release": "yarn clean && yarn build && yarn copy:html && yarn copy:favicon",
+    "build:release": "pnpm clean && pnpm build && pnpm copy:html && pnpm copy:favicon",
     "serve": "serve ./dist -l 3000 -s"
   },
   "dependencies": {

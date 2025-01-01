@@ -5,12 +5,11 @@
   "author": "Doga Yuksel <hello@doga.dev>",
   "license": "GPL-3.0-only",
   "scripts": {
-    "postinstall": "husky install",
-    "build:wasm": "yarn workspace key-finder-wasm build",
-    "build:wasm:release": "yarn workspace key-finder-wasm build:release",
-    "clean:wasm": "yarn workspace key-finder-wasm clean",
-    "build:web": "yarn workspace key-finder-web build:release",
-    "serve": "yarn workspace key-finder-web serve",
+    "build:wasm": "pnpm --filter key-finder-wasm build",
+    "build:wasm:release": "pnpm --filter key-finder-wasm build:release",
+    "clean:wasm": "pnpm --filter key-finder-wasm clean",
+    "build:web": "pnpm --filter key-finder-web build:release",
+    "serve": "pnpm --filter key-finder-web serve",
     "docker:build": "docker buildx build . -t webkeyfinder",
     "docker:start": "docker run -d -p 3000:3000 webkeyfinder",
     "test:e2e": "cypress run"
@@ -24,5 +23,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "pnpm@9.15.2"
 }
