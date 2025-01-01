@@ -2,8 +2,8 @@
   "name": "key-finder-wasm",
   "main": "dist/keyFinderProgressiveWorker.js",
   "scripts": {
-    "build": "yarn exec make",
-    "build:release": "yarn exec make release",
-    "clean": "yarn exec make clean"
+    "build": "pnpm exec make",
+    "build:release": "pnpm exec make release",
+    "clean": "pnpm exec make clean"
   }
 }
