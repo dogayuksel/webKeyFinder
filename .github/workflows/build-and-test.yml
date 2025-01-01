@@ -48,12 +48,14 @@ jobs:
         run: docker push ${{ env.image_path }}
       - name: run image
         run: docker run -d -p 3000:3000 ${{ env.image_path }}
+      - name: install pnpm
+        uses: pnpm/action-setup@v4
       - name: run cypress
         uses: cypress-io/github-action@v6
         with:
           # browser: chrome // overridden by 'command'
-          install-command: yarn install --immutable --immutable-cache
-          command: yarn run --binaries-only cypress run --browser chrome
+          install-command: pnpm install --frozen-lockfile
+          command: pnpm cypress run --browser chrome
           config-file: cypress.config.mjs
       - uses: actions/upload-artifact@v4
         if: failure()
