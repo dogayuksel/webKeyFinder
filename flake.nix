@@ -284,7 +284,10 @@
               pkgs.emscripten
 
               pkgs.nodePackages.nodejs
-              pkgs.nodePackages.yarn
+              pkgs.corepack
+              pkgs.nodePackages_latest.typescript
+              pkgs.nodePackages_latest.typescript-language-server
+              pkgs.nodePackages_latest.vscode-langservers-extracted
             ];
 
             shellHook = ''

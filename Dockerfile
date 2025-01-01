@@ -14,11 +14,10 @@ FROM node:lts-alpine AS web-builder
 WORKDIR /usr/app
 COPY packages ./packages
 COPY --from=wasm-builder --link usr/app/dist packages/key-finder-wasm/dist
-COPY .pnp.cjs .pnp.loader.mjs .yarnrc.yml package.json yarn.lock ./
-COPY .yarn ./.yarn
+COPY package.json pnpm-lock.yaml ./
 
-RUN yarn install --immutable --immutable-cache --check-cache
-RUN yarn workspace key-finder-web build:release
+RUN pnpm install --frozen-lockfile
+RUN pnpm --filter key-finder-web build:release
 
 
 FROM node:lts-alpine AS runner
@@ -27,8 +26,8 @@ RUN addgroup -g 1001 -S runners
 RUN adduser -S runner -u 1001
 
 WORKDIR /usr/app
-RUN yarn add serve
+RUN pnpm add serve
 COPY --from=web-builder --chown=1001:1001 --link /usr/app/packages/key-finder-web/dist/ ./dist/
 
 USER runner
-CMD ["yarn", "serve", "./dist", "-l", "3000", "-s"]
+CMD ["pnpm", "serve", "./dist", "-l", "3000", "-s"]
