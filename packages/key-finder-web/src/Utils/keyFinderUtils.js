@@ -1,7 +1,7 @@
-import keyFinderWorkerURL from 'omt:key-finder-wasm';
+import KeyFinderWorker from 'key-finder-wasm?worker';
 
 export function initializeKeyFinder({ sampleRate, numberOfChannels }) {
-  const worker = new Worker(keyFinderWorkerURL);
+  const worker = new KeyFinderWorker();
   worker.postMessage({
     funcName: 'initialize',
     data: [sampleRate, numberOfChannels],

@@ -1,4 +1,4 @@
-import { h, Fragment, Component } from 'preact';
+import { Component } from 'preact';
 import { Router, Link } from 'preact-router';
 import Navigation from './Navigation';
 import LiveDetection from './LiveDetection';

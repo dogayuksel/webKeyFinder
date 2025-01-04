@@ -1,26 +1,20 @@
 {
   "name": "key-finder-web",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "rollup -c",
-    "copy:html": "cp src/index.html dist/index.html",
-    "copy:favicon": "cp src/favicon.ico dist/favicon.ico",
-    "build:release": "pnpm clean && pnpm build && pnpm copy:html && pnpm copy:favicon",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
     "serve": "serve ./dist -l 3000 -s"
   },
   "dependencies": {
-    "@rollup/plugin-node-resolve": "15.3.0",
-    "@rollup/plugin-typescript": "11.1.6",
-    "@rollup/wasm-node": "4.24.4",
-    "@surma/rollup-plugin-off-main-thread": "2.2.3",
+    "@preact/preset-vite": "2.9.4",
     "key-finder-wasm": "workspace:*",
     "normalize.css": "8.0.1",
     "preact": "10.24.3",
     "preact-router": "4.1.2",
-    "rollup-plugin-css-only": "4.5.2",
     "serve": "14.2.4",
-    "tslib": "2.7.0",
     "typescript": "5.6.3",
-    "uuid": "10.0.0"
+    "uuid": "10.0.0",
+    "vite": "6.0.7"
   }
 }

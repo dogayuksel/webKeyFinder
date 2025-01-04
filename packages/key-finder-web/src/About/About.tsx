@@ -1,4 +1,4 @@
-import { h, Fragment, Component } from 'preact';
+import { Component } from 'preact';
 
 import './About.css';
 
@@ -29,7 +29,7 @@ class About extends Component {
     document.title = 'keyfinder | More about the Key Finder Application';
     document
       .querySelector('meta[name="description"]')
-      .setAttribute(
+      ?.setAttribute(
         'content',
         'Find out more about how the Key Finder Application application works. Access the source code to run it yourself.'
       );

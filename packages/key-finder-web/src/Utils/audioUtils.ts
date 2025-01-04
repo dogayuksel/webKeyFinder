@@ -1,4 +1,4 @@
-import recorderWorkletURL from 'omt:../recorderWorkletProcessor.js';
+import recorderWorkletUrl from '../recorderWorkletProcessor.js?worker&url';
 
 export function requestUserMedia(): Promise<MediaStream> {
   return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
@@ -35,7 +35,7 @@ export function createRecordingDevice(
 ): Promise<RecorderWorkletNode> {
   return new Promise((resolve, reject) => {
     audioContext.audioWorklet
-      .addModule(recorderWorkletURL)
+      .addModule(recorderWorkletUrl)
       .then(() => {
         const recorder = new AudioWorkletNode(audioContext, 'recorder-worklet');
         resolve(recorder as RecorderWorkletNode);

@@ -206,14 +206,14 @@
 
           postPatch = ''
             substituteInPlace packages/key-finder-web/src/Utils/keyFinderUtils.js \
-              --replace-fail "'omt:key-finder-wasm'" \
-              "'omt:../keyFinderProgressiveWorker.js'"
+              --replace-fail "'key-finder-wasm?worker'" \
+              "'../keyFinderProgressiveWorker.js?worker'"
           '';
 
           pnpmWorkspaces = [ "key-finder-web" ];
           pnpmDeps = pnpm.fetchDeps {
             inherit (finalAttrs) pname version src pnpmWorkspaces;
-            hash = "sha256-XJpEpa1Fxhnn1dI02LAhPzFq2AMug6UeWJwyAcaqQcc=";
+            hash = "sha256-2p9QdzrXka8dDx2tPQbP1dlCf/oeqTz+Y088mroy/ts=";
           };
 
           nativeBuildInputs = [
