@@ -1,4 +1,4 @@
-import { h, Fragment, Component } from 'preact';
+import { Component } from 'preact';
 import {
   majorKeys,
   minorKeys,

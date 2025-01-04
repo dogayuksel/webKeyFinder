@@ -1,4 +1,4 @@
-import { h, createRef, Fragment, Component } from 'preact';
+import { createRef, Component } from 'preact';
 import { audioUtils, keyFinderUtils } from '../Utils';
 import CircleOfFifths from '../CircleOfFifths';
 import { keysNotation } from '../defaults';

@@ -1,4 +1,4 @@
-import { createRef, h, Fragment, Component } from 'preact';
+import { createRef, Component } from 'preact';
 import { Link } from 'preact-router';
 import AudioFileItem, { FileItem } from './AudioFileItem';
 import { v4 as uuidv4 } from 'uuid';
