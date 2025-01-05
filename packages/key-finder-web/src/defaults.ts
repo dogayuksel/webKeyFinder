@@ -1,4 +1,6 @@
-const customSettings = JSON.parse(localStorage.getItem('customSettings'));
+const customSettings = JSON.parse(
+  localStorage.getItem('customSettings') ?? 'null'
+);
 
 const majorKeys = [
   'C Major',
@@ -61,9 +63,11 @@ const keysNotation =
     ? customSettings.keysNotation
     : defaultKeysNotation;
 
-const defaultTheme = 'light';
-const theme =
-  customSettings && customSettings.theme ? customSettings.theme : defaultTheme;
+const theme = customSettings?.theme
+  ? customSettings.theme
+  : window.matchMedia?.('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
 
 const defaultKeyAtTopPosition = 'C Major';
 const keyAtTopPosition =

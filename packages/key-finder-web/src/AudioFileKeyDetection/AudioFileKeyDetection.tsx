@@ -1,7 +1,7 @@
 import { createRef, Component } from 'preact';
+import { ChangeEvent } from 'preact/compat';
 import { Link } from 'preact-router';
 import AudioFileItem, { FileItem } from './AudioFileItem';
-import { v4 as uuidv4 } from 'uuid';
 import { numberOfThreads } from '../defaults';
 
 import './AudioFileKeyDetection.css';
@@ -20,14 +20,16 @@ class AudioFileKeyDetection extends Component<{}, State> {
     document.title = 'keyfinder | Key Finder for Audio Files';
     document
       .querySelector('meta[name="description"]')
-      .setAttribute(
+      ?.setAttribute(
         'content',
         'A web application to find the musical key (root note) of an audio file. Song will be analyzed right in your browser. Select the audio file from your computer to find the root note.'
       );
   }
 
-  handleFileInput = ({ target }: Event): void => {
-    const fileList = (target as HTMLInputElement).files;
+  handleFileInput = ({
+    currentTarget,
+  }: ChangeEvent<HTMLInputElement>): void => {
+    const fileList = currentTarget.files ?? [];
     this.setState(({ files }) => {
       let availableThreads = files.reduce((acc, cur) => {
         if (cur.canProcess && !cur.result) return acc - 1;
@@ -39,7 +41,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
           canProcess = true;
           availableThreads -= 1;
         }
-        const id = uuidv4();
+        const id = window.crypto.randomUUID();
         files.push({
           id,
           canProcess,
@@ -53,7 +55,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
     });
   };
 
-  updateDigest = (uuid: string, digest: string): void => {
+  updateDigest = (uuid: string, _digest: string): void => {
     this.setState(({ files }) => {
       const newFiles = files.map((file) => {
         if (file.id === uuid) return { ...file, uuid };
@@ -78,7 +80,8 @@ class AudioFileKeyDetection extends Component<{}, State> {
     });
   };
 
-  render({}, { files }) {
+  render() {
+    const { files } = this.state;
     return (
       <main class="audio-file-key-detection-page">
         <header>

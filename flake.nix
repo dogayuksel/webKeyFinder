@@ -205,7 +205,7 @@
           };
 
           postPatch = ''
-            substituteInPlace packages/key-finder-web/src/Utils/keyFinderUtils.js \
+            substituteInPlace packages/key-finder-web/src/Utils/keyFinderUtils.ts \
               --replace-fail "'key-finder-wasm?worker'" \
               "'../keyFinderProgressiveWorker.js?worker'"
           '';
@@ -213,7 +213,7 @@
           pnpmWorkspaces = [ "key-finder-web" ];
           pnpmDeps = pnpm.fetchDeps {
             inherit (finalAttrs) pname version src pnpmWorkspaces;
-            hash = "sha256-2p9QdzrXka8dDx2tPQbP1dlCf/oeqTz+Y088mroy/ts=";
+            hash = "sha256-Vc8SMFVZniv/2erfjBoWrHtXyblTTI/2IZnDiLPERzI=";
           };
 
           nativeBuildInputs = [

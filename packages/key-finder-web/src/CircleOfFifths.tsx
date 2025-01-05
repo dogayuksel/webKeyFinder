@@ -17,7 +17,13 @@ const MINOR_RATIO = 0.49;
 const INNER_RATIO = 0.67;
 const MAJOR_RATIO = 0.82;
 
-const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
+type Props = {
+  backgroundColor: string;
+  angleOffset: number;
+  opacity: number;
+};
+
+const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }: Props) => (
   <div
     style={{
       position: 'absolute',
@@ -35,7 +41,7 @@ const InnerSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   />
 );
 
-const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
+const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }: Props) => (
   <div
     style={{
       position: 'absolute',
@@ -52,7 +58,13 @@ const OuterSemiCircle = ({ backgroundColor, angleOffset, opacity }) => (
   />
 );
 
-const SemiCircleHighlight = ({ result, offset }) => {
+const SemiCircleHighlight = ({
+  result,
+  offset,
+}: {
+  result?: string;
+  offset: number;
+}) => {
   const majorKeyIndex = majorKeys.findIndex((key) => key === result);
   const minorKeyIndex = minorKeys.findIndex((key) => key === result);
 

@@ -20,12 +20,12 @@ interface Props {
 }
 
 interface State {
-  analysisStart: number;
-  analysisDuration: number;
-  currentSegment: number;
-  maxSegments: number;
+  analysisStart: number | null;
+  analysisDuration: number | null;
+  currentSegment: number | null;
+  maxSegments: number | null;
   analyzing: boolean;
-  result: string;
+  result: string | null;
 }
 
 class AudioFileKeyDetection extends Component<Props, State> {
@@ -49,7 +49,7 @@ class AudioFileKeyDetection extends Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (
       prevProps.fileItem.canProcess === false &&
       this.props.fileItem.canProcess === true
@@ -62,21 +62,21 @@ class AudioFileKeyDetection extends Component<Props, State> {
 
   componentWillUnmount() {
     this.terminated = true;
-    this.worker && this.worker.terminate();
+    this.worker?.terminate();
   }
 
   advanceSegmentCount = () => {
     this.setState(({ currentSegment }) => ({
-      currentSegment: currentSegment + 1,
+      currentSegment: (currentSegment ?? 0) + 1,
     }));
   };
 
   postAudioSegmentAtOffset = (
-    worker,
-    channelData,
-    sampleRate,
-    numberOfChannels,
-    offset
+    worker: Worker,
+    channelData: Float32Array[],
+    sampleRate: number,
+    numberOfChannels: number,
+    offset: number
   ) => {
     const segment = keyFinderUtils.zipChannelsAtOffset(
       channelData,
@@ -91,7 +91,7 @@ class AudioFileKeyDetection extends Component<Props, State> {
     if (this.terminated) return;
     const sampleRate = buffer.sampleRate;
     const numberOfChannels = buffer.numberOfChannels;
-    const channelData = [];
+    const channelData: Float32Array[] = [];
     for (let i = 0; i < numberOfChannels; i += 1) {
       channelData.push(buffer.getChannelData(i));
     }
@@ -115,16 +115,19 @@ class AudioFileKeyDetection extends Component<Props, State> {
         );
         this.setState((oldState) => ({
           result,
-          analysisDuration: performance.now() - oldState.analysisStart,
+          analysisDuration: performance.now() - (oldState.analysisStart ?? 0),
           analyzing: false,
         }));
         this.props.updateResult(this.props.fileItem.id, result);
-        this.worker.terminate();
+        this.worker?.terminate();
         this.worker = null;
       } else {
         // Not final response
         if (event.data.data === 0) {
           // very first response
+          if (!this.worker) {
+            throw new Error('Unexpected missing key analysis worker');
+          }
           this.postAudioSegmentAtOffset(
             this.worker,
             channelData,
@@ -135,6 +138,12 @@ class AudioFileKeyDetection extends Component<Props, State> {
           this.advanceSegmentCount();
         } else {
           // not first response
+          if (!this.worker) {
+            throw new Error('Unexpected missing key analysis worker');
+          }
+          if (!this.state.currentSegment) {
+            throw new Error('Unexpected undefined current segment');
+          }
           const result = keyFinderUtils.extractResultFromByteArray(
             event.data.data
           );
@@ -160,26 +169,24 @@ class AudioFileKeyDetection extends Component<Props, State> {
   };
 
   handleFileLoad = async (event: ProgressEvent<FileReader>): Promise<void> => {
+    if (!(event.target?.result instanceof ArrayBuffer)) {
+      throw new Error('Unexpected result when reading given file');
+    }
     const context = audioUtils.createAudioContext();
-    const digest = await crypto.subtle.digest(
-      'SHA-256',
-      event.target.result as ArrayBuffer
-    );
+    const digest = await crypto.subtle.digest('SHA-256', event.target.result);
     const hashArray = Array.from(new Uint8Array(digest));
     const hashHex = hashArray
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
     this.props.updateDigest(this.props.fileItem.id, hashHex);
-    context.decodeAudioData(
-      event.target.result as ArrayBuffer,
-      this.handleAudioFile
-    );
+    context.decodeAudioData(event.target.result, this.handleAudioFile);
   };
 
-  render(
-    { fileItem },
-    { currentSegment, maxSegments, analyzing, result, analysisDuration }
-  ) {
+  render() {
+    const { fileItem } = this.props;
+    const { currentSegment, maxSegments, result, analysisDuration } =
+      this.state;
+
     return (
       <div class="file-item__container">
         <div class="file-item__song-name">{fileItem.file.name}</div>
@@ -188,11 +195,14 @@ class AudioFileKeyDetection extends Component<Props, State> {
             {result && keysNotation[result] && `${keysNotation[result]}`}
           </div>
           <div class="file-item__circle">
-            <CircleOfFifths mini={true} result={result} />
+            <CircleOfFifths mini={true} result={result ?? undefined} />
           </div>
         </div>
         <div class="file-item__progress-indicator">
-          <progress value={currentSegment} max={maxSegments}></progress>
+          <progress
+            value={currentSegment ?? 0}
+            max={maxSegments ?? undefined}
+          ></progress>
           {result &&
             analysisDuration &&
             `${(analysisDuration / 1000).toFixed(1)} s`}

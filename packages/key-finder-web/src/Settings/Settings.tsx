@@ -1,4 +1,5 @@
 import { Component } from 'preact';
+import { ChangeEvent } from 'preact/compat';
 import {
   majorKeys,
   minorKeys,
@@ -23,13 +24,13 @@ class Settings extends Component {
     document.title = 'keyfinder | Settings for Key Finder Application';
     document
       .querySelector('meta[name="description"]')
-      .setAttribute(
+      ?.setAttribute(
         'content',
         'Adjust the settings for the musical key finder application. You can modify the notation used to visualize the circle of fifths.'
       );
   }
 
-  handleSave = (e) => {
+  handleSave = (e: SubmitEvent) => {
     e.preventDefault();
     try {
       localStorage.setItem('customSettings', JSON.stringify(this.state));
@@ -39,8 +40,8 @@ class Settings extends Component {
     }
   };
 
-  onInputNewNotation = (e) => {
-    const { value, id } = e.target;
+  onChangeNotation = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, id } = e.currentTarget;
     this.setState({
       keysNotation: {
         ...this.state.keysNotation,
@@ -49,15 +50,8 @@ class Settings extends Component {
     });
   };
 
-  onInput = (e) => {
-    const { value, id } = e.target;
-    this.setState({
-      [id]: value,
-    });
-  };
-
-  onChange = (e) => {
-    const { value, name } = e.target;
+  onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { value, name } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
@@ -92,7 +86,7 @@ class Settings extends Component {
                   <div class="settings-container__notation-field">
                     <label for={major}>{major}</label>
                     <input
-                      onInput={this.onInputNewNotation}
+                      onChange={this.onChangeNotation}
                       id={major}
                       value={this.state.keysNotation[major]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -105,7 +99,7 @@ class Settings extends Component {
                   <div class="settings-container__notation-field">
                     <label for={minor}>{minor}</label>
                     <input
-                      onInput={this.onInputNewNotation}
+                      onChange={this.onChangeNotation}
                       id={minor}
                       value={this.state.keysNotation[minor]}
                       pattern="[\w♭♯]|[\w♭♯][\w\s♭♯]*[\w♭♯]"
@@ -168,9 +162,8 @@ class Settings extends Component {
             </div>
             <h2>File Analysis</h2>
             <p>
-              {
-                'While analyzing files, the application spawns multiple workers. Set the maximum number of workers to be run at the same time.'
-              }
+              {'While analyzing files, the application spawns multiple workers. ' +
+                'Set the maximum number of workers to be run at the same time.'}
             </p>
             <div class="settings-container__processes-field">
               <label for="numberOfThreads">
@@ -181,13 +174,14 @@ class Settings extends Component {
                 id="numberOfThreads"
                 name="numberOfThreads"
                 min="1"
-                onInput={this.onInput}
+                onChange={this.onChange}
                 value={this.state.numberOfThreads}
               />
             </div>
             {this.state.numberOfThreads > maxNumberOfThreads && (
               <p class="settings-container--danger">
-                {`According to your browser, your machine has ${maxNumberOfThreads} processors available. Spawing more threads than that will slow down your computer.`}
+                {`According to your browser, your machine has ${maxNumberOfThreads} processors available. ` +
+                  'Spawing more threads than that will slow down your computer.'}
               </p>
             )}
             <button class="settings-container__save-button" type="submit">
