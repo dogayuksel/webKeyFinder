@@ -9,15 +9,22 @@ import './LiveDetection.css';
 const WIDTH = 200;
 const HEIGHT = 100;
 
-class LiveDetection extends Component {
+interface State {
+  connected: boolean;
+  analyzing: boolean;
+  result: string | null;
+  error: string | null;
+}
+
+class LiveDetection extends Component<{}, State> {
   audioContext: AudioContext | null = null;
   recorder: RecorderWorkletNode | null = null;
   levelAnalyzer: AudioAnalyzerNode | null = null;
   keyAnalyzer: Worker | null = null;
   sampleRate: number | null = null;
-  canvas = createRef();
-  canvasContext = null;
-  dataArray = null;
+  canvas = createRef<HTMLCanvasElement>();
+  canvasContext: CanvasRenderingContext2D | null = null;
+  dataArray: Uint8Array | null = null;
 
   state = {
     connected: false,
@@ -30,7 +37,7 @@ class LiveDetection extends Component {
     document.title = 'keyfinder | Key Finder for Live Audio';
     document
       .querySelector('meta[name="description"]')
-      .setAttribute(
+      ?.setAttribute(
         'content',
         'A web application to find the musical key (root note) of a song from the live audio feed. Analyze audio from your microphone or audio stream routed from your sound card to find the root note right in your browser.'
       );
@@ -41,6 +48,7 @@ class LiveDetection extends Component {
   }
 
   drawLevelAnalysis = () => {
+    if (!this.levelAnalyzer || !this.canvasContext || !this.dataArray) return;
     requestAnimationFrame(this.drawLevelAnalysis);
     this.levelAnalyzer.getByteTimeDomainData(this.dataArray);
     this.canvasContext.fillStyle = theme.colors['--gray-color'];
@@ -78,7 +86,7 @@ class LiveDetection extends Component {
       this.dataArray = audioUtils.createDataArrayForAnalyzerDevice(
         this.levelAnalyzer
       );
-      this.canvasContext = this.canvas.current.getContext('2d');
+      this.canvasContext = this.canvas.current?.getContext('2d') ?? null;
 
       audioUtils.connectAudioNodes(source, this.recorder);
       audioUtils.connectAudioNodes(source, this.levelAnalyzer);
@@ -102,11 +110,18 @@ class LiveDetection extends Component {
         }
       };
     } catch (e) {
-      this.setState({ error: e.message });
+      if (e instanceof Error) {
+        this.setState({ error: e.message ?? 'Unknown error' });
+      } else {
+        throw e;
+      }
     }
   };
 
   connectKeyAnalyzer = () => {
+    if (!this.sampleRate) {
+      throw new Error('Unexpected missing sample rate');
+    }
     this.keyAnalyzer = keyFinderUtils.initializeKeyFinder({
       sampleRate: this.sampleRate,
       numberOfChannels: 1,
@@ -139,6 +154,9 @@ class LiveDetection extends Component {
     if (!this.recorder || !this.audioContext) return;
     this.connectKeyAnalyzer();
     const { contextTime } = this.audioContext.getOutputTimestamp();
+    if (!contextTime) {
+      throw new Error('Unexpected undefined context time');
+    }
     this.recorder.parameters
       .get('isRecording')
       .setValueAtTime(1, contextTime + 0.1);
@@ -149,12 +167,16 @@ class LiveDetection extends Component {
     if (!this.recorder || !this.audioContext) return;
     this.setState({ analyzing: false });
     const { contextTime } = this.audioContext.getOutputTimestamp();
+    if (!contextTime) {
+      throw new Error('Unexpected undefined context time');
+    }
     this.recorder.parameters
       .get('isRecording')
       .setValueAtTime(0, contextTime + 0.1);
   };
 
-  render({}, { connected, analyzing, result, error }) {
+  render() {
+    const { connected, analyzing, result, error } = this.state;
     return (
       <div class="live-detection-page">
         {error && <h1>{error}</h1>}
@@ -208,7 +230,7 @@ class LiveDetection extends Component {
             </div>
           </div>
           <div class="live-detection__circle-of-fifths">
-            <CircleOfFifths result={result} />
+            <CircleOfFifths result={result ?? undefined} />
           </div>
         </main>
       </div>

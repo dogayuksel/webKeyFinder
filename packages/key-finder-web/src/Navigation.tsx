@@ -1,14 +1,19 @@
+import classNames from 'classnames';
 import { Component } from 'preact';
 import { Link } from 'preact-router/match';
 
 import './Navigation.css';
 
 interface State {
-  updatedUrl: string;
   navOpen: boolean;
 }
 
 class App extends Component<{}, State> {
+  constructor() {
+    super();
+    this.state = { navOpen: false };
+  }
+
   closeNav = () => {
     const { navOpen } = this.state;
     if (navOpen === true) {
@@ -16,12 +21,11 @@ class App extends Component<{}, State> {
     }
   };
 
-  render(_, { navOpen }) {
+  render() {
+    const { navOpen } = this.state;
     return (
       <nav
-        class={['navigation-wrapper', navOpen ? 'navigation-open' : ''].join(
-          ' '
-        )}
+        class={classNames('navigation-wrapper', { 'navigation-open': navOpen })}
       >
         <button onClick={() => this.setState({ navOpen: true })}>☰</button>
         <div class="links-container">
