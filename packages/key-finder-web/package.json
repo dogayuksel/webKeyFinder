@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "15.3.0",
-    "@rollup/plugin-typescript": "11.1.6",
+    "@rollup/plugin-typescript": "12.1.2",
     "@rollup/wasm-node": "4.24.4",
     "@surma/rollup-plugin-off-main-thread": "2.2.3",
     "key-finder-wasm": "workspace:*",
