@@ -213,7 +213,7 @@
           pnpmWorkspaces = [ "key-finder-web" ];
           pnpmDeps = pnpm.fetchDeps {
             inherit (finalAttrs) pname version src pnpmWorkspaces;
-            hash = "sha256-Vc8SMFVZniv/2erfjBoWrHtXyblTTI/2IZnDiLPERzI=";
+            hash = "sha256-jtu9itXAY98+2SuiiGHMo9sgArxQth29VFhS1Ao2ZdA=";
           };
 
           nativeBuildInputs = [
@@ -260,8 +260,7 @@
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
+        in rec {
           packages = rec {
             fftw = pkgs.callPackage emscripten-fftw { };
             libkeyfinder = pkgs.callPackage emscripten-libkeyfinder
@@ -271,7 +270,42 @@
             key-finder-web = pkgs.callPackage key-finder-web-pkg
               { key-finder-wasm = key-finder-wasm; };
           };
-        })
+
+          nixosModules = {
+            keyfinder = { config, pkgs, lib, ... }:
+              with lib;
+              let
+                cfg = config.services.keyfinder;
+              in {
+                options.services.keyfinder = {
+                  enable = mkEnableOption "keyfinder";
+                  hostName = mkOption {
+                    type = types.str;
+                    description = "FQDN for the keyfinder instance.";
+                  };
+                };
+                config = mkIf cfg.enable {
+                  users.users.keyfinder = {
+                    isSystemUser = true;
+                    group = "nginx";
+                  };
+                  services.nginx = {
+                    enable = true;
+                    virtualHosts."${cfg.hostName}" = {
+                      root = "${packages.key-finder-web}/dist";
+                      locations."/" = {
+                        tryFiles = "$uri $uri/ $uri.html /index.html";
+                      };
+                      locations."/assets" = {
+                        extraConfig = "expires 1d;";
+                      };
+                    };
+                  };
+                };
+              };
+          };
+        }
+      )
     ) //
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
