@@ -6,7 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, ... }:
     let
       emscripten-fftw =
         { stdenv
@@ -168,14 +168,14 @@
             emcc -O3 -flto -v \
               -I ${emscripten-libkeyfinder}/include/keyfinder \
               -lembind ./src/keyFinderProgressiveWorker.cpp \
-              ${emscripten-fftw}/lib/libfftw3.a \
-              ${emscripten-libkeyfinder}/lib/libkeyfinder.a \
-			        --post-js "./src/keyFinderProgressiveWorker.post.js" \
+              {emscripten-fftw}/lib/libfftw3.a \
+              {emscripten-libkeyfinder}/lib/libkeyfinder.a \
+            	--post-js "./src/keyFinderProgressiveWorker.post.js" \
               -s "BUILD_AS_WORKER=1" \
-            	-s "DISABLE_EXCEPTION_CATCHING=1" \
-            	-s "ALLOW_MEMORY_GROWTH=1" \
-            	-s "SINGLE_FILE=1" \
-            	-o dist/keyFinderProgressiveWorker.js
+              -s "DISABLE_EXCEPTION_CATCHING=1" \
+              -s "ALLOW_MEMORY_GROWTH=1" \
+              -s "SINGLE_FILE=1" \
+              -o dist/keyFinderProgressiveWorker.js
             node ./src/rename-overridden-functions.mjs;
           '';
 
@@ -260,7 +260,8 @@
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-        in rec {
+        in
+        {
           packages = rec {
             fftw = pkgs.callPackage emscripten-fftw { };
             libkeyfinder = pkgs.callPackage emscripten-libkeyfinder
@@ -270,43 +271,51 @@
             key-finder-web = pkgs.callPackage key-finder-web-pkg
               { key-finder-wasm = key-finder-wasm; };
           };
-
-          nixosModules = {
-            keyfinder = { config, pkgs, lib, ... }:
-              with lib;
-              let
-                cfg = config.services.keyfinder;
-              in {
-                options.services.keyfinder = {
-                  enable = mkEnableOption "keyfinder";
-                  hostName = mkOption {
-                    type = types.str;
-                    description = "FQDN for the keyfinder instance.";
-                  };
-                };
-                config = mkIf cfg.enable {
-                  users.users.keyfinder = {
-                    isSystemUser = true;
-                    group = "nginx";
-                  };
-                  services.nginx = {
-                    enable = true;
-                    virtualHosts."${cfg.hostName}" = {
-                      root = "${packages.key-finder-web}/dist";
-                      locations."/" = {
-                        tryFiles = "$uri $uri/ $uri.html /index.html";
-                      };
-                      locations."/assets" = {
-                        extraConfig = "expires 1d;";
-                      };
-                    };
-                  };
-                };
-              };
-          };
         }
       )
     ) //
+    {
+      overlays.default =
+        (final: prev:
+          { inherit (self.packages.${final.system}) key-finder-web; }
+        );
+    } //
+    {
+      nixosModules = {
+        keyfinder = { config, pkgs, lib, ... }:
+          with lib;
+          let
+            cfg = config.services.keyfinder;
+          in
+          {
+            options.services.keyfinder = {
+              enable = mkEnableOption "keyfinder";
+              hostName = mkOption {
+                type = types.str;
+                description = "FQDN for the keyfinder instance.";
+              };
+            };
+            config = mkIf cfg.enable {
+              users.users.keyfinder = {
+                isSystemUser = true;
+                group = "nginx";
+              };
+              services.nginx = {
+                enable = true;
+                virtualHosts."${cfg.hostName}" = {
+                  root = "${pkgs.key-finder-web}/dist";
+                  locations."/" = {
+                    tryFiles = "$uri $uri/ $uri.html /index.html";
+                  };
+                  locations."/assets" = {
+                    extraConfig = "expires 1d;";
+                  };
+                };
+              };
+            };
+          };
+      };
+    } //
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
