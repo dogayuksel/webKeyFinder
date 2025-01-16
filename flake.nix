@@ -8,131 +8,6 @@
 
   outputs = { self, nixpkgs, flake-utils, ... }:
     let
-      emscripten-fftw =
-        { stdenv
-        , fetchurl
-        , emscripten
-        , nodejs
-        , perl
-        }: (stdenv.mkDerivation (finalAttrs: {
-          pname = "emscripten-fftw-double";
-          version = "3.3.10";
-
-          src = fetchurl {
-            urls = [
-              "https://fftw.org/fftw-${finalAttrs.version}.tar.gz"
-              "ftp://ftp.fftw.org/pub/fftw/fftw-${finalAttrs.version}.tar.gz"
-            ];
-            sha256 = "sha256-VskyVJhSzdz6/as4ILAgDHdCZ1vpIXnlnmIVs0DiZGc=";
-          };
-
-          postPatch = ''
-            substituteInPlace configure \
-              --replace-fail "CFLAGS=\"\$CFLAGS -mtune=native\"" "CFLAGS=\"\$CFLAGS\""
-          '';
-
-          nativeBuildInputs = [ emscripten ];
-
-          configureFlags = [
-            "--disable-doc"
-            "--disable-fortran"
-            "--with-slow-timer"
-          ];
-
-          preConfigure = ''
-            HOME=$TMPDIR
-            mkdir -p .emscriptencache
-            export EM_CACHE=$(pwd)/.emscriptencache
-          '';
-
-          configureScript = "emconfigure ./configure";
-
-          buildPhase = ''
-            emmake make;
-          '';
-
-          doCheck = true;
-          nativeCheckInputs = [ nodejs perl ];
-          checkPhase = ''
-            echo "--- running check phase ---"
-
-            printf '%s\n%s\n' "#!${nodejs}/bin/node" \
-              "$(cat tests/bench)" > tests/bench
-            chmod +x tests/bench
-
-            perl -w ./tests/check.pl -r -c=1 -v ./tests/bench
-
-            if [ $? -ne 0 ]; then
-              echo "test has failed"
-              exit 1;
-            else
-              echo "it seems to work"
-            fi
-          '';
-        }));
-
-      emscripten-libkeyfinder =
-        { stdenv
-        , fetchFromGitHub
-        , emscripten
-        , cmake
-        , emscripten-fftw
-        , catch2_3
-        , lib
-        }:
-        (stdenv.mkDerivation (finalAttrs: {
-          pname = "emscripten-libkeyfinder";
-          version = "2.2.8";
-
-          src = fetchFromGitHub {
-            owner = "mixxxdj";
-            repo = "libkeyfinder";
-            rev = "941e517ebf853c2153a8b9d6efcc0c729199aa0b";
-            hash = "sha256-cRrVOgFuPYfGeR+IjEMblESi/bdGUtnQHmvxDm1rp9A=";
-            name = "libkeyfinder";
-          };
-
-          nativeBuildInputs = [
-            emscripten
-            cmake
-            emscripten-fftw
-            catch2_3
-          ];
-
-          patchPhase = ''
-            cat >> tests/CMakeLists.txt << EOF
-            set_target_properties(keyfinder-tests PROPERTIES COMPILE_FLAGS "-fwasm-exceptions ")
-            set_target_properties(keyfinder-tests PROPERTIES LINK_FLAGS "-fwasm-exceptions ")
-            EOF
-          '';
-
-          cmakeFlags = lib.mapAttrsToList lib.cmakeFeature {
-            "FFTW3_LIBRARY" = "${emscripten-fftw}/lib/libfftw3.a";
-            "FFTW3_INCLUDE_DIR" = "${emscripten-fftw}/include";
-            "FETCHCONTENT_SOURCE_DIR_CATCH2" = "${catch2_3.src}";
-            "CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY" = "OFF";
-            "CMAKE_FIND_USE_PACKAGE_REGISTRY" = "OFF";
-            "CMAKE_FIND_FRAMEWORK" = "LAST";
-            "BUILD_SHARED_LIBS" = "0";
-            "CMAKE_CXX_FLAGS_RELEASE" = "-O3";
-            "CMAKE_BUILD_TYPE" = "RELEASE";
-          };
-
-          configurePhase = ''
-            HOME=$TMPDIR
-            mkdir -p .emscriptencache
-            export EM_CACHE=$(pwd)/.emscriptencache
-            mkdir -p build
-            cd build
-            emcmake cmake .. $cmakeFlags -DCMAKE_INSTALL_PREFIX=$out
-          '';
-
-          buildPhase = "emmake make";
-
-          doCheck = true;
-          checkPhase = "ctest";
-        }));
-
       emscripten-key-finder-wasm =
         { stdenv
         , emscripten
@@ -263,8 +138,8 @@
         in
         {
           packages = rec {
-            em-fftw = pkgs.callPackage emscripten-fftw { };
-            em-libkeyfinder = pkgs.callPackage emscripten-libkeyfinder
+            em-fftw = pkgs.callPackage ./nix/emscripten-fftw.nix { };
+            em-libkeyfinder = pkgs.callPackage ./nix/emscripten-keyfinder.nix
               { emscripten-fftw = em-fftw; };
             key-finder-wasm = pkgs.callPackage emscripten-key-finder-wasm
               { emscripten-fftw = em-fftw; emscripten-libkeyfinder = em-libkeyfinder; };
