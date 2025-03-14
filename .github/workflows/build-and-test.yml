@@ -29,7 +29,6 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           install: true
-          version: v0.20.1
       - name: login container registry
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - uses: actions/checkout@v4
