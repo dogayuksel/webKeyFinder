@@ -7,7 +7,7 @@
     "serve": "serve ./dist -l 3000 -s"
   },
   "dependencies": {
-    "@preact/preset-vite": "2.9.4",
+    "@preact/preset-vite": "2.10.2",
     "classnames": "2.5.1",
     "key-finder-wasm": "workspace:*",
     "normalize.css": "8.0.1",
