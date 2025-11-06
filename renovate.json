@@ -1,4 +1,21 @@
 {
   "extends": ["config:base"],
-  "schedule": ["before 10am on thursday"]
+  "schedule": ["before 10am on thursday"],
+  "packageRules": [
+    {
+      "groupName": "preact",
+      "matchPackageNames": ["@preact/preset-vite", "preact", "preact-router"]
+    },
+    {
+      "groupName": "dev dependencies",
+      "matchPackageNames": [
+        "cypress",
+        "husky",
+        "lint-staged",
+        "prettier",
+        "typescript",
+        "vite"
+      ]
+    }
+  ]
 }
