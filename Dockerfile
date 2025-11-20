@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.19
+# syntax=docker/dockerfile:1.20
 
 # Build wasm module
 FROM emscripten/emsdk AS wasm-builder
