@@ -31,7 +31,7 @@ jobs:
           install: true
       - name: login container registry
         run: docker login -u publisher -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: pull docker image
         run: |
           docker pull ${{ env.image_name }}:latest
