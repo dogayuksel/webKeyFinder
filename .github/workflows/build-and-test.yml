@@ -57,7 +57,7 @@ jobs:
           install-command: pnpm install --frozen-lockfile
           command: pnpm cypress run --browser chrome
           config-file: cypress.config.mjs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: cypress-output
