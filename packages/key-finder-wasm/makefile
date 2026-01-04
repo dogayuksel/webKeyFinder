@@ -72,7 +72,7 @@ $(EMCC_GENERATED_JS): \
 	emcc ${BUILD_CONFIG} \
 			--bind src/keyFinderProgressiveWorker.cpp \
 			deps/libKeyFinder/build/libkeyfinder.a deps/fftw/.libs/libfftw3.a \
-			--post-js "src/keyFinderProgressiveWorker.post.js" \
+			--extern-post-js "src/keyFinderProgressiveWorker.post.js" \
 			-s "BUILD_AS_WORKER=1" \
 			-s "DISABLE_EXCEPTION_CATCHING=1" \
 			-s "ALLOW_MEMORY_GROWTH=1" \
