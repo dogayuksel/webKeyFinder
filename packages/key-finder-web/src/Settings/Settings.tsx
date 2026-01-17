@@ -36,7 +36,7 @@ class Settings extends Component {
       localStorage.setItem('customSettings', JSON.stringify(this.state));
       location.reload();
     } catch (e) {
-      console.error('Can not use local storage', e);
+      console.error("Can't use local storage", e);
     }
   };
 

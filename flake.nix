@@ -45,7 +45,7 @@
               -lembind ./src/keyFinderProgressiveWorker.cpp \
               ${emscripten-fftw}/lib/libfftw3.a \
               ${emscripten-libkeyfinder}/lib/libkeyfinder.a \
-              --post-js "./src/keyFinderProgressiveWorker.post.js" \
+              --extern-post-js "./src/keyFinderProgressiveWorker.post.js" \
               -s "BUILD_AS_WORKER=1" \
               -s "DISABLE_EXCEPTION_CATCHING=1" \
               -s "ALLOW_MEMORY_GROWTH=1" \
@@ -64,6 +64,8 @@
         { stdenvNoCC
         , nodejs
         , pnpm
+        , fetchPnpmDeps
+        , pnpmConfigHook
         , key-finder-wasm
         , curl
         , xorg
@@ -86,15 +88,16 @@
           '';
 
           pnpmWorkspaces = [ "key-finder-web" ];
-          pnpmDeps = pnpm.fetchDeps {
+          pnpmDeps = fetchPnpmDeps {
             inherit (finalAttrs) pname version src pnpmWorkspaces;
             hash = "sha256-J1oGVsNuRZzmLPegnunSCsZb2SazhCAXqkHreUkzD4U=";
-            fetcherVersion = 2;
+            fetcherVersion = 3;
           };
 
           nativeBuildInputs = [
             nodejs
-            pnpm.configHook
+            pnpmConfigHook
+            pnpm
           ];
 
           buildPhase = ''
