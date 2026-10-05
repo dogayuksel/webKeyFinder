@@ -107,7 +107,7 @@ class AudioFileKeyDetection extends Component<{}, State> {
               onChange={this.handleFileInput}
             />
           </div>
-          {files.map((fileItem) => (
+          {files.slice().reverse().map((fileItem) => (
             <AudioFileItem
               key={fileItem.id}
               fileItem={fileItem}
